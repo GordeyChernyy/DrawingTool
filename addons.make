@@ -1,0 +1,7 @@
+ofxGui
+ofxKinect
+ofxOpenCv
+ofxSvg
+ofxXmlSettings
+ofxAutoReloadedShader
+ofxTablet

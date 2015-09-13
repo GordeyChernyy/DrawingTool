@@ -1,0 +1,22 @@
+<parameters>
+	<UnknownName>1</UnknownName>
+	<pointerSize>5</pointerSize>
+	<pointerColor>255, 255, 255, 255</pointerColor>
+	<DreamBrush>
+		<size>300</size>
+		<opacity>20</opacity>
+		<lineWidth>0.2</lineWidth>
+		<swatch>3</swatch>
+		<bgColor>173, 9, 70, 255</bgColor>
+		<col1>244, 255, 143, 255</col1>
+		<col2>173, 9, 70, 255</col2>
+		<col3>242, 250, 1, 255</col3>
+	</DreamBrush>
+	<ShaderDistort>
+		<s1>0.571429</s1>
+		<s2>0.510204</s2>
+		<s3>0.510204</s3>
+		<pos>906.716, -151.617</pos>
+	</ShaderDistort>
+<parameters/>
+</parameters>
