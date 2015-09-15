@@ -9,6 +9,7 @@
 #include "DreamBrush.h"
 void DreamBrush::setup(){
     parameters.setName("DreamBrush");
+    parameters.add(historyMax.set("historyMax", 2000, 100, 10000));
     parameters.add(size.set("size", 300, 0, 800));
     parameters.add(opacity.set("opacity", 20, 0, 255));
     parameters.add(lineWidth.set("lineWidth", 0.2, 0., 5.));
@@ -25,6 +26,10 @@ void DreamBrush::setup(){
 }
 void DreamBrush::update(float x, float y, float pressure){
     canvas.begin();
+        drawBrush(x, y, pressure);
+    canvas.end();
+}
+void DreamBrush::drawBrush(float x, float y, float pressure){
     ofEnableAlphaBlending();
     ofVec2f m;
     m.set(x, y);
@@ -41,8 +46,7 @@ void DreamBrush::update(float x, float y, float pressure){
         }
     }
     ofDisableAlphaBlending();
-    canvas.end();
-    if (history.size()>2000) {
+    if (history.size()>historyMax) {
         history.erase(history.begin());
     }
 }

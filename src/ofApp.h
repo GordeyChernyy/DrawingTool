@@ -5,6 +5,7 @@
 #include "ofxGui.h"
 #include "ofxTablet.h"
 #include "ShaderDistort.h"
+#include "FramesFbo.h"
 class ofApp : public ofBaseApp{
 
 	public:
@@ -21,14 +22,21 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+    void minimizeGui(bool &isMinimize);
     void tabletMoved(TabletData &data);
     DreamBrush brush;
+    FramesFbo framesFbo;
     ofxPanel gui;
     ofParameterGroup parameters;
+    ofParameter<bool> isMinimize;
+    ofxGuiGroup group;
     bool showGui;
     bool drag;
     ofParameter<bool> enableShader;
+    ofParameter<bool> enableFramesFbo;
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
     ShaderDistort shader;
+
 };

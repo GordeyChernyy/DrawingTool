@@ -13,13 +13,17 @@ public:
     void clearHistory();
     void setup();
     void update(float x, float y, float pressure);
+    void drawBrush(float x, float y, float pressure);
     void draw();
     void changeColor(int num);
     void changeSwatch(int &swatch);
     void resize();
+    void begin();
+    void end();
     ofFbo canvas;
     ofParameterGroup parameters;
     ofParameter<int> size;
+    ofParameter<int> historyMax;
     ofParameter<float> opacity;
     ofParameter<float> lineWidth;
     ofParameter<int> swatch;
