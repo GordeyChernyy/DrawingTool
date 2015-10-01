@@ -17,12 +17,16 @@ public:
     void draw();
     void changeColor(int num);
     void changeSwatch(int &swatch);
+    void changeBrush(int &brushType);
+    void cleanHistory();
     void resize();
     void begin();
     void end();
     ofFbo canvas;
     ofParameterGroup parameters;
     ofParameter<int> size;
+    ofParameter<int> brushType;
+    ofParameter<string> brushTypeS;
     ofParameter<int> historyMax;
     ofParameter<float> opacity;
     ofParameter<float> lineWidth;

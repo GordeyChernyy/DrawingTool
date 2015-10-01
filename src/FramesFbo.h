@@ -18,6 +18,7 @@ public:
     ofParameter<int> imagesTotalP;
     ofParameter<int> imagesTotal;
     ofParameter<int> speed;
+    ofParameter<ofColor> bgColor;
     ofParameter<bool> reload;
     ofParameterGroup parameters;
     
@@ -26,6 +27,7 @@ public:
         parameters.setName("FramesFbo");
         parameters.add(imagesTotalP.set("imagesTotal", 12, 2, 100));
         parameters.add(speed.set("speed", 3, 1, 10));
+        parameters.add(bgColor.set("bgColor", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
         parameters.add(reload.set("reload", true));
         reload.addListener(this, &FramesFbo::reloadFrames);
         imagesTotal = imagesTotalP;
@@ -36,7 +38,7 @@ public:
             ofFbo f;
             f.allocate(ofGetWidth(), ofGetHeight(),GL_RGBA);
             f.begin();
-            ofClear(255, 0);
+            ofClear(bgColor);
             f.end();
             frames.push_back(f);
         }
@@ -59,7 +61,15 @@ public:
         }
     }
     void draw(){
-        frames[currentIndex].draw(0, 0);
+        int index = 0;
+        if (currentIndex == 0) {
+            index = imagesTotal-1;
+        }else{
+            index = currentIndex-1;
+        }
+        if (index<  frames.size()) {
+            frames[index].draw(0, 0);
+        }
     }
     void reloadFrames(bool &input){
         imagesTotal = imagesTotalP;

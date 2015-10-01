@@ -15,10 +15,10 @@ void ShaderDistort::setup(){
     fboCanvas.allocate(ofGetWidth(), ofGetHeight());
     fboCanvas.begin(); ofClear(255); fboCanvas.end();
     parameters.setName("ShaderDistort");
-    parameters.add(s1.set("s1", 1., 0., 1.));
-    parameters.add(s2.set("s2", 1., 0., 1.));
-    parameters.add(s3.set("s3", 1., 0., 1.));
-    parameters.add(pos.set("pos", ofVec2f(0, 0), ofVec2f(-ofGetWidth(), -ofGetHeight()), ofVec2f(ofGetWidth(), ofGetHeight())));
+    parameters.add(s1.set("count", 1., 0., 1.));
+    parameters.add(s2.set("offsetX", 1., 0., 1.));
+    parameters.add(s3.set("offsetY", 1., 0., 1.));
+    parameters.add(pos.set("pos", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(ofGetWidth()*1.5, ofGetHeight()*1.5)));
 }
 void ShaderDistort::update(int x, int y){
     ofSetColor(255, 255, 255, 255);

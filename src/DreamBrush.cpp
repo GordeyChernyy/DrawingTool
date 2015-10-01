@@ -10,6 +10,7 @@
 void DreamBrush::setup(){
     parameters.setName("DreamBrush");
     parameters.add(historyMax.set("historyMax", 2000, 100, 10000));
+    parameters.add(brushType.set("type line", 0, 0, 1));
     parameters.add(size.set("size", 300, 0, 800));
     parameters.add(opacity.set("opacity", 20, 0, 255));
     parameters.add(lineWidth.set("lineWidth", 0.2, 0., 5.));
@@ -22,7 +23,7 @@ void DreamBrush::setup(){
     canvas.allocate(ofGetWidth(), ofGetHeight());
     canvas.begin(); ofClear(bgColor); canvas.end();
     swatch.addListener(this,&DreamBrush::changeSwatch);
-    
+    brushType.addListener(this,&DreamBrush::changeBrush);
 }
 void DreamBrush::update(float x, float y, float pressure){
     canvas.begin();
@@ -50,6 +51,11 @@ void DreamBrush::drawBrush(float x, float y, float pressure){
         history.erase(history.begin());
     }
 }
+void DreamBrush::cleanHistory(){
+    while(history.size()>historyMax) {
+        history.erase(history.begin());
+    }
+}
 void DreamBrush::clearHistory(){
     history.clear();
 }
@@ -72,6 +78,19 @@ void DreamBrush::changeSwatch(int &swatch){
     col1 = swatches[swatch][0];
     col2 = swatches[swatch][1];
     col3 = swatches[swatch][2];
+}
+void DreamBrush::changeBrush(int &_brushType){
+    switch (_brushType) {
+        case 0:
+            brushType.setName("type line");
+            break;
+        case 1:
+            brushType.setName("type triangle");
+            break;
+            
+        default:
+            break;
+    }
 }
 void DreamBrush::draw(){
     ofSetColor(255, 255);

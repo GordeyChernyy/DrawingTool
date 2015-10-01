@@ -6,6 +6,9 @@
 #include "ofxTablet.h"
 #include "ShaderDistort.h"
 #include "FramesFbo.h"
+#include "ofxOsc.h"
+#include "KinectWin.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -28,15 +31,20 @@ class ofApp : public ofBaseApp{
     DreamBrush brush;
     FramesFbo framesFbo;
     ofxPanel gui;
+    KinectWin kinect;
     ofParameterGroup parameters;
+    ofParameterGroup stageParam;
+    int currentParameter;
     ofParameter<bool> isMinimize;
     ofxGuiGroup group;
     bool showGui;
     bool drag;
     ofParameter<bool> enableShader;
+    ofParameter<bool> kinectDebug;
+    ofParameter<bool> enableKinect;
     ofParameter<bool> enableFramesFbo;
+    ofParameter<bool> enableMouse;
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
     ShaderDistort shader;
-
 };
