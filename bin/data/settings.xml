@@ -8,6 +8,7 @@
 		<pointerColor>255, 255, 255, 255</pointerColor>
 	<enableKinect>1</enableKinect>
 		<kinectDebug>1</kinectDebug>
+	<enableKaleidoscope>0</enableKaleidoscope>
 	</stageParam>
 	<DreamBrush>
 		<historyMax>2000</historyMax>
@@ -16,10 +17,11 @@
 		<opacity>20</opacity>
 		<lineWidth>0.2</lineWidth>
 		<swatch>0</swatch>
-		<bgColor>235, 255, 19, 255</bgColor>
+		<bgColor>0, 0, 0, 255</bgColor>
 		<col1>110, 255, 2, 255</col1>
 		<col2>235, 255, 19, 255</col2>
 		<col3>255, 9, 79, 255</col3>
+	<activeColor>110, 255, 2, 255</activeColor>
 	</DreamBrush>
 	<FramesFbo>
 		<imagesTotal>21</imagesTotal>
@@ -61,4 +63,10 @@
 		<thumbLeft>0</thumbLeft>
 		<handTipRight>0</handTipRight>
 	</KinectWin>
+<Kaleidoscope>
+		<count>1</count>
+		<offsetX>1</offsetX>
+		<offsetY>1</offsetY>
+		<pos>0, 0</pos>
+	</Kaleidoscope>
 </parameters>

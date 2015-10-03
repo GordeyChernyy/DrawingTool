@@ -10,15 +10,15 @@
 class DreamBrush{
 public:
     void clear();
-    void clearHistory();
+    void clearHistory(); // remove all elements from history
+    void cleanHistory(); // resize history 
     void setup();
-    void update(float x, float y, float pressure);
-    void drawBrush(float x, float y, float pressure);
-    void draw();
+    void drawToCanvas(float x, float y, float pressure); // draw to fbo located in this class
+    void drawBrush(float x, float y, float pressure); // draw lines
+    void draw(); // draw fbo located in this class
     void changeColor(int num);
     void changeSwatch(int &swatch);
     void changeBrush(int &brushType);
-    void cleanHistory();
     void resize();
     void begin();
     void end();
@@ -32,7 +32,7 @@ public:
     ofParameter<float> lineWidth;
     ofParameter<int> swatch;
     ofParameter<ofColor> bgColor;
-    ofParameter<ofColor> color;
+    ofParameter<ofColor> activeColor;
     ofParameter<ofColor> col1;
     ofParameter<ofColor> col2;
     ofParameter<ofColor> col3;

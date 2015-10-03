@@ -2,37 +2,35 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    shader.setup();
+    kaleidoscope.setup();
     brush.setup();
     framesFbo.setup();
-    kinect.setup();
+//    kinect.setup();
     
     drag = false;
-    parameters.setName("parameters");
     stageParam.setName("stageParam");
     currentParameter = 0;
-    stageParam.add(isMinimize.set("isMinimize", true));
+    
+    parameters.setName("parameters");
     stageParam.add(enableMouse.set("enableMouse", true));
-    stageParam.add(enableShader.set("enableShader", false));
+    stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableFramesFbo.set("enableFramesFbo", false));
-    stageParam.add(enableKinect.set("enableKinect", false));
-    stageParam.add(kinectDebug.set("kinectDebug", false));
+//    stageParam.add(enableKinect.set("enableKinect", false));
+//    stageParam.add(kinectDebug.set("kinectDebug", false));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
     stageParam.add(pointerColor.set("pointerColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
     
     parameters.add(stageParam);
-    parameters.add(kinect.parameters);
+//    parameters.add(kinect.parameters);
     parameters.add(brush.parameters);
     parameters.add(framesFbo.parameters);
-    parameters.add(shader.parameters);
-    isMinimize.addListener(this, &ofApp::minimizeGui);
-
+    parameters.add(kaleidoscope.parameters);
+    
     gui.setup(parameters);
-    gui.getGroup(brush.parameters.getName()).setHeaderBackgroundColor(ofColor(255, 0, 0));
     gui.loadFromFile("settings.xml");
-    // set headers color
+    gui.minimizeAll();
     vector<string> names = gui.getControlNames();
-    for (int i = 0; i<gui.getNumControls(); i++) {
+    for (int i = 0; i<gui.getNumControls(); i++) { // set headers color
         ofColor col = ofColor(0, 162, 208);
         gui.getGroup(names[i]).setHeaderBackgroundColor(col);
         gui.getGroup(names[i]).setTextColor(ofColor(0));
@@ -44,53 +42,27 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    kinect.update();
-    shader.update(mouseX, mouseY);
-    if (enableKinect) {
-        for (int i = 0; i < kinect.joints.size(); i++) {
-            if(kinect.lHandClosed) brush.history.push_back(kinect.joints[i]);
-//            cout <<  "kinect.jointPos[i]= " << kinect.joints[i]  << endl;
-        }
-        if(kinect.lHandClosed) {
-            brush.changeColor(0);
-        }else{
-            brush.changeColor(1);
-        }
-        brush.cleanHistory();
-        if (kinect.joints.size()>1 ) {
-            if(enableFramesFbo){
-                framesFbo.begin();
-                brush.drawBrush(kinect.joints[kinect.joints.size()].x,
-                             kinect.joints[kinect.joints.size()].y, 1.0);
-                framesFbo.end();
-            }else{
-                brush.update(kinect.joints[kinect.joints.size()].x,
-                             kinect.joints[kinect.joints.size()].y, 1.0);
-            }
-            
-        }
-    }
+    kaleidoscope.update(mouseX, mouseY);
     if (enableFramesFbo) framesFbo.update();
-    if (enableShader) {
-        shader.begin();
-        int x = shader.pos->x;
-        int y = shader.pos->y;
+    if (enableKaleidoscope) {
+        kaleidoscope.begin();
+        int x = kaleidoscope.pos->x;
+        int y = kaleidoscope.pos->y;
         int w = ofGetWidth();
         int h = ofGetHeight();
-        if (enableFramesFbo) {
+        if (enableFramesFbo) { // TODO: improve kaleidoscope draw
             framesFbo.getCurrentFrame().draw(x, y, -w, -h);
         }else{
             brush.canvas.draw(x, y, -w, -h);
         }
-        shader.end();
+        kaleidoscope.end();
     }
-
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    if(enableShader){
-        shader.draw();
+    if(enableKaleidoscope){
+        kaleidoscope.draw();
     }else{
         if (enableFramesFbo) {
             framesFbo.draw();
@@ -98,11 +70,9 @@ void ofApp::draw(){
             brush.draw();
         }
     }
-
-        gui.draw();
-
+    gui.draw();
     if (kinectDebug) {
-        kinect.draw();
+//        kinect.draw();
     }
     ofFill();
     ofSetColor(pointerColor);
@@ -111,8 +81,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-//    cout <<  "key= " << key << endl;
-    kinect.keyPressed(key);
+//    kinect.keyPressed(key);
     switch (key) {
         case '1':
             brush.changeColor(0);
@@ -180,12 +149,9 @@ void ofApp::tabletMoved(TabletData &data) {
             brush.drawBrush(penX, penY, p);
             framesFbo.end();
         }else{
-            brush.update(penX, penY, p);
+            brush.drawToCanvas(penX, penY, p);
         }
     }
-}
-void ofApp::minimizeGui(bool &isMinimize){
-    gui.minimizeAll();
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
@@ -195,7 +161,7 @@ void ofApp::mouseDragged(int x, int y, int button){
             brush.drawBrush(x, y, 1.);
             framesFbo.end();
         }else{
-            brush.update(x, y, 1.);
+            brush.drawToCanvas(x, y, 1.);
         }
     }
 }
@@ -214,7 +180,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
     brush.resize();
-    shader.resize();
+    kaleidoscope.resize();
     framesFbo.resize();
 }
 

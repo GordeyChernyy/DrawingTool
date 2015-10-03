@@ -36,7 +36,7 @@
 		720E6CF81BB3074D005CD627 /* BodyRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720E6CE91BB3074D005CD627 /* BodyRenderer.cpp */; };
 		720E6CF91BB3074D005CD627 /* ofxKinectV2OSC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 720E6CEB1BB3074D005CD627 /* ofxKinectV2OSC.cpp */; };
 		7221E9281B74376300AB4529 /* DreamBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7221E9261B74376300AB4529 /* DreamBrush.cpp */; };
-		7221E9331B74567000AB4529 /* ShaderDistort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7221E9311B74567000AB4529 /* ShaderDistort.cpp */; };
+		7227A4BC1BBF7F7E00848EB4 /* Kaleidoscope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */; };
 		7250140B1BB109B500D1CCD5 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725013F81BB109B500D1CCD5 /* ofxOscBundle.cpp */; };
 		7250140C1BB109B500D1CCD5 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725013FA1BB109B500D1CCD5 /* ofxOscMessage.cpp */; };
 		7250140D1BB109B500D1CCD5 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725013FC1BB109B500D1CCD5 /* ofxOscParameterSync.cpp */; };
@@ -205,12 +205,12 @@
 		720E6CEB1BB3074D005CD627 /* ofxKinectV2OSC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxKinectV2OSC.cpp; sourceTree = "<group>"; };
 		720E6CEC1BB3074D005CD627 /* ofxKinectV2OSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxKinectV2OSC.h; sourceTree = "<group>"; };
 		7216A3531BB323020036625A /* KinectWin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinectWin.h; sourceTree = "<group>"; };
-		7221E9261B74376300AB4529 /* DreamBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DreamBrush.cpp; sourceTree = "<group>"; };
-		7221E9271B74376300AB4529 /* DreamBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DreamBrush.h; sourceTree = "<group>"; };
-		7221E9311B74567000AB4529 /* ShaderDistort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderDistort.cpp; sourceTree = "<group>"; };
-		7221E9321B74567000AB4529 /* ShaderDistort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDistort.h; sourceTree = "<group>"; };
-		7221E9341B745D7200AB4529 /* shaderDist.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = shaderDist.frag; path = bin/data/shader/shaderDist.frag; sourceTree = SOURCE_ROOT; };
+		7221E9261B74376300AB4529 /* DreamBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = DreamBrush.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		7221E9271B74376300AB4529 /* DreamBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DreamBrush.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		722542BCDC94162B6A8B9B72 /* defines.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = defines.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/defines.h; sourceTree = SOURCE_ROOT; };
+		7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Kaleidoscope.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		7227A4BB1BBF7F7E00848EB4 /* Kaleidoscope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Kaleidoscope.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7227A4BD1BBF80E800848EB4 /* Kaleidoscope.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Kaleidoscope.frag; path = bin/data/shaders/Kaleidoscope.frag; sourceTree = SOURCE_ROOT; };
 		725013F61BB109B500D1CCD5 /* ofxOsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
 		725013F71BB109B500D1CCD5 /* ofxOscArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
 		725013F81BB109B500D1CCD5 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
@@ -335,8 +335,8 @@
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
 		E4B69B5B0A3A1756003C02F2 /* DrawingToolDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingToolDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
-		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
-		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
+		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; lineEnding = 0; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -698,16 +698,6 @@
 				720E6CEA1BB3074D005CD627 /* BodyRenderer.h */,
 			);
 			path = Draw;
-			sourceTree = "<group>";
-		};
-		7221E9301B74567000AB4529 /* ShaderDistort */ = {
-			isa = PBXGroup;
-			children = (
-				7221E9341B745D7200AB4529 /* shaderDist.frag */,
-				7221E9311B74567000AB4529 /* ShaderDistort.cpp */,
-				7221E9321B74567000AB4529 /* ShaderDistort.h */,
-			);
-			path = ShaderDistort;
 			sourceTree = "<group>";
 		};
 		725013D71BB109B500D1CCD5 /* ofxOsc */ = {
@@ -1092,7 +1082,9 @@
 				7221E9271B74376300AB4529 /* DreamBrush.h */,
 				72F42BD41BA8B3F300674972 /* FramesFbo.h */,
 				7216A3531BB323020036625A /* KinectWin.h */,
-				7221E9301B74567000AB4529 /* ShaderDistort */,
+				7227A4BD1BBF80E800848EB4 /* Kaleidoscope.frag */,
+				7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */,
+				7227A4BB1BBF7F7E00848EB4 /* Kaleidoscope.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1269,7 +1261,6 @@
 				720E6CF11BB3074D005CD627 /* Hand.cpp in Sources */,
 				720E6CF91BB3074D005CD627 /* ofxKinectV2OSC.cpp in Sources */,
 				720E6CF31BB3074D005CD627 /* Joint.cpp in Sources */,
-				7221E9331B74567000AB4529 /* ShaderDistort.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				7250140B1BB109B500D1CCD5 /* ofxOscBundle.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
@@ -1299,6 +1290,7 @@
 				49BEEB2DFA5319D55AA6899F /* tilt.c in Sources */,
 				725014321BB10B5200D1CCD5 /* UdpSocketWin.cpp in Sources */,
 				255A7B680DC81E543C875794 /* usb_libusb10.c in Sources */,
+				7227A4BC1BBF7F7E00848EB4 /* Kaleidoscope.cpp in Sources */,
 				250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */,
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
 				725014301BB10B5200D1CCD5 /* UdpSocket.cpp in Sources */,

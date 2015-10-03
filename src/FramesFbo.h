@@ -11,13 +11,13 @@
 class FramesFbo{
 public:
     FramesFbo(){}
-    
+
     vector<ofFbo> frames;
     int currentIndex;
 
     ofParameter<int> imagesTotalP;
     ofParameter<int> imagesTotal;
-    ofParameter<int> speed;
+    ofParameter<int> speed; // frame rate
     ofParameter<ofColor> bgColor;
     ofParameter<bool> reload;
     ofParameterGroup parameters;

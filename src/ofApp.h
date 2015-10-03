@@ -4,7 +4,7 @@
 #include "DreamBrush.h"
 #include "ofxGui.h"
 #include "ofxTablet.h"
-#include "ShaderDistort.h"
+#include "Kaleidoscope.h"
 #include "FramesFbo.h"
 #include "ofxOsc.h"
 #include "KinectWin.h"
@@ -26,25 +26,23 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    void minimizeGui(bool &isMinimize);
     void tabletMoved(TabletData &data);
     DreamBrush brush;
     FramesFbo framesFbo;
     ofxPanel gui;
-    KinectWin kinect;
+//    KinectWin kinect;
     ofParameterGroup parameters;
     ofParameterGroup stageParam;
     int currentParameter;
-    ofParameter<bool> isMinimize;
     ofxGuiGroup group;
     bool showGui;
     bool drag;
-    ofParameter<bool> enableShader;
     ofParameter<bool> kinectDebug;
+    ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableFramesFbo;
-    ofParameter<bool> enableMouse;
+    ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
-    ShaderDistort shader;
+    Kaleidoscope kaleidoscope; 
 };

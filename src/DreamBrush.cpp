@@ -16,7 +16,7 @@ void DreamBrush::setup(){
     parameters.add(lineWidth.set("lineWidth", 0.2, 0., 5.));
     parameters.add(swatch.set("swatch", 0, 0, 12));
     parameters.add(bgColor.set("bgColor", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
-    parameters.add(color.set("bgColor", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
+    parameters.add(activeColor.set("activeColor", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
     parameters.add(col1.set("col1", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
     parameters.add(col2.set("col2", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
     parameters.add(col3.set("col3", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
@@ -25,7 +25,7 @@ void DreamBrush::setup(){
     swatch.addListener(this,&DreamBrush::changeSwatch);
     brushType.addListener(this,&DreamBrush::changeBrush);
 }
-void DreamBrush::update(float x, float y, float pressure){
+void DreamBrush::drawToCanvas(float x, float y, float pressure){
     canvas.begin();
         drawBrush(x, y, pressure);
     canvas.end();
@@ -41,7 +41,7 @@ void DreamBrush::drawBrush(float x, float y, float pressure){
         float joinchance = pressure/history.size() + m.distance(h)/dist_points;
         if (joinchance < ofRandom(0.4)) {
             ofNoFill();
-            ofSetColor(color, opacity);
+            ofSetColor(activeColor, opacity);
             ofSetLineWidth(lineWidth);
             ofLine(h.x, h.y, m.x, m.y);
         }
@@ -69,9 +69,9 @@ void DreamBrush::changeColor(int num){
     colors[1] = col2;
     colors[2] = col3;
     if (num==3) {
-        color = bgColor;
+        activeColor = bgColor;
     }else{
-        color = colors[num];
+        activeColor = colors[num];
     }
 }
 void DreamBrush::changeSwatch(int &swatch){
