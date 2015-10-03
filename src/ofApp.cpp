@@ -12,6 +12,7 @@ void ofApp::setup(){
     currentParameter = 0;
     
     parameters.setName("parameters");
+    stageParam.add(showInfo.set("showInfo", true));
     stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableFramesFbo.set("enableFramesFbo", false));
@@ -38,6 +39,7 @@ void ofApp::setup(){
     }
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
+    ofBackground(0);
 }
 
 //--------------------------------------------------------------
@@ -61,6 +63,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+//    ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
     if(enableKaleidoscope){
         kaleidoscope.draw();
     }else{
@@ -70,10 +73,27 @@ void ofApp::draw(){
             brush.draw();
         }
     }
-    gui.draw();
-    if (kinectDebug) {
-//        kinect.draw();
+    if (showGui) {
+        gui.draw();
+        ofSetColor(255, 255);
+        if (showInfo) {
+            string s =
+            "-- KEY ----------------------------------\n";
+            s.append("1, 2, 3, 4    change colors\n");
+            s.append("TAB           hide gui\n");
+            s.append("q, w          cycle through parameters\n");
+            s.append("-- INFO ---------------------------------\n");
+            s.append("fps           "+ofToString(ofGetFrameRate())+"\n");
+            s.append("history size  "+ofToString(brush.history.size())+"\n");
+            s.append("-- BUGS ---------------------------------\n");
+            s.append("Hide info if you have blinked screen\n");
+            ofDrawBitmapString(s, gui.getWidth()+40, 20);
+        }
     }
+    
+//    if (kinectDebug) {
+//        kinect.draw();
+//    }
     ofFill();
     ofSetColor(pointerColor);
     ofCircle(mouseX, mouseY, pointerSize);

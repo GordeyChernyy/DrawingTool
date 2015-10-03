@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    ofTrueTypeFont font;
     
     void tabletMoved(TabletData &data);
     DreamBrush brush;
@@ -38,6 +39,7 @@ class ofApp : public ofBaseApp{
     bool showGui;
     bool drag;
     ofParameter<bool> kinectDebug;
+    ofParameter<bool> showInfo;
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableFramesFbo;
