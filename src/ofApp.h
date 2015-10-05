@@ -8,10 +8,10 @@
 #include "FramesFbo.h"
 #include "ofxOsc.h"
 #include "KinectWin.h"
+#include "TriangleBrush.h"
 
 class ofApp : public ofBaseApp{
-
-	public:
+public:
 		void setup();
 		void update();
 		void draw();
@@ -26,9 +26,9 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     ofTrueTypeFont font;
-    
     void tabletMoved(TabletData &data);
     DreamBrush brush;
+    TriangleBrush brushTr;
     FramesFbo framesFbo;
     ofxPanel gui;
 //    KinectWin kinect;
@@ -39,6 +39,8 @@ class ofApp : public ofBaseApp{
     bool showGui;
     bool drag;
     ofParameter<bool> kinectDebug;
+    ofParameter<int> brushMode;
+    ofParameter<string> brushModeLabel;
     ofParameter<bool> showInfo;
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;

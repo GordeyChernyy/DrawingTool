@@ -5,6 +5,7 @@ void ofApp::setup(){
     kaleidoscope.setup();
     brush.setup();
     framesFbo.setup();
+    brushTr.setup();
 //    kinect.setup();
     
     drag = false;
@@ -12,6 +13,7 @@ void ofApp::setup(){
     currentParameter = 0;
     
     parameters.setName("parameters");
+    stageParam.add(brushMode.set("brushMode", 0, 0, 1));
     stageParam.add(showInfo.set("showInfo", true));
     stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
@@ -24,6 +26,7 @@ void ofApp::setup(){
     parameters.add(stageParam);
 //    parameters.add(kinect.parameters);
     parameters.add(brush.parameters);
+    parameters.add(brushTr.parameters);
     parameters.add(framesFbo.parameters);
     parameters.add(kaleidoscope.parameters);
     
@@ -39,7 +42,7 @@ void ofApp::setup(){
     }
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
-    ofBackground(0);
+    ofBackground(255);
 }
 
 //--------------------------------------------------------------
@@ -64,15 +67,15 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 //    ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
-    if(enableKaleidoscope){
-        kaleidoscope.draw();
-    }else{
-        if (enableFramesFbo) {
-            framesFbo.draw();
-        }else{
-            brush.draw();
-        }
-    }
+//    if(enableKaleidoscope){
+//        kaleidoscope.draw();
+//    }else{
+//        if (enableFramesFbo) {
+//            framesFbo.draw();
+//        }else{
+//            brush.draw();
+//        }
+//    }
     if (showGui) {
         gui.draw();
         ofSetColor(255, 255);
@@ -90,13 +93,14 @@ void ofApp::draw(){
             ofDrawBitmapString(s, gui.getWidth()+40, 20);
         }
     }
-    
-//    if (kinectDebug) {
-//        kinect.draw();
-//    }
-    ofFill();
-    ofSetColor(pointerColor);
-    ofCircle(mouseX, mouseY, pointerSize);
+//
+////    if (kinectDebug) {
+////        kinect.draw();
+////    }
+//    ofFill();
+//    ofSetColor(pointerColor);
+//    ofCircle(mouseX, mouseY, pointerSize);
+    brushTr.draw();
 }
 
 //--------------------------------------------------------------
@@ -115,7 +119,12 @@ void ofApp::keyPressed(int key){
         case '4':
             brush.changeColor(3);
             break;
+        case 'f':
+            brushTr.addPoint(ofVec2f(mouseX, mouseY));
+            brushTr.drawToCanvas(brush.activeColor);
+            break;
         case ' ':
+            brushTr.clear();
             brush.clear();
             framesFbo.resize();
             break;
@@ -158,6 +167,7 @@ void ofApp::mouseMoved(int x, int y ){
 
 }
 void ofApp::tabletMoved(TabletData &data) {
+    
     cout <<  "data.pressure " << data.pressure << endl;
     if (drag && !enableMouse){
         float penX = data.abs_screen[0]*ofGetScreenWidth() - ofGetWindowPositionX();
@@ -172,9 +182,11 @@ void ofApp::tabletMoved(TabletData &data) {
             brush.drawToCanvas(penX, penY, p);
         }
     }
+    brushTr.setPressure(data.pressure);
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+    brushTr.update(x, y, brush.activeColor);
     if(enableMouse){
         if(enableFramesFbo){
             framesFbo.begin();
@@ -189,10 +201,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     drag = true;
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
+    brushTr.clearHistory();
     drag = false;
     brush.clearHistory();
 }

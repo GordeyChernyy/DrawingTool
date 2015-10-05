@@ -245,6 +245,7 @@
 		7250142B1BB10B5200D1CCD5 /* OscReceivedElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		7250142D1BB10B5200D1CCD5 /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBrush.h; sourceTree = "<group>"; };
 		72F42BD41BA8B3F300674972 /* FramesFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FramesFbo.h; sourceTree = "<group>"; };
 		758F19335D4E46A5E0DE449F /* kdtree_single_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kdtree_single_index.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/kdtree_single_index.h; sourceTree = SOURCE_ROOT; };
 		7673F0AA19794A4C9517CF14 /* ts.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ts.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ts/ts.hpp; sourceTree = SOURCE_ROOT; };
@@ -1080,6 +1081,7 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				7221E9261B74376300AB4529 /* DreamBrush.cpp */,
 				7221E9271B74376300AB4529 /* DreamBrush.h */,
+				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
 				72F42BD41BA8B3F300674972 /* FramesFbo.h */,
 				7216A3531BB323020036625A /* KinectWin.h */,
 				7227A4BD1BBF80E800848EB4 /* Kaleidoscope.frag */,
