@@ -21,12 +21,14 @@ public:
     ofParameter<float> opacity;
     ofParameter<int> dotDistance;
     ofParameter<int> pointChoice;
+    ofParameter<int> indexRange;
 
     void setup(){
         pressure = 1.;
         parameters.setName("TriangleBrush");
         parameters.add(dotDistance.set("dotDistance", 50, 0, 700));
         parameters.add(pointChoice.set("pointChoice", 50, 0, 700));
+        parameters.add(indexRange.set("indexRange", 5, 1, 20));
         parameters.add(opacity.set("opacity", 120, 0, 255));
         setupFbo(canvas);
         triCoord = new ofVec2f[3];
@@ -36,12 +38,30 @@ public:
         int s = history.size();
         if(s<4) addPoint(history, p);
         if(s>3){
-            vector<ofVec2f> points = sortClosest(p, history);
-            int index = points.size()-1;
+//            ofVec2f *points;
+//            points = new ofVec2f[2];
+//            closestPoint2(p, points, history);
+//            triCoord[0] = p;
+//            triCoord[1] = points[0];
+//            triCoord[2] = points[1];
+//            if(points[0].distance(p)>ofRandom(dotDistance)){
+//                addPoint(history, p);
+//                drawToCanvas(col);
+//            }
+            vector<ofVec2f> points;
+            points = sortClosest(p, history);
+            int range = indexRange;
+            int min = points.size()-range; // random index min
+            int max = points.size()-1; // random index max
+            if(points.size() < range){ // avoid negative value
+                min = 0;
+            }
+            int index = (int)ofRandom(min, max);
+            int index2 = (int)ofRandom(min, max);
             triCoord[0] = p;
-            triCoord[1] = points[index-1];
-            triCoord[2] = points[index];
-            if(points[index].distance(p)>ofRandom(dotDistance)){
+            triCoord[1] = points[index];
+            triCoord[2] = points[index2];
+            if(points[0].distance(p)>dotDistance*pressure){
                 addPoint(history, p);
                 drawToCanvas(col);
             }
@@ -58,7 +78,7 @@ public:
         canvas.draw(0, 0);
 //        debugArray(history);
         ofFill();
-        ofSetColor(0, 20);
+        ofSetColor(255, 20);
         drawTriangle(triCoord);
     }
     void drawTriangle(ofVec2f *c){
@@ -117,6 +137,9 @@ public:
                 maxDist = dist;
                 pos.push_back(coords[i]);
             }
+        }
+        if(pos.size()==1){ // need two points at least
+            pos.push_back(pos[0]);
         }
         return pos;
     }

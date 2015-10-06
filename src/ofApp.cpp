@@ -42,7 +42,7 @@ void ofApp::setup(){
     }
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
-    ofBackground(255);
+    ofBackground(0);
 }
 
 //--------------------------------------------------------------
@@ -174,28 +174,30 @@ void ofApp::tabletMoved(TabletData &data) {
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
         float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
         float p = data.pressure;
-        if(enableFramesFbo){
-            framesFbo.begin();
-            brush.drawBrush(penX, penY, p);
-            framesFbo.end();
-        }else{
-            brush.drawToCanvas(penX, penY, p);
-        }
+//        if(enableFramesFbo){
+//            framesFbo.begin();
+//            brush.drawBrush(penX, penY, p);
+//            framesFbo.end();
+//        }else{
+//            brush.drawToCanvas(penX, penY, p);
+//        }
+        brushTr.update(penX, penY, brush.activeColor);
+        brushTr.setPressure(p);
     }
-    brushTr.setPressure(data.pressure);
+    
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    brushTr.update(x, y, brush.activeColor);
-    if(enableMouse){
-        if(enableFramesFbo){
-            framesFbo.begin();
-            brush.drawBrush(x, y, 1.);
-            framesFbo.end();
-        }else{
-            brush.drawToCanvas(x, y, 1.);
-        }
-    }
+//    brushTr.update(x, y, brush.activeColor);
+//    if(enableMouse){
+//        if(enableFramesFbo){
+//            framesFbo.begin();
+//            brush.drawBrush(x, y, 1.);
+//            framesFbo.end();
+//        }else{
+//            brush.drawToCanvas(x, y, 1.);
+//        }
+//    }
 }
 
 //--------------------------------------------------------------
