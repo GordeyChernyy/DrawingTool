@@ -36,13 +36,12 @@ public:
         int s = history.size();
         if(s<4) addPoint(history, p);
         if(s>3){
-            ofVec2f *points;
-            points = new ofVec2f[2];
-            closestPoint2(p, points, history);
+            vector<ofVec2f> points = sortClosest(p, history);
+            int index = points.size()-1;
             triCoord[0] = p;
-            triCoord[1] = points[0];
-            triCoord[2] = points[1];
-            if(points[0].distance(p)>ofRandom(dotDistance)){
+            triCoord[1] = points[index-1];
+            triCoord[2] = points[index];
+            if(points[index].distance(p)>ofRandom(dotDistance)){
                 addPoint(history, p);
                 drawToCanvas(col);
             }
@@ -108,6 +107,19 @@ public:
     ofVec2f closestPoint(ofVec2f p){
         return closestPoint(p, history);
     }
+    vector<ofVec2f> sortClosest(ofVec2f p, vector<ofVec2f> coords){
+        vector<ofVec2f> pos;
+        float maxDist = ofGetWidth();
+        int closestIndex = 0;
+        for (int i = 0; i < coords.size(); i++) {
+            float dist = p.distance(coords[i]);
+            if (dist < maxDist){
+                maxDist = dist;
+                pos.push_back(coords[i]);
+            }
+        }
+        return pos;
+    }
     void closestPoint2(ofVec2f p, ofVec2f *&points, vector<ofVec2f> coords){
         float maxDist = ofGetWidth();
         float maxDist2 = ofGetWidth();
@@ -117,14 +129,14 @@ public:
             float dist = p.distance(coords[i]);
             closestIndex2 = closestIndex;
             if (dist < maxDist){
-                maxDist = dist+pointChoice;
+                maxDist = dist;
                 closestIndex = i;
             }
         }
         for (int i = 0; i<coords.size(); i++) {
             float dist = p.distance(coords[i]);
             if (i != closestIndex && dist < maxDist2){
-                maxDist2 = dist+pointChoice;
+                maxDist2 = dist;
                 closestIndex2 = i;
             }
         }
