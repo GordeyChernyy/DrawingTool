@@ -15,6 +15,6 @@ public:
     void clear();
     void resize();
     ofParameterGroup parameters;
-    ofParameter<float> s1, s2, s3;
+    ofParameter<float> s1, s2, s3, s4, s5, s6, s7;
     ofParameter<ofVec2f> pos;
 };

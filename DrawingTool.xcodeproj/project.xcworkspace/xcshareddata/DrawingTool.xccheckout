@@ -22,9 +22,9 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
-		<string>../../../../../addons/ofxKinectV2-OSC</string>
+		<string>../../../addons/ofxKinectV2-OSC</string>
 		<key>999015EE524680C74335938659F70512196F22AD</key>
-		<string>../../../../../addons/ofxAutoReloadedShader</string>
+		<string>../../../addons/ofxAutoReloadedShader</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>../..</string>
 	</dict>

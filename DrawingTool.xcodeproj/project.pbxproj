@@ -135,6 +135,7 @@
 		682082DEC78C75C8FB18B7DB /* flags.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = flags.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/flags.c; sourceTree = SOURCE_ROOT; };
 		6F930947CA4BCA2665A4F4E8 /* libfreenect_audio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libfreenect_audio.h; path = ../../../addons/ofxKinect/libs/libfreenect/include/libfreenect_audio.h; sourceTree = SOURCE_ROOT; };
 		71958293AC5292DE4B7C619D /* registration.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = registration.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/registration.c; sourceTree = SOURCE_ROOT; };
+		720647181BC577F800976C21 /* Kaleidoscope.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Kaleidoscope.frag; path = bin/data/shaders/Kaleidoscope.frag; sourceTree = SOURCE_ROOT; };
 		720E6CD91BB3074D005CD627 /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
 		720E6CDA1BB3074D005CD627 /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
 		720E6CDB1BB3074D005CD627 /* Interpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interpreter.cpp; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		7221E9271B74376300AB4529 /* DreamBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DreamBrush.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Kaleidoscope.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		7227A4BB1BBF7F7E00848EB4 /* Kaleidoscope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Kaleidoscope.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		7227A4BD1BBF80E800848EB4 /* Kaleidoscope.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Kaleidoscope.frag; path = bin/data/shaders/Kaleidoscope.frag; sourceTree = SOURCE_ROOT; };
 		725013F61BB109B500D1CCD5 /* ofxOsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
 		725013F71BB109B500D1CCD5 /* ofxOscArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
 		725013F81BB109B500D1CCD5 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
@@ -655,7 +655,7 @@
 				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
 				72F42BD41BA8B3F300674972 /* FramesFbo.h */,
 				7216A3531BB323020036625A /* KinectWin.h */,
-				7227A4BD1BBF80E800848EB4 /* Kaleidoscope.frag */,
+				720647181BC577F800976C21 /* Kaleidoscope.frag */,
 				7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */,
 				7227A4BB1BBF7F7E00848EB4 /* Kaleidoscope.h */,
 			);

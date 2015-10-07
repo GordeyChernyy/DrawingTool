@@ -1,2 +1,3 @@
 Makefile
 bin/DrawingToolDebug.app
+bin/DrawingToolDebug.app/*

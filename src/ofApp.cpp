@@ -45,6 +45,7 @@ void ofApp::setup(){
     showGui = true;
     canvas.allocate(ofGetWidth(), ofGetHeight());
     canvas.begin(); ofClear(0, 0); canvas.end();
+    font.loadFont("Arial.ttf", 12);
 }
 
 //--------------------------------------------------------------
@@ -88,7 +89,6 @@ void ofApp::draw(){
     }
     if (showGui) {
         gui.draw();
-        ofSetColor(255, 255);
         if (showInfo) {
             string b = "";
             switch (brushMode) {
@@ -114,9 +114,18 @@ void ofApp::draw(){
             s.append("fps           "+ ofToString(ofGetFrameRate()) +"\n");
             s.append("history size  "+ ofToString(brush.history.size()) +"\n");
             s.append("brush         "+ b +"\n");
-            s.append("-- BUGS ---------------------------------\n");
-            s.append("Hide info if you have blinked screen\n");
+            s.append("-- TIPS ---------------------------------\n");
+            s.append("Try to enable movingFbo and Kaleidoscope.\n");
+            s.append("It looks interesting if you change color\n");
+            s.append("and draw at the same time.\n");
+            s.append("Kaleidoscope is still in development. Po-\n");
+            s.append("sition of drawing is not matching. Try \n");
+            s.append("to draw more on the left top corner.\n");
+            ofSetColor(0, 255); // shadow
+            ofDrawBitmapString(s, gui.getWidth()+41, 21);
+            ofSetColor(255, 255);
             ofDrawBitmapString(s, gui.getWidth()+40, 20);
+            ofDisableAlphaBlending();
         }
     }
     ofFill();
