@@ -1,5 +1,5 @@
 //
-//  FramesFbo.h
+//  movingFbo.h
 //  DrawingTool
 //
 //  Created by Zerc on 9/15/15.
@@ -8,9 +8,9 @@
 #include "ofMain.h"
 #pragma once
 
-class FramesFbo{
+class movingFbo{
 public:
-    FramesFbo(){}
+    movingFbo(){}
 
     vector<ofFbo> frames;
     int currentIndex;
@@ -24,12 +24,12 @@ public:
     
     void setup(){
         currentIndex = 0;
-        parameters.setName("FramesFbo");
+        parameters.setName("movingFbo");
         parameters.add(imagesTotalP.set("imagesTotal", 12, 2, 100));
         parameters.add(speed.set("speed", 3, 1, 10));
         parameters.add(bgColor.set("bgColor", ofColor(0, 0), ofColor(0, 0), ofColor(255, 255)));
         parameters.add(reload.set("reload", true));
-        reload.addListener(this, &FramesFbo::reloadFrames);
+        reload.addListener(this, &movingFbo::reloadFrames);
         imagesTotal = imagesTotalP;
         addFrames();
     }

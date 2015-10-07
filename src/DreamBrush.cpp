@@ -30,6 +30,11 @@ void DreamBrush::drawToCanvas(float x, float y, float pressure){
         drawBrush(x, y, pressure);
     canvas.end();
 }
+void DreamBrush::updateCanvas(ofFbo &fbo, float x, float y, float pressure){
+    fbo.begin();
+    drawBrush(x, y, pressure);
+    fbo.end();
+}
 void DreamBrush::drawBrush(float x, float y, float pressure){
     ofEnableAlphaBlending();
     ofVec2f m;

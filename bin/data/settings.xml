@@ -9,6 +9,9 @@
 	<enableKinect>1</enableKinect>
 		<kinectDebug>1</kinectDebug>
 	<enableKaleidoscope>0</enableKaleidoscope>
+	<brushMode>1</brushMode>
+		<showInfo>1</showInfo>
+		<enableMovingFbo>0</enableMovingFbo>
 	</stageParam>
 	<DreamBrush>
 		<historyMax>2000</historyMax>
@@ -21,7 +24,7 @@
 		<col1>110, 255, 2, 255</col1>
 		<col2>235, 255, 19, 255</col2>
 		<col3>255, 9, 79, 255</col3>
-	<activeColor>235, 255, 19, 255</activeColor>
+	<activeColor>255, 9, 79, 255</activeColor>
 	</DreamBrush>
 	<FramesFbo>
 		<imagesTotal>21</imagesTotal>
@@ -69,4 +72,16 @@
 		<offsetY>0.5</offsetY>
 		<pos>904.263, 330.342</pos>
 	</Kaleidoscope>
+<TriangleBrush>
+		<dotDistance>28</dotDistance>
+		<pointChoice>50</pointChoice>
+		<indexRange>11</indexRange>
+		<opacity>120</opacity>
+	</TriangleBrush>
+	<movingFbo>
+		<imagesTotal>12</imagesTotal>
+		<speed>3</speed>
+		<bgColor>0, 0, 0, 0</bgColor>
+		<reload>1</reload>
+	</movingFbo>
 </parameters>

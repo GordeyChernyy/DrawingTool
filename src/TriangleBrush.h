@@ -14,7 +14,7 @@ public:
     TriangleBrush(){}
     vector<ofVec2f> history;
     vector<ofVec2f> temp;
-    ofVec2f *triCoord;
+    ofVec2f *trianglePoints;
     ofFbo canvas;
     float pressure;
     ofParameterGroup parameters;
@@ -31,41 +31,52 @@ public:
         parameters.add(indexRange.set("indexRange", 5, 1, 20));
         parameters.add(opacity.set("opacity", 120, 0, 255));
         setupFbo(canvas);
-        triCoord = new ofVec2f[3];
+        trianglePoints = new ofVec2f[3];
     }
-    void update(int x, int y, ofColor col){
-        ofVec2f p(x,y);
-        int s = history.size();
-        if(s<4) addPoint(history, p);
-        if(s>3){
-//            ofVec2f *points;
-//            points = new ofVec2f[2];
-//            closestPoint2(p, points, history);
-//            triCoord[0] = p;
-//            triCoord[1] = points[0];
-//            triCoord[2] = points[1];
-//            if(points[0].distance(p)>ofRandom(dotDistance)){
-//                addPoint(history, p);
-//                drawToCanvas(col);
-//            }
+    void updateCanvas(ofFbo &fbo, int x, int y, ofColor col){
+        ofVec2f currentPoint(x,y);
+        if (history.size() < 4) addPoint(history, currentPoint);
+        if (history.size() > 3){
             vector<ofVec2f> points;
-            points = sortClosest(p, history);
-            int range = indexRange;
-            int min = points.size()-range; // random index min
-            int max = points.size()-1; // random index max
-            if(points.size() < range){ // avoid negative value
-                min = 0;
-            }
-            int index = (int)ofRandom(min, max);
-            int index2 = (int)ofRandom(min, max);
-            triCoord[0] = p;
-            triCoord[1] = points[index];
-            triCoord[2] = points[index2];
-            if(points[0].distance(p)>dotDistance*pressure){
-                addPoint(history, p);
-                drawToCanvas(col);
+            points = sortClosest(currentPoint, history);   // sort array: last point in array is closest
+            setTrianglePoints(points, currentPoint);
+            int index = points.size()-1;
+            ofVec2f a = points[index];
+            ofVec2f b = currentPoint;
+            float dist = dotDistance*pressure;
+            if(isDistanceBigger(a, b, dist)){
+                addPoint(history, currentPoint);
+                drawToCanvas(fbo, col);
             }
         }
+    }
+    void draw(){
+        ofFill();
+        ofSetColor(255, 20);
+        drawTriangle(trianglePoints);
+    }
+    bool isDistanceBigger(ofVec2f a, ofVec2f b, float distance){
+        return a.distance(b) > distance? true : false;
+    }
+    void setTrianglePoints(vector<ofVec2f> sortedCoord, ofVec2f currentPoint){
+        // create random acces to points in sorted array
+        // [ . . . . . . ]
+        //       |   | |
+        //      min    max
+        if(sortedCoord.size()==1){   // avoid zero bug
+            sortedCoord.push_back(sortedCoord[0]);
+        }
+        int range = indexRange;
+        int min = sortedCoord.size()-range;  // random index min
+        int max = sortedCoord.size()-1;  // random index max
+        if(sortedCoord.size() < range){  // avoid negative value
+            min = 0;
+        }
+        int index1 = (int)ofRandom(min, max);
+        int index2 = (int)ofRandom(min, max);
+        trianglePoints[0] = currentPoint;
+        trianglePoints[1] = sortedCoord[index1];
+        trianglePoints[2] = sortedCoord[index2];
     }
     void setPressure(float p){
         pressure = p;
@@ -73,14 +84,7 @@ public:
     void eraseFirst(vector<ofVec2f> &array){
         array.erase(array.begin());
     }
-    void draw(){
-        ofSetColor(255, 255);
-        canvas.draw(0, 0);
-//        debugArray(history);
-        ofFill();
-        ofSetColor(255, 20);
-        drawTriangle(triCoord);
-    }
+
     void drawTriangle(ofVec2f *c){
         ofTriangle(c[0], c[1], c[2]);
     }
@@ -108,14 +112,21 @@ public:
             return false;
         }
     }
-    void drawToCanvas(ofColor col){
-        canvas.begin();
+    void drawToCanvas(ofFbo &fbo, ofColor col){
+        fbo.begin();
         ofEnableAlphaBlending();
         ofFill();
         ofSetColor(col, opacity);
-        drawTriangle(triCoord);
+        drawTriangle(trianglePoints);
         ofDisableAlphaBlending();
-        canvas.end();
+        fbo.end();
+    }
+    void drawGraphics(ofColor col){
+        ofEnableAlphaBlending();
+        ofFill();
+        ofSetColor(col, opacity);
+        drawTriangle(trianglePoints);
+        ofDisableAlphaBlending();
     }
     void setupFbo(ofFbo &fbo){
         fbo.allocate(ofGetWidth(), ofGetHeight());
@@ -123,9 +134,6 @@ public:
     }
     void clear(){
         setupFbo(canvas);
-    }
-    ofVec2f closestPoint(ofVec2f p){
-        return closestPoint(p, history);
     }
     vector<ofVec2f> sortClosest(ofVec2f p, vector<ofVec2f> coords){
         vector<ofVec2f> pos;
@@ -138,45 +146,6 @@ public:
                 pos.push_back(coords[i]);
             }
         }
-        if(pos.size()==1){ // need two points at least
-            pos.push_back(pos[0]);
-        }
         return pos;
     }
-    void closestPoint2(ofVec2f p, ofVec2f *&points, vector<ofVec2f> coords){
-        float maxDist = ofGetWidth();
-        float maxDist2 = ofGetWidth();
-        int closestIndex = 0;
-        int closestIndex2 = 0;
-        for (int i = 0; i < coords.size(); i++) {
-            float dist = p.distance(coords[i]);
-            closestIndex2 = closestIndex;
-            if (dist < maxDist){
-                maxDist = dist;
-                closestIndex = i;
-            }
-        }
-        for (int i = 0; i<coords.size(); i++) {
-            float dist = p.distance(coords[i]);
-            if (i != closestIndex && dist < maxDist2){
-                maxDist2 = dist;
-                closestIndex2 = i;
-            }
-        }
-        points[0] = coords[closestIndex];
-        points[1] = coords[closestIndex2];
-    }
-    ofVec2f closestPoint(ofVec2f p, vector<ofVec2f> coords){
-        float maxDist = ofGetWidth();
-        int closestIndex = 0;
-        for (int i = 0; i<coords.size(); i++) {
-            float dist = p.distance(coords[i]);
-            if(dist < maxDist){
-                maxDist = dist;
-                closestIndex = i;
-            }
-        }
-        return coords[closestIndex];
-    };
-
 };

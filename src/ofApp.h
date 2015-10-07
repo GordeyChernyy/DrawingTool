@@ -25,17 +25,22 @@ public:
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    ofTrueTypeFont font;
+   
     void tabletMoved(TabletData &data);
-    DreamBrush brush;
-    TriangleBrush brushTr;
-    FramesFbo framesFbo;
+    
+    ofTrueTypeFont font;
+    ofFbo canvas;               // fbo which will be passed to brushes
+    DreamBrush brush;           // dream catcher brush
+    TriangleBrush brushTr;      // triangle brush
+    movingFbo movingFbo;        // moving frames
+    Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
+    //    KinectWin kinect;
+
     ofxPanel gui;
-//    KinectWin kinect;
+    ofxGuiGroup group;
     ofParameterGroup parameters;
     ofParameterGroup stageParam;
     int currentParameter;
-    ofxGuiGroup group;
     bool showGui;
     bool drag;
     ofParameter<bool> kinectDebug;
@@ -44,9 +49,9 @@ public:
     ofParameter<bool> showInfo;
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
-    ofParameter<bool> enableFramesFbo;
+    ofParameter<bool> enableMovingFbo;
     ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
-    Kaleidoscope kaleidoscope; 
+
 };

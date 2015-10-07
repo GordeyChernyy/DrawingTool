@@ -11,13 +11,13 @@ void Kaleidoscope::setup(){
     parameters.add(s3.set("offsetY", 1., 0., 1.));
     parameters.add(pos.set("pos", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(ofGetWidth()*1.5, ofGetHeight()*1.5)));
 }
-void Kaleidoscope::update(int x, int y){
+void Kaleidoscope::update(ofFbo fbo, int x, int y){
     ofSetColor(255, 255, 255, 255);
     fboFilter.begin();
     ofClear(255);
         shader.begin();
         setUniform(x, y);
-        fboCanvas.draw(0, 0);
+        fbo.draw(pos->x, pos->y, -ofGetWidth(), -ofGetHeight());
         shader.end();
     fboFilter.end();
 }
