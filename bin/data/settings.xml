@@ -1,0 +1,42 @@
+<parameters>
+	<stageParam>
+		<brushMode>1</brushMode>
+		<showInfo>1</showInfo>
+		<enableMouse>1</enableMouse>
+		<enableKaleidoscope>0</enableKaleidoscope>
+		<enableMovingFbo>0</enableMovingFbo>
+		<pointerSize>1.12245</pointerSize>
+		<pointerColor>255, 255, 255, 255</pointerColor>
+	</stageParam>
+	<DreamBrush>
+		<historyMax>2000</historyMax>
+		<type_line>0</type_line>
+		<size>300</size>
+		<opacity>20</opacity>
+		<lineWidth>0.2</lineWidth>
+		<swatch>4</swatch>
+		<bgColor>0, 0, 0, 0</bgColor>
+		<activeColor>57, 150, 254, 255</activeColor>
+		<col1>57, 150, 254, 255</col1>
+		<col2>147, 83, 255, 255</col2>
+		<col3>254, 26, 14, 255</col3>
+	</DreamBrush>
+	<TriangleBrush>
+		<dotDistance>14</dotDistance>
+		<pointChoice>50</pointChoice>
+		<indexRange>14</indexRange>
+		<opacity>120</opacity>
+	</TriangleBrush>
+	<movingFbo>
+		<imagesTotal>12</imagesTotal>
+		<speed>3</speed>
+		<bgColor>0, 0, 0, 0</bgColor>
+		<reload>1</reload>
+	</movingFbo>
+	<Kaleidoscope>
+		<count>1</count>
+		<offsetX>1</offsetX>
+		<offsetY>1</offsetY>
+		<pos>0, 0</pos>
+	</Kaleidoscope>
+</parameters>
