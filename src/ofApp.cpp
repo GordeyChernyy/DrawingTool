@@ -42,6 +42,7 @@ void ofApp::setup(){
     
     drag = false;
     currentParameter = 0;
+    showGui = true;
     canvas.allocate(ofGetWidth(), ofGetHeight());
     canvas.begin(); ofClear(0, 0); canvas.end();
 }
