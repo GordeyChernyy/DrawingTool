@@ -12,6 +12,8 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>https://github.com/microcosm/ofxKinectV2-OSC.git</string>
+		<key>999015EE524680C74335938659F70512196F22AD</key>
+		<string>https://github.com/andreasmuller/ofxAutoReloadedShader.git</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>https://github.com/GordeyChernyy/DrawingTool.git</string>
 	</dict>
@@ -21,6 +23,8 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>../../../../../addons/ofxKinectV2-OSC</string>
+		<key>999015EE524680C74335938659F70512196F22AD</key>
+		<string>../../../../../addons/ofxAutoReloadedShader</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>../..</string>
 	</dict>
@@ -39,6 +43,14 @@
 			<string>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DrawingTool</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>999015EE524680C74335938659F70512196F22AD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxAutoReloadedShader</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
