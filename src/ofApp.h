@@ -9,13 +9,15 @@
 #include "ofxOsc.h"
 #include "KinectWin.h"
 #include "TriangleBrush.h"
+#include "korg.h"
 
 class ofApp : public ofBaseApp{
 public:
 		void setup();
 		void update();
 		void draw();
-
+        void exit();
+    
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
@@ -35,7 +37,8 @@ public:
     movingFbo movingFbo;        // moving frames
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     //    KinectWin kinect;
-
+    Korg korg;                  // midi for korg nano kontrol 2 
+    
     ofxPanel gui;
     ofxGuiGroup group;
     ofParameterGroup parameters;

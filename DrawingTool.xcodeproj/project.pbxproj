@@ -42,6 +42,21 @@
 		725014341BB10B5200D1CCD5 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725014281BB10B5200D1CCD5 /* OscPrintReceivedElements.cpp */; };
 		725014351BB10B5200D1CCD5 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7250142A1BB10B5200D1CCD5 /* OscReceivedElements.cpp */; };
 		725014361BB10B5200D1CCD5 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */; };
+		728D1B5C1BC8A72500192EE9 /* korg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1B5A1BC8A72500192EE9 /* korg.cpp */; };
+		728D1BC91BC8A75500192EE9 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1B971BC8A75500192EE9 /* RtMidi.cpp */; };
+		728D1BCB1BC8A75500192EE9 /* ofxRtMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BA41BC8A75500192EE9 /* ofxRtMidiIn.cpp */; };
+		728D1BCC1BC8A75500192EE9 /* ofxRtMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BA61BC8A75500192EE9 /* ofxRtMidiOut.cpp */; };
+		728D1BCD1BC8A75500192EE9 /* ofxPGMidiContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BAA1BC8A75500192EE9 /* ofxPGMidiContext.mm */; };
+		728D1BCE1BC8A75500192EE9 /* ofxPGMidiDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BAC1BC8A75500192EE9 /* ofxPGMidiDelegate.mm */; };
+		728D1BCF1BC8A75500192EE9 /* ofxPGMidiIn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BAE1BC8A75500192EE9 /* ofxPGMidiIn.mm */; };
+		728D1BD01BC8A75500192EE9 /* ofxPGMidiOut.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BB01BC8A75500192EE9 /* ofxPGMidiOut.mm */; };
+		728D1BD11BC8A75500192EE9 /* ofxPGMidiSourceDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BB21BC8A75500192EE9 /* ofxPGMidiSourceDelegate.mm */; };
+		728D1BD21BC8A75500192EE9 /* ofxBaseMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BB31BC8A75500192EE9 /* ofxBaseMidi.cpp */; };
+		728D1BD31BC8A75500192EE9 /* ofxMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BB51BC8A75500192EE9 /* ofxMidi.cpp */; };
+		728D1BD41BC8A75500192EE9 /* ofxMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BB81BC8A75500192EE9 /* ofxMidiIn.cpp */; };
+		728D1BD51BC8A75500192EE9 /* ofxMidiMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BBA1BC8A75500192EE9 /* ofxMidiMessage.cpp */; };
+		728D1BD61BC8A75500192EE9 /* ofxMidiOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728D1BBC1BC8A75500192EE9 /* ofxMidiOut.cpp */; };
+		728D1BE11BC8AA4800192EE9 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D1BE01BC8AA4800192EE9 /* CoreMIDI.framework */; };
 		7ADB04AF67C568EAFAEBA546 /* ofxKinectExtras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01438542609FC64F1EC60EEB /* ofxKinectExtras.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
@@ -193,6 +208,37 @@
 		7250142B1BB10B5200D1CCD5 /* OscReceivedElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		7250142D1BB10B5200D1CCD5 /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		728D1B5A1BC8A72500192EE9 /* korg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = korg.cpp; sourceTree = "<group>"; };
+		728D1B5B1BC8A72500192EE9 /* korg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = korg.h; sourceTree = "<group>"; };
+		728D1B971BC8A75500192EE9 /* RtMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RtMidi.cpp; sourceTree = "<group>"; };
+		728D1B981BC8A75500192EE9 /* RtMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RtMidi.h; sourceTree = "<group>"; };
+		728D1BA41BC8A75500192EE9 /* ofxRtMidiIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxRtMidiIn.cpp; sourceTree = "<group>"; };
+		728D1BA51BC8A75500192EE9 /* ofxRtMidiIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxRtMidiIn.h; sourceTree = "<group>"; };
+		728D1BA61BC8A75500192EE9 /* ofxRtMidiOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxRtMidiOut.cpp; sourceTree = "<group>"; };
+		728D1BA71BC8A75500192EE9 /* ofxRtMidiOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxRtMidiOut.h; sourceTree = "<group>"; };
+		728D1BA91BC8A75500192EE9 /* ofxPGMidiContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPGMidiContext.h; sourceTree = "<group>"; };
+		728D1BAA1BC8A75500192EE9 /* ofxPGMidiContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPGMidiContext.mm; sourceTree = "<group>"; };
+		728D1BAB1BC8A75500192EE9 /* ofxPGMidiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPGMidiDelegate.h; sourceTree = "<group>"; };
+		728D1BAC1BC8A75500192EE9 /* ofxPGMidiDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPGMidiDelegate.mm; sourceTree = "<group>"; };
+		728D1BAD1BC8A75500192EE9 /* ofxPGMidiIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPGMidiIn.h; sourceTree = "<group>"; };
+		728D1BAE1BC8A75500192EE9 /* ofxPGMidiIn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPGMidiIn.mm; sourceTree = "<group>"; };
+		728D1BAF1BC8A75500192EE9 /* ofxPGMidiOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPGMidiOut.h; sourceTree = "<group>"; };
+		728D1BB01BC8A75500192EE9 /* ofxPGMidiOut.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPGMidiOut.mm; sourceTree = "<group>"; };
+		728D1BB11BC8A75500192EE9 /* ofxPGMidiSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPGMidiSourceDelegate.h; sourceTree = "<group>"; };
+		728D1BB21BC8A75500192EE9 /* ofxPGMidiSourceDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxPGMidiSourceDelegate.mm; sourceTree = "<group>"; };
+		728D1BB31BC8A75500192EE9 /* ofxBaseMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseMidi.cpp; sourceTree = "<group>"; };
+		728D1BB41BC8A75500192EE9 /* ofxBaseMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseMidi.h; sourceTree = "<group>"; };
+		728D1BB51BC8A75500192EE9 /* ofxMidi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidi.cpp; sourceTree = "<group>"; };
+		728D1BB61BC8A75500192EE9 /* ofxMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidi.h; sourceTree = "<group>"; };
+		728D1BB71BC8A75500192EE9 /* ofxMidiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiConstants.h; sourceTree = "<group>"; };
+		728D1BB81BC8A75500192EE9 /* ofxMidiIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiIn.cpp; sourceTree = "<group>"; };
+		728D1BB91BC8A75500192EE9 /* ofxMidiIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiIn.h; sourceTree = "<group>"; };
+		728D1BBA1BC8A75500192EE9 /* ofxMidiMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiMessage.cpp; sourceTree = "<group>"; };
+		728D1BBB1BC8A75500192EE9 /* ofxMidiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiMessage.h; sourceTree = "<group>"; };
+		728D1BBC1BC8A75500192EE9 /* ofxMidiOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMidiOut.cpp; sourceTree = "<group>"; };
+		728D1BBD1BC8A75500192EE9 /* ofxMidiOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiOut.h; sourceTree = "<group>"; };
+		728D1BBE1BC8A75500192EE9 /* ofxMidiTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMidiTypes.h; sourceTree = "<group>"; };
+		728D1BE01BC8AA4800192EE9 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBrush.h; sourceTree = "<group>"; };
 		72F42BD41BA8B3F300674972 /* FramesFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FramesFbo.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78D67A00EB899FAC09430597 /* ofxLabel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxLabel.cpp; path = ../../../addons/ofxGui/src/ofxLabel.cpp; sourceTree = SOURCE_ROOT; };
@@ -252,6 +298,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728D1BE11BC8AA4800192EE9 /* CoreMIDI.framework in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
@@ -527,6 +574,82 @@
 			path = osc;
 			sourceTree = "<group>";
 		};
+		728D1B5D1BC8A75500192EE9 /* ofxMidi */ = {
+			isa = PBXGroup;
+			children = (
+				728D1B8A1BC8A75500192EE9 /* libs */,
+				728D1BA21BC8A75500192EE9 /* src */,
+			);
+			name = ofxMidi;
+			path = ../../../addons/ofxMidi;
+			sourceTree = "<group>";
+		};
+		728D1B8A1BC8A75500192EE9 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				728D1B951BC8A75500192EE9 /* rtmidi */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		728D1B951BC8A75500192EE9 /* rtmidi */ = {
+			isa = PBXGroup;
+			children = (
+				728D1B971BC8A75500192EE9 /* RtMidi.cpp */,
+				728D1B981BC8A75500192EE9 /* RtMidi.h */,
+			);
+			path = rtmidi;
+			sourceTree = "<group>";
+		};
+		728D1BA21BC8A75500192EE9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				728D1BA31BC8A75500192EE9 /* desktop */,
+				728D1BA81BC8A75500192EE9 /* ios */,
+				728D1BB31BC8A75500192EE9 /* ofxBaseMidi.cpp */,
+				728D1BB41BC8A75500192EE9 /* ofxBaseMidi.h */,
+				728D1BB51BC8A75500192EE9 /* ofxMidi.cpp */,
+				728D1BB61BC8A75500192EE9 /* ofxMidi.h */,
+				728D1BB71BC8A75500192EE9 /* ofxMidiConstants.h */,
+				728D1BB81BC8A75500192EE9 /* ofxMidiIn.cpp */,
+				728D1BB91BC8A75500192EE9 /* ofxMidiIn.h */,
+				728D1BBA1BC8A75500192EE9 /* ofxMidiMessage.cpp */,
+				728D1BBB1BC8A75500192EE9 /* ofxMidiMessage.h */,
+				728D1BBC1BC8A75500192EE9 /* ofxMidiOut.cpp */,
+				728D1BBD1BC8A75500192EE9 /* ofxMidiOut.h */,
+				728D1BBE1BC8A75500192EE9 /* ofxMidiTypes.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		728D1BA31BC8A75500192EE9 /* desktop */ = {
+			isa = PBXGroup;
+			children = (
+				728D1BA41BC8A75500192EE9 /* ofxRtMidiIn.cpp */,
+				728D1BA51BC8A75500192EE9 /* ofxRtMidiIn.h */,
+				728D1BA61BC8A75500192EE9 /* ofxRtMidiOut.cpp */,
+				728D1BA71BC8A75500192EE9 /* ofxRtMidiOut.h */,
+			);
+			path = desktop;
+			sourceTree = "<group>";
+		};
+		728D1BA81BC8A75500192EE9 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				728D1BA91BC8A75500192EE9 /* ofxPGMidiContext.h */,
+				728D1BAA1BC8A75500192EE9 /* ofxPGMidiContext.mm */,
+				728D1BAB1BC8A75500192EE9 /* ofxPGMidiDelegate.h */,
+				728D1BAC1BC8A75500192EE9 /* ofxPGMidiDelegate.mm */,
+				728D1BAD1BC8A75500192EE9 /* ofxPGMidiIn.h */,
+				728D1BAE1BC8A75500192EE9 /* ofxPGMidiIn.mm */,
+				728D1BAF1BC8A75500192EE9 /* ofxPGMidiOut.h */,
+				728D1BB01BC8A75500192EE9 /* ofxPGMidiOut.mm */,
+				728D1BB11BC8A75500192EE9 /* ofxPGMidiSourceDelegate.h */,
+				728D1BB21BC8A75500192EE9 /* ofxPGMidiSourceDelegate.mm */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		88F1833860A1CE3288861DF1 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +698,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				728D1B5D1BC8A75500192EE9 /* ofxMidi */,
 				720E6CB71BB3074C005CD627 /* ofxKinectV2-OSC */,
 				725013D71BB109B500D1CCD5 /* ofxOsc */,
 				480A780D8D0308AE4A368801 /* ofxGui */,
@@ -634,6 +758,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				728D1BE01BC8AA4800192EE9 /* CoreMIDI.framework */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -658,6 +783,8 @@
 				720647181BC577F800976C21 /* Kaleidoscope.frag */,
 				7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */,
 				7227A4BB1BBF7F7E00848EB4 /* Kaleidoscope.h */,
+				728D1B5A1BC8A72500192EE9 /* korg.cpp */,
+				728D1B5B1BC8A72500192EE9 /* korg.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -810,13 +937,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				728D1BD41BC8A75500192EE9 /* ofxMidiIn.cpp in Sources */,
 				725014351BB10B5200D1CCD5 /* OscReceivedElements.cpp in Sources */,
+				728D1BD31BC8A75500192EE9 /* ofxMidi.cpp in Sources */,
 				720E6CF41BB3074D005CD627 /* Skeleton.cpp in Sources */,
+				728D1BC91BC8A75500192EE9 /* RtMidi.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				720E6CF11BB3074D005CD627 /* Hand.cpp in Sources */,
 				720E6CF91BB3074D005CD627 /* ofxKinectV2OSC.cpp in Sources */,
 				720E6CF31BB3074D005CD627 /* Joint.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
+				728D1BD51BC8A75500192EE9 /* ofxMidiMessage.cpp in Sources */,
 				7250140B1BB109B500D1CCD5 /* ofxOscBundle.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				725014361BB10B5200D1CCD5 /* OscTypes.cpp in Sources */,
@@ -831,22 +962,31 @@
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				728D1BCF1BC8A75500192EE9 /* ofxPGMidiIn.mm in Sources */,
 				7ADB04AF67C568EAFAEBA546 /* ofxKinectExtras.cpp in Sources */,
 				686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */,
 				0F8F016776681D468C0D0949 /* audio.c in Sources */,
 				ACE7DC9A3223ED5EE1B80074 /* cameras.c in Sources */,
+				728D1BCE1BC8A75500192EE9 /* ofxPGMidiDelegate.mm in Sources */,
 				720E6CF81BB3074D005CD627 /* BodyRenderer.cpp in Sources */,
 				F4135EEFC911E9ED211FB6F9 /* core.c in Sources */,
+				728D1BCB1BC8A75500192EE9 /* ofxRtMidiIn.cpp in Sources */,
 				E55DEEF784A10419E444669E /* flags.c in Sources */,
 				21A059755481CC0BF969FD2D /* keep_alive.c in Sources */,
+				728D1B5C1BC8A72500192EE9 /* korg.cpp in Sources */,
 				FCC16AB16073FF0581F50ED7 /* loader.c in Sources */,
+				728D1BCC1BC8A75500192EE9 /* ofxRtMidiOut.cpp in Sources */,
+				728D1BD61BC8A75500192EE9 /* ofxMidiOut.cpp in Sources */,
 				725014341BB10B5200D1CCD5 /* OscPrintReceivedElements.cpp in Sources */,
 				D31F5C1B140C59B2AF1533A8 /* registration.c in Sources */,
 				49BEEB2DFA5319D55AA6899F /* tilt.c in Sources */,
 				725014321BB10B5200D1CCD5 /* UdpSocketWin.cpp in Sources */,
+				728D1BD21BC8A75500192EE9 /* ofxBaseMidi.cpp in Sources */,
 				255A7B680DC81E543C875794 /* usb_libusb10.c in Sources */,
 				7227A4BC1BBF7F7E00848EB4 /* Kaleidoscope.cpp in Sources */,
 				725014301BB10B5200D1CCD5 /* UdpSocket.cpp in Sources */,
+				728D1BD11BC8A75500192EE9 /* ofxPGMidiSourceDelegate.mm in Sources */,
+				728D1BD01BC8A75500192EE9 /* ofxPGMidiOut.mm in Sources */,
 				7250140C1BB109B500D1CCD5 /* ofxOscMessage.cpp in Sources */,
 				7250142F1BB10B5200D1CCD5 /* NetworkingUtils.cpp in Sources */,
 				720E6CF51BB3074D005CD627 /* Logger.cpp in Sources */,
@@ -861,6 +1001,7 @@
 				9B67A1EFA6CF7AC42FE339B3 /* ofxTablet.cpp in Sources */,
 				7250142E1BB10B5200D1CCD5 /* IpEndpointName.cpp in Sources */,
 				CCE5F2DC1C89111434F3F759 /* tabletCocoa.mm in Sources */,
+				728D1BCD1BC8A75500192EE9 /* ofxPGMidiContext.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1117,6 +1258,13 @@
 					../../../addons/ofxKinectV2OSC/src,
 					../../../addons/ofxKinectV2OSC/src/Body,
 					../../../addons/ofxKinectV2OSC/src/DataTransform,
+					../../../addons/ofxMidi/libs,
+					../../../addons/ofxMidi/libs/pgmidi,
+					../../../addons/ofxMidi/libs/portmidi,
+					../../../addons/ofxMidi/libs/rtmidi,
+					../../../addons/ofxMidi/src,
+					../../../addons/ofxMidi/src/desktop,
+					../../../addons/ofxMidi/src/ios,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -1263,6 +1411,13 @@
 					../../../addons/ofxKinectV2OSC/src,
 					../../../addons/ofxKinectV2OSC/src/Body,
 					../../../addons/ofxKinectV2OSC/src/DataTransform,
+					../../../addons/ofxMidi/libs,
+					../../../addons/ofxMidi/libs/pgmidi,
+					../../../addons/ofxMidi/libs/portmidi,
+					../../../addons/ofxMidi/libs/rtmidi,
+					../../../addons/ofxMidi/src,
+					../../../addons/ofxMidi/src/desktop,
+					../../../addons/ofxMidi/src/ios,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";

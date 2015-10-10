@@ -12,6 +12,8 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>https://github.com/microcosm/ofxKinectV2-OSC.git</string>
+		<key>90E2F969A762FB62C413A0C44D1F334E6EC3F531</key>
+		<string>https://github.com/danomatika/ofxMidi.git</string>
 		<key>999015EE524680C74335938659F70512196F22AD</key>
 		<string>https://github.com/andreasmuller/ofxAutoReloadedShader.git</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
@@ -23,6 +25,8 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>../../../addons/ofxKinectV2-OSC</string>
+		<key>90E2F969A762FB62C413A0C44D1F334E6EC3F531</key>
+		<string>../../../../../addons/ofxMidi</string>
 		<key>999015EE524680C74335938659F70512196F22AD</key>
 		<string>../../../addons/ofxAutoReloadedShader</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
@@ -59,6 +63,14 @@
 			<string>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ofxKinectV2-OSC</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90E2F969A762FB62C413A0C44D1F334E6EC3F531</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxMidi</string>
 		</dict>
 	</array>
 </dict>

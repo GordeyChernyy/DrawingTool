@@ -6,6 +6,7 @@ void ofApp::setup(){
     brush.setup();
     movingFbo.setup();
     brushTr.setup();
+    korg.setup();
     
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
@@ -50,6 +51,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    korg.update();
     if (enableMovingFbo) movingFbo.update();
     
     // movingFbo -+
@@ -87,6 +89,7 @@ void ofApp::draw(){
             }
         }
     }
+    korg.draw();
     if (showGui) {
         gui.draw();
         if (showInfo) {
@@ -293,4 +296,7 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+void ofApp::exit(){
+    korg.exit();
 }
