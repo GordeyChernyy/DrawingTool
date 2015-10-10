@@ -52,12 +52,34 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     korg.update();
+    
+    // korg: change colors
+    int col = ofMap(korg.sliders[7], 0, 127, 0, 3);
+    brush.changeColor(col);
+   
+    // korg: fade to black
+    float fade = ofMap(korg.knobs[7], 0, 127, 0, 50);
+    canvas.begin();
+    ofEnableAlphaBlending();
+    ofSetColor(0, fade);
+    ofRect(0, 0, ofGetWidth(), ofGetHeight());
+    ofDisableAlphaBlending();
+    canvas.end();
+    
+    // korg: kaleidoscope
+    float s4  = ofMap(korg.sliders[6], 0, 127, 0, 5);
+    float s5  = ofMap(korg.sliders[5], 0, 127, 0, 5);
+    float s6  = ofMap(korg.knobs[6], 0, 127, -1, 1);
+    float s7  = ofMap(korg.knobs[5], 0, 127, -1, 1);
+    kaleidoscope.s4 = s4;
+    kaleidoscope.s5 = s5;
+    kaleidoscope.s6 = s6;
+    kaleidoscope.s7 = s7;
     if (enableMovingFbo) movingFbo.update();
     
     // movingFbo -+
     //            +-->  kaleidoscope shader
     // canvas ----+
-    
     if (enableKaleidoscope) {
         if (enableMovingFbo) {
             kaleidoscope.update(movingFbo.getCurrentFrame(), mouseX, mouseY);
@@ -82,14 +104,14 @@ void ofApp::draw(){
                 case 0: // Dream Catcher Brush
                     break;
                 case 1: // Triangle Brush
-                    brushTr.draw(); // this will draw white triangle
+                    if(drag) brushTr.draw(); // this will draw white triangle
                     break;
                 default:
                     break;
             }
         }
     }
-    korg.draw();
+    
     if (showGui) {
         gui.draw();
         if (showInfo) {
@@ -129,6 +151,10 @@ void ofApp::draw(){
             ofSetColor(255, 255);
             ofDrawBitmapString(s, gui.getWidth()+40, 20);
             ofDisableAlphaBlending();
+            ofPushMatrix();
+            ofTranslate(0,ofGetHeight()/2);
+            korg.draw();
+            ofPopMatrix();
         }
     }
     ofFill();
@@ -239,6 +265,7 @@ void ofApp::tabletMoved(TabletData &data) {
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     if(enableMouse){
+        drag = true;
         if(enableMovingFbo){
             int index = movingFbo.currentIndex;
             switch (brushMode) {

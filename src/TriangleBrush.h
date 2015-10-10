@@ -43,7 +43,7 @@ public:
             int index = points.size()-1;
             ofVec2f a = points[index];
             ofVec2f b = currentPoint;
-            float dist = dotDistance*pressure;
+            float dist = dotDistance*(pressure/2.);
             if(isDistanceBigger(a, b, dist)){
                 addPoint(history, currentPoint);
                 drawToCanvas(fbo, col);

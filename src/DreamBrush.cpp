@@ -83,6 +83,7 @@ void DreamBrush::changeSwatch(int &swatch){
     col1 = swatches[swatch][0];
     col2 = swatches[swatch][1];
     col3 = swatches[swatch][2];
+    bgColor = swatches[swatch][3];
 }
 void DreamBrush::changeBrush(int &_brushType){
     switch (_brushType) {

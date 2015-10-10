@@ -14,12 +14,12 @@
 		<size>300</size>
 		<opacity>20</opacity>
 		<lineWidth>0.2</lineWidth>
-		<swatch>5</swatch>
-		<bgColor>0, 0, 0, 0</bgColor>
-		<activeColor>29, 136, 82, 255</activeColor>
-		<col1>250, 23, 30, 255</col1>
-		<col2>29, 136, 82, 255</col2>
-		<col3>243, 250, 39, 255</col3>
+		<swatch>1</swatch>
+		<bgColor>214, 9, 44, 255</bgColor>
+		<activeColor>231, 83, 49, 255</activeColor>
+		<col1>211, 253, 253, 255</col1>
+		<col2>197, 255, 48, 255</col2>
+		<col3>231, 83, 49, 255</col3>
 	</DreamBrush>
 	<TriangleBrush>
 		<dotDistance>14</dotDistance>
