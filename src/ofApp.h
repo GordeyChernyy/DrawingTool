@@ -29,6 +29,12 @@ public:
 		void gotMessage(ofMessage msg);
    
     void tabletMoved(TabletData &data);
+
+    // map midi value to parameter
+    void mapParameter(float midiValue, ofParameter<float> &pValue);
+    void mapParameter(int midiValue, ofParameter<int> &pValue);
+    void mapParameter(bool midiValue, ofParameter<bool> &pValue);
+    void info(); 
     
     ofTrueTypeFont font;
     ofFbo canvas;               // fbo which will be passed to brushes
@@ -53,8 +59,9 @@ public:
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableMovingFbo;
-    ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
+    ofParameter<bool> enableMouse; // mouse and tablet has a different resolution! To use mouse 
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
+    ofParameter<float> fadeCanvas;
 
 };

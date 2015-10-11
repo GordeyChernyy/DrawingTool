@@ -67,16 +67,13 @@ void ofApp::update(){
     canvas.end();
     
     // korg: kaleidoscope
-    float s4  = ofMap(korg.sliders[6], 0, 127, 0, 5);
-    float s5  = ofMap(korg.sliders[5], 0, 127, 0, 5);
-    float s6  = ofMap(korg.knobs[6], 0, 127, -1, 1);
-    float s7  = ofMap(korg.knobs[5], 0, 127, -1, 1);
-    kaleidoscope.s4 = s4;
-    kaleidoscope.s5 = s5;
-    kaleidoscope.s6 = s6;
-    kaleidoscope.s7 = s7;
-    if (enableMovingFbo) movingFbo.update();
+    mapParameter(korg.sliders[6], kaleidoscope.s4); // distort x
+    mapParameter(korg.sliders[5], kaleidoscope.s5); // distort y
+    mapParameter(korg.knobs[6], kaleidoscope.s6); // offset x
+    mapParameter(korg.knobs[5], kaleidoscope.s7); // offset y
     
+    if (enableMovingFbo) movingFbo.update();
+
     // movingFbo -+
     //            +-->  kaleidoscope shader
     // canvas ----+
@@ -99,12 +96,12 @@ void ofApp::draw(){
         if (enableMovingFbo) {
             movingFbo.draw();
         }else{
-            canvas.draw(0, 0); // canvas can accept graphics from all type of static brushes
-            switch (brushMode) { // draw any elements out of canvas
-                case 0: // Dream Catcher Brush
+            canvas.draw(0, 0);               // Canvas can accept graphics from all type of static brushes
+            switch (brushMode) {             // Draw any elements out of canvas on top
+                case 0:                      // Dream Catcher Brush
                     break;
-                case 1: // Triangle Brush
-                    if(drag) brushTr.draw(); // this will draw white triangle
+                case 1:                      // Triangle Brush
+                    if(drag) brushTr.draw(); // This will draw white triangle
                     break;
                 default:
                     break;
@@ -115,53 +112,60 @@ void ofApp::draw(){
     if (showGui) {
         gui.draw();
         if (showInfo) {
-            string b = "";
-            switch (brushMode) {
-                case 0:
-                    b = "Dream Catcher Brush";
-                    break;
-                case 1:
-                    b = "Triangle Brush";
-                    break;
-                    
-                default:
-                    break;
-            }
-            string s =
-                     "-- KEY ----------------------------------\n";
-            s.append("1, 2, 3, 4    change colors\n");
-            s.append("TAB           hide gui\n");
-            s.append("q, w          cycle through parameters\n");
-            s.append("SPACE         clear image\n");
-            s.append("e             triangle brush\n");
-            s.append("r             dream catcher brush\n");
-            s.append("-- INFO ---------------------------------\n");
-            s.append("fps           "+ ofToString(ofGetFrameRate()) +"\n");
-            s.append("history size  "+ ofToString(brush.history.size()) +"\n");
-            s.append("brush         "+ b +"\n");
-            s.append("-- TIPS ---------------------------------\n");
-            s.append("Try to enable movingFbo and Kaleidoscope.\n");
-            s.append("It looks interesting if you change color\n");
-            s.append("and draw at the same time.\n");
-            s.append("Kaleidoscope is still in development. Po-\n");
-            s.append("sition of drawing is not matching. Try \n");
-            s.append("to draw more on the left top corner.\n");
-            ofSetColor(0, 255); // shadow
-            ofDrawBitmapString(s, gui.getWidth()+41, 21);
-            ofSetColor(255, 255);
-            ofDrawBitmapString(s, gui.getWidth()+40, 20);
-            ofDisableAlphaBlending();
-            ofPushMatrix();
-            ofTranslate(0,ofGetHeight()/2);
-            korg.draw();
-            ofPopMatrix();
+            info();
         }
     }
     ofFill();
     ofSetColor(pointerColor);
     ofCircle(mouseX, mouseY, pointerSize);
 }
-
+void ofApp::info(){
+    string b = "";
+    switch (brushMode) {
+        case 0:
+            b = "Dream Catcher Brush";
+            break;
+        case 1:
+            b = "Triangle Brush";
+            break;
+            
+        default:
+            break;
+    }
+    string s =
+    "-- KEY ----------------------------------\n";
+    s.append("1, 2, 3, 4    change colors\n");
+    s.append("TAB           hide gui\n");
+    s.append("q, w          cycle through parameters\n");
+    s.append("SPACE         clear image\n");
+    s.append("e             triangle brush\n");
+    s.append("r             dream catcher brush\n");
+    s.append("-- INFO ---------------------------------\n");
+    s.append("fps           "+ ofToString(ofGetFrameRate()) +"\n");
+    s.append("history size  "+ ofToString(brush.history.size()) +"\n");
+    s.append("brush         "+ b +"\n");
+    s.append("-- TIPS ---------------------------------\n");
+    s.append("Try to enable movingFbo and Kaleidoscope.\n");
+    s.append("It looks interesting if you change color \n");
+    s.append("and draw at the same time.\n");
+    s.append("Kaleidoscope is still in development. Po-\n");
+    s.append("sition of drawing is not matching. Try \n");
+    s.append("to draw more on the left top corner.\n");
+    s.append("To use tablet properly you need disable  \n");
+    s.append("mouse. Tablet data more precise than mo- \n");
+    s.append("use data.\n");
+    
+    ofSetColor(0, 255); // shadow
+    ofDrawBitmapString(s, gui.getWidth()+41, 21);
+    ofSetColor(255, 255);
+    ofDrawBitmapString(s, gui.getWidth()+40, 20);
+    ofDisableAlphaBlending();
+    
+    ofPushMatrix();
+    ofTranslate(0,ofGetHeight()/2);
+    korg.draw();
+    ofPopMatrix();
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {
@@ -260,7 +264,15 @@ void ofApp::tabletMoved(TabletData &data) {
         }
         brushTr.setPressure(p);
     }
-    
+}
+void ofApp::mapParameter(float midiValue, ofParameter<float> &pValue){
+    pValue = ofMap(midiValue, 0, 127, pValue.getMin(), pValue.getMax());
+}
+void ofApp::mapParameter(int midiValue, ofParameter<int> &pValue){
+    pValue = ofMap(midiValue, 0, 127, pValue.getMin(), pValue.getMax());
+}
+void ofApp::mapParameter(bool midiValue, ofParameter<bool> &pValue){
+    pValue = ofMap(midiValue, 0, 127, pValue.getMin(), pValue.getMax());
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){

@@ -22,7 +22,8 @@ public:
     ofParameter<int> dotDistance;
     ofParameter<int> pointChoice;
     ofParameter<int> indexRange;
-
+    ofParameter<bool> enableShape;
+    ofParameter<bool> enableTriangle;
     void setup(){
         pressure = 1.;
         parameters.setName("TriangleBrush");
@@ -30,6 +31,8 @@ public:
         parameters.add(pointChoice.set("pointChoice", 50, 0, 700));
         parameters.add(indexRange.set("indexRange", 5, 1, 20));
         parameters.add(opacity.set("opacity", 120, 0, 255));
+        parameters.add(enableShape.set("enableShape", false));
+        parameters.add(enableTriangle.set("enableTriangle", true));
         setupFbo(canvas);
         trianglePoints = new ofVec2f[3];
     }
@@ -46,7 +49,8 @@ public:
             float dist = dotDistance*(pressure/2.);
             if(isDistanceBigger(a, b, dist)){
                 addPoint(history, currentPoint);
-                drawToCanvas(fbo, col);
+                if (enableTriangle) triangleToCanvas(fbo, col);
+                if (enableShape) shapeToCanvas(fbo, points, col);
             }
         }
     }
@@ -57,6 +61,36 @@ public:
     }
     bool isDistanceBigger(ofVec2f a, ofVec2f b, float distance){
         return a.distance(b) > distance? true : false;
+    }
+    void shapeToCanvas(ofFbo &fbo, vector<ofVec2f> sortedCoord, ofColor col){
+        if(sortedCoord.size()==1){   // avoid zero bug
+            sortedCoord.push_back(sortedCoord[0]);
+        }
+        int range = indexRange;
+        int min = sortedCoord.size()-range;  // random index min
+        int max = sortedCoord.size()-1;  // random index max
+        if(sortedCoord.size() < range){  // avoid negative value
+            min = 0;
+        }
+        int sides = max - min;
+        
+        fbo.begin();
+            ofEnableAlphaBlending();
+            ofFill();
+            ofSetColor(col, opacity);
+            ofSetPolyMode(OF_POLY_WINDING_NONZERO);
+            ofBeginShape();
+            for (int i = 0; i < sides; i++) {
+                for (int k = 0; k<4; k++) {
+                    int index = ofRandom(min, max);
+                    ofVertex(sortedCoord[index].x, sortedCoord[index].y);
+                }
+            }
+            ofEndShape();
+        fbo.end();
+    }
+    void trimArray(int size, int rando){
+        
     }
     void setTrianglePoints(vector<ofVec2f> sortedCoord, ofVec2f currentPoint){
         // create random acces to points in sorted array
@@ -112,7 +146,7 @@ public:
             return false;
         }
     }
-    void drawToCanvas(ofFbo &fbo, ofColor col){
+    void triangleToCanvas(ofFbo &fbo, ofColor col){
         fbo.begin();
         ofEnableAlphaBlending();
         ofFill();
