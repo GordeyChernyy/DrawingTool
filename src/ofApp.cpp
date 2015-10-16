@@ -7,11 +7,13 @@ void ofApp::setup(){
     movingFbo.setup();
     brushTr.setup();
     korg.setup();
+    light.loadImage("light.png");
     
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
     stageParam.add(showInfo.set("showInfo", true));
     stageParam.add(enableMouse.set("enableMouse", true));
+    stageParam.add(enableLight.set("enableLight", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
@@ -84,6 +86,7 @@ void ofApp::update(){
             kaleidoscope.update(canvas, mouseX, mouseY);
         }
     }
+
 }
 
 //--------------------------------------------------------------

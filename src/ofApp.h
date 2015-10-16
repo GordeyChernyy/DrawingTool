@@ -34,8 +34,10 @@ public:
     void mapParameter(float midiValue, ofParameter<float> &pValue);
     void mapParameter(int midiValue, ofParameter<int> &pValue);
     void mapParameter(bool midiValue, ofParameter<bool> &pValue);
-    void info(); 
+    void info();
     
+    ofImage light;
+    int lightPosX;
     ofTrueTypeFont font;
     ofFbo canvas;               // fbo which will be passed to brushes
     DreamBrush brush;           // dream catcher brush
@@ -56,6 +58,9 @@ public:
     ofParameter<int> brushMode;
     ofParameter<string> brushModeLabel;
     ofParameter<bool> showInfo;
+    ofParameter<bool> enableLight;
+    ofParameter<float> lightSmooth;
+    ofParameter<ofVec2f> lightPos;
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableMovingFbo;
