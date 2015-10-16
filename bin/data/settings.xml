@@ -1,22 +1,27 @@
 <parameters>
 	<stageParam>
-		<brushMode>1</brushMode>
+		<brushMode>0</brushMode>
 		<showInfo>0</showInfo>
 		<enableMouse>1</enableMouse>
 		<enableKaleidoscope>0</enableKaleidoscope>
 		<enableMovingFbo>0</enableMovingFbo>
 		<pointerSize>1.12245</pointerSize>
 		<pointerColor>255, 255, 255, 255</pointerColor>
+	<lightPos>0, 0</lightPos>
+		<lightSmooth>0.02</lightSmooth>
+		<lightOpacity>255</lightOpacity>
+		<lightScale>0.02</lightScale>
+		<enableLight>1</enableLight>
 	</stageParam>
 	<DreamBrush>
 		<historyMax>2000</historyMax>
 		<type_line>0</type_line>
 		<size>300</size>
-		<opacity>20</opacity>
-		<lineWidth>0.2</lineWidth>
+		<opacity>67.6531</opacity>
+		<lineWidth>1.78571</lineWidth>
 		<swatch>1</swatch>
 		<bgColor>214, 9, 44, 255</bgColor>
-		<activeColor>231, 83, 49, 255</activeColor>
+		<activeColor>211, 253, 253, 255</activeColor>
 		<col1>211, 253, 253, 255</col1>
 		<col2>197, 255, 48, 255</col2>
 		<col3>231, 83, 49, 255</col3>
@@ -26,6 +31,8 @@
 		<pointChoice>50</pointChoice>
 		<indexRange>14</indexRange>
 		<opacity>120</opacity>
+	<enableShape>0</enableShape>
+		<enableTriangle>1</enableTriangle>
 	</TriangleBrush>
 	<movingFbo>
 		<imagesTotal>12</imagesTotal>
@@ -42,7 +49,7 @@
 		<pY>0.0153061</pY>
 	<posX>0.494898</posX>
 		<posY>0.5</posY>
-		<distortX>0</distortX>
+		<distortX>1.29921</distortX>
 		<distortY>0</distortY>
 	</Kaleidoscope>
 <parameters/>

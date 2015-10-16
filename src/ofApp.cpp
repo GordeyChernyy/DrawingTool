@@ -12,8 +12,12 @@ void ofApp::setup(){
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
     stageParam.add(showInfo.set("showInfo", true));
-    stageParam.add(enableMouse.set("enableMouse", true));
+    stageParam.add(lightPos.set("lightPos", ofVec2f(0, 0), ofVec2f(-500, -500), ofVec2f(500, 1000)));
+    stageParam.add(lightSmooth.set("lightSmooth", 0.02, 0., 1.));
+    stageParam.add(lightOpacity.set("lightOpacity", 255, 0, 255));
+    stageParam.add(lightScale.set("lightScale", 0.02, 0., 1.));
     stageParam.add(enableLight.set("enableLight", true));
+    stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
@@ -42,7 +46,6 @@ void ofApp::setup(){
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
     ofBackground(0);
-    
     drag = false;
     currentParameter = 0;
     showGui = true;
@@ -53,27 +56,53 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    // light
+    lightPosX += (lightPos->x + mouseX - lightPosX)*lightSmooth;
     korg.update();
     
     // korg: change colors
-    int col = ofMap(korg.sliders[7], 0, 127, 0, 3);
+    int col = ofMap(korg.sliders[6], 0, 127, 0, 3);
     brush.changeColor(col);
    
     // korg: fade to black
-    float fade = ofMap(korg.knobs[7], 0, 127, 0, 50);
+    float fade = ofMap(korg.knobs[6], 0, 127, 0, 50);
+
     canvas.begin();
     ofEnableAlphaBlending();
     ofSetColor(0, fade);
     ofRect(0, 0, ofGetWidth(), ofGetHeight());
     ofDisableAlphaBlending();
     canvas.end();
-    
+    if (korg.buttonsSolo[5]) {
+        enableKaleidoscope = true;
+    }
+    if (korg.buttonsMute[6]) {
+        enableKaleidoscope = false;
+    }
+    if (korg.buttonsSolo[6]) {
+        enableMovingFbo = true;
+    }
+    if (korg.buttonsMute[6]) {
+        enableMovingFbo = false;
+    }
+    if (korg.buttonsRec[6]) {
+        movingFbo.resize();
+    }
+    if (korg.buttonsSolo[7]) {
+        brushMode = 1;
+    }
+    if (korg.buttonsMute[7]) {
+        brushMode = 0;
+    }
     // korg: kaleidoscope
-    mapParameter(korg.sliders[6], kaleidoscope.s4); // distort x
+    mapParameter(korg.sliders[4], kaleidoscope.s4); // distort x
     mapParameter(korg.sliders[5], kaleidoscope.s5); // distort y
-    mapParameter(korg.knobs[6], kaleidoscope.s6); // offset x
+    mapParameter(korg.knobs[4], kaleidoscope.s6); // offset x
     mapParameter(korg.knobs[5], kaleidoscope.s7); // offset y
-    
+    // light
+    mapParameter(korg.sliders[7], lightOpacity); // distort x
+
     if (enableMovingFbo) movingFbo.update();
 
     // movingFbo -+
@@ -91,7 +120,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
+    
+    ofDisableAlphaBlending();
+
+//    ofEnableBlendMode(OF_BLENDMODE_ALPHA);//: blink screen when ofDrawBitmapString
     ofSetColor(255, 255);
     if(enableKaleidoscope){
         kaleidoscope.draw();
@@ -111,7 +143,11 @@ void ofApp::draw(){
             }
         }
     }
-    
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
+    ofSetColor(255, lightOpacity);
+    light.draw(lightPosX, lightPos->y);
     if (showGui) {
         gui.draw();
         if (showInfo) {
@@ -121,6 +157,8 @@ void ofApp::draw(){
     ofFill();
     ofSetColor(pointerColor);
     ofCircle(mouseX, mouseY, pointerSize);
+    glDisable(GL_BLEND);
+    glPopAttrib();
 }
 void ofApp::info(){
     string b = "";

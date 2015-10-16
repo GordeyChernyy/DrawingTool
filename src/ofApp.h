@@ -60,6 +60,8 @@ public:
     ofParameter<bool> showInfo;
     ofParameter<bool> enableLight;
     ofParameter<float> lightSmooth;
+    ofParameter<int> lightOpacity;
+    ofParameter<float> lightScale;
     ofParameter<ofVec2f> lightPos;
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
