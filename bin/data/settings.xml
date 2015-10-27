@@ -1,15 +1,15 @@
 <parameters>
 	<stageParam>
-		<brushMode>0</brushMode>
+		<brushMode>1</brushMode>
 		<showInfo>0</showInfo>
-		<enableMouse>1</enableMouse>
+		<enableMouse>0</enableMouse>
 		<enableKaleidoscope>0</enableKaleidoscope>
 		<enableMovingFbo>0</enableMovingFbo>
 		<pointerSize>1.12245</pointerSize>
 		<pointerColor>255, 255, 255, 255</pointerColor>
 	<lightPos>0, 0</lightPos>
 		<lightSmooth>0.02</lightSmooth>
-		<lightOpacity>255</lightOpacity>
+		<lightOpacity>0</lightOpacity>
 		<lightScale>0.02</lightScale>
 		<enableLight>1</enableLight>
 	</stageParam>
@@ -21,7 +21,7 @@
 		<lineWidth>1.78571</lineWidth>
 		<swatch>1</swatch>
 		<bgColor>214, 9, 44, 255</bgColor>
-		<activeColor>211, 253, 253, 255</activeColor>
+		<activeColor>214, 9, 44, 255</activeColor>
 		<col1>211, 253, 253, 255</col1>
 		<col2>197, 255, 48, 255</col2>
 		<col3>231, 83, 49, 255</col3>
@@ -42,14 +42,14 @@
 	</movingFbo>
 	<Kaleidoscope>
 		<count>0.336735</count>
-		<offsetX>-1</offsetX>
+		<offsetX>-0.905512</offsetX>
 		<offsetY>-1</offsetY>
 		<pos>1024.21, 768.16</pos>
 	<pX>0.331633</pX>
 		<pY>0.0153061</pY>
 	<posX>0.494898</posX>
 		<posY>0.5</posY>
-		<distortX>1.29921</distortX>
+		<distortX>0</distortX>
 		<distortY>0</distortY>
 	</Kaleidoscope>
 <parameters/>

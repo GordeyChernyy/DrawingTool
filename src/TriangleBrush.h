@@ -49,6 +49,7 @@ public:
             float dist = dotDistance*(pressure/2.);
             if(isDistanceBigger(a, b, dist)){
                 addPoint(history, currentPoint);
+                if(history.size()>2000) history.erase(history.begin());
                 if (enableTriangle) triangleToCanvas(fbo, col);
                 if (enableShape) shapeToCanvas(fbo, points, col);
             }

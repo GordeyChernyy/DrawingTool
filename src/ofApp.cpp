@@ -146,8 +146,7 @@ void ofApp::draw(){
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     glEnable(GL_BLEND);
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
-    ofSetColor(255, lightOpacity);
-    light.draw(lightPosX, lightPos->y);
+
     if (showGui) {
         gui.draw();
         if (showInfo) {
