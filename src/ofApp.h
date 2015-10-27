@@ -9,6 +9,17 @@
 #include "ofxOsc.h"
 #include "KinectWin.h"
 #include "TriangleBrush.h"
+#include "ofxLayerMask.h"
+#include "timeline_types.h"
+
+
+#define TIMELINE_BEGIN 0
+#define TIMELINE_CUR 1
+#define TIMELINE_END 2
+
+#define LAYER_TOP 0
+#define LAYER_CUR 1
+#define LAYER_BOTTOM 2
 
 class ofApp : public ofBaseApp{
 public:
@@ -54,4 +65,8 @@ public:
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
 
+    //ofxLayerMask masker;
+    
+    Timeline my_timeline;
+    ofFbo *canvas_ptr;
 };

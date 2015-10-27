@@ -8,7 +8,7 @@ private:
 public:
     ofFbo fboCanvas, fboFilter;
     void setup();
-    void update(ofFbo fbo, int x, int y);
+    void update(ofFbo *fbo, int x, int y);
     void draw();
     void begin();
     void end();

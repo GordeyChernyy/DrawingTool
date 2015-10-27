@@ -15,7 +15,6 @@ public:
     vector<ofVec2f> history;
     vector<ofVec2f> temp;
     ofVec2f *trianglePoints;
-    ofFbo canvas;
     float pressure;
     ofParameterGroup parameters;
     ofParameter<float> opacity;
@@ -30,10 +29,9 @@ public:
         parameters.add(pointChoice.set("pointChoice", 50, 0, 700));
         parameters.add(indexRange.set("indexRange", 5, 1, 20));
         parameters.add(opacity.set("opacity", 120, 0, 255));
-        setupFbo(canvas);
         trianglePoints = new ofVec2f[3];
     }
-    void updateCanvas(ofFbo &fbo, int x, int y, ofColor col){
+    void updateCanvas(ofFbo *fbo, int x, int y, ofColor col){
         ofVec2f currentPoint(x,y);
         if (history.size() < 4) addPoint(history, currentPoint);
         if (history.size() > 3){
@@ -112,14 +110,14 @@ public:
             return false;
         }
     }
-    void drawToCanvas(ofFbo &fbo, ofColor col){
-        fbo.begin();
+    void drawToCanvas(ofFbo *fbo, ofColor col){
+        fbo->begin();
         ofEnableAlphaBlending();
         ofFill();
         ofSetColor(col, opacity);
         drawTriangle(trianglePoints);
         ofDisableAlphaBlending();
-        fbo.end();
+        fbo->end();
     }
     void drawGraphics(ofColor col){
         ofEnableAlphaBlending();
@@ -127,13 +125,6 @@ public:
         ofSetColor(col, opacity);
         drawTriangle(trianglePoints);
         ofDisableAlphaBlending();
-    }
-    void setupFbo(ofFbo &fbo){
-        fbo.allocate(ofGetWidth(), ofGetHeight());
-        fbo.begin(); ofClear(0, 0); fbo.end();
-    }
-    void clear(){
-        setupFbo(canvas);
     }
     vector<ofVec2f> sortClosest(ofVec2f p, vector<ofVec2f> coords){
         vector<ofVec2f> pos;

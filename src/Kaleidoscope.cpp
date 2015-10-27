@@ -14,13 +14,13 @@ void Kaleidoscope::setup(){
     parameters.add(s6.set("offsetX", 1., -1., 1.));
     parameters.add(s7.set("offsetY", 1., -1., 1.));
 }
-void Kaleidoscope::update(ofFbo fbo, int x, int y){
+void Kaleidoscope::update(ofFbo *fbo, int x, int y){
     ofSetColor(255, 255, 255, 255);
     fboFilter.begin();
     ofClear(255);
         shader.begin();
         setUniform(x, y);
-        fbo.draw(ofGetWidth(), ofGetHeight(), -ofGetWidth(), -ofGetHeight());
+        fbo->draw(ofGetWidth(), ofGetHeight(), -ofGetWidth(), -ofGetHeight());
         shader.end();
     fboFilter.end();
 }

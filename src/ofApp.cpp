@@ -2,11 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+    ofEnableAlphaBlending();
     kaleidoscope.setup();
     brush.setup();
     movingFbo.setup();
     brushTr.setup();
-    
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
     stageParam.add(showInfo.set("showInfo", true));
@@ -20,7 +21,6 @@ void ofApp::setup(){
     parameters.add(stageParam);
     parameters.add(brush.parameters);
     parameters.add(brushTr.parameters);
-    parameters.add(movingFbo.parameters);
     parameters.add(kaleidoscope.parameters);
     
     gui.setup(parameters);
@@ -43,50 +43,51 @@ void ofApp::setup(){
     drag = false;
     currentParameter = 0;
     showGui = true;
+    font.loadFont("Arial.ttf", 12);
     canvas.allocate(ofGetWidth(), ofGetHeight());
     canvas.begin(); ofClear(0, 0); canvas.end();
-    font.loadFont("Arial.ttf", 12);
+    
+    my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if (enableMovingFbo) movingFbo.update();
-    
+    //if (enableMovingFbo) movingFbo.update();
     // movingFbo -+
     //            +-->  kaleidoscope shader
     // canvas ----+
     
     if (enableKaleidoscope) {
-        if (enableMovingFbo) {
-            kaleidoscope.update(movingFbo.getCurrentFrame(), mouseX, mouseY);
-        } else {
-            kaleidoscope.update(canvas, mouseX, mouseY);
-        }
+        kaleidoscope.update(canvas_ptr, mouseX, mouseY);
     }
+    canvas_ptr = my_timeline.getCurFbo();
 }
 
 //--------------------------------------------------------------
+// TODO: Is there a race condition if we get the current fbo, then change frames?
+// TODO: Fbo passthrough
 void ofApp::draw(){
-    ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
+    //ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
+    ofEnableAlphaBlending();
     ofSetColor(255, 255);
     if(enableKaleidoscope){
         kaleidoscope.draw();
     }else{
-        if (enableMovingFbo) {
-            movingFbo.draw();
-        }else{
-            canvas.draw(0, 0); // canvas can accept graphics from all type of static brushes
-            switch (brushMode) { // draw any elements out of canvas
-                case 0: // Dream Catcher Brush
-                    break;
-                case 1: // Triangle Brush
-                    brushTr.draw(); // this will draw white triangle
-                    break;
-                default:
-                    break;
-            }
+        my_timeline.drawCurFrame();
+        
+        switch (brushMode) { // draw any elements out of canvas
+            case 0: // Dream Catcher Brush
+                break;
+            case 1: // Triangle Brush
+                brushTr.draw(); // this will draw white triangle
+                break;
+            default:
+                break;
         }
     }
+    my_timeline.draw();
+    ofDisableAlphaBlending();
     if (showGui) {
         gui.draw();
         if (showInfo) {
@@ -130,7 +131,11 @@ void ofApp::draw(){
     }
     ofFill();
     ofSetColor(pointerColor);
+    
     ofCircle(mouseX, mouseY, pointerSize);
+
+    
+    
 }
 
 //--------------------------------------------------------------
@@ -155,10 +160,10 @@ void ofApp::keyPressed(int key){
             brushMode = 1;
             break;
         case ' ':
-            canvas.begin(); ofClear(0, 0); canvas.end();
-            brushTr.clear();
-            brush.clear();
-            movingFbo.resize();
+            // TODO: Generalize brushTr.clear() to other types of brushes
+//            canvas.begin(); ofClear(0, 0); canvas.end();
+//            brush.clear();
+//            movingFbo.resize();
             break;
         case 9: // TAB key
             showGui ^= true;
@@ -185,7 +190,45 @@ void ofApp::keyPressed(int key){
             cout <<  "name " << names[currentParameter] << endl;
             break;
         }
-
+        case '+': {
+            cout << "add layer";
+            my_timeline.addLayer(ABSOLUTE);
+            break;
+        }
+        case '=': {
+            cout << "add frame";
+            my_timeline.addFrame(ABSOLUTE);
+            break;
+        }
+        case OF_KEY_LEFT: {
+            // TODO: Generalize brushTr.clear() to other types of brushes
+            cout << "sub 1 from cur frame";
+            my_timeline.setCurFrame(-1, RELATIVE);
+            break;
+        }
+        case OF_KEY_RIGHT: {
+            // TODO: Generalize brushTr.clear() to other types of brushes
+            cout << "add 1 to cur frame";
+            my_timeline.setCurFrame(1, RELATIVE);
+            break;
+        }
+        case OF_KEY_UP: {
+            // TODO: Generalize brushTr.clear() to other types of brushes
+            cout << "add 1 from cur layer";
+            my_timeline.setCurLayer(1, RELATIVE);
+            break;
+        }
+        case OF_KEY_DOWN: {
+            // TODO: Generalize brushTr.clear() to other types of brushes
+            cout << "sub 1 to cur layer";
+            my_timeline.setCurLayer(-1, RELATIVE);
+            break;
+        }
+        /*case '-': {
+            cout << "center on cur frame!";
+            my_timeline.centerOnCurFrame();
+            break;
+        }*/
     }
 }
 
@@ -205,29 +248,16 @@ void ofApp::tabletMoved(TabletData &data) {
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
         float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
         float p = data.pressure;
-        if(enableMovingFbo){
-            int index = movingFbo.currentIndex;
-            switch (brushMode) {
-                case 0: // Dream Catcher Brush
-                    brush.updateCanvas(movingFbo.frames[index], penX, penY, p);
-                    break;
-                case 1: // Triangle Brush
-                    brushTr.updateCanvas(movingFbo.frames[index], penX, penY, brush.activeColor);
-                    break;
-                default:
-                    break;
-            }
-        }else{
-            switch (brushMode) {
-                case 0:
-                    brush.updateCanvas(canvas, penX, penY, p);
-                    break;
-                case 1:
-                    brushTr.updateCanvas(canvas, penX, penY, brush.activeColor);
-                    break;
-                default:
-                    break;
-            }
+        switch (brushMode) {
+            case 0:
+                brush.updateCanvas(canvas_ptr, penX, penY, p);
+                break;
+            case 1:
+                brushTr.updateCanvas(canvas_ptr, penX, penY, brush.activeColor);
+                break;
+            default:
+                break;
+            
         }
         brushTr.setPressure(p);
     }
@@ -236,37 +266,27 @@ void ofApp::tabletMoved(TabletData &data) {
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     if(enableMouse){
-        if(enableMovingFbo){
-            int index = movingFbo.currentIndex;
-            switch (brushMode) {
-                case 0:
-                    brush.updateCanvas(movingFbo.frames[index], x, y, 1.);
-                    break;
-                case 1:
-                    brushTr.updateCanvas(movingFbo.frames[index], x, y, brush.activeColor);
-                    break;
-                default:
-                    break;
-            }
-        }else{
-            switch (brushMode) {
-                case 0:
-                    brush.updateCanvas(canvas, x, y, 1.);
-                    break;
-                case 1:
-                    brushTr.updateCanvas(canvas, x, y, brush.activeColor);
-                    break;
-                default:
-                    break;
-            }
+        switch (brushMode) {
+            case 0:
+                brush.updateCanvas(canvas_ptr, x, y, 1.);
+                break;
+            case 1:
+                brushTr.updateCanvas(canvas_ptr, x, y, brush.activeColor);
+                break;
+            default:
+                break;
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    drag = true;
+    // TODO: Should drag only be true if it is not OF_MOUSE_BUTTON_2
     
+    drag = true;
+    if (button == OF_MOUSE_BUTTON_1) {
+        my_timeline.mousePress(x, y, button);
+    }
 }
 
 //--------------------------------------------------------------
@@ -278,11 +298,10 @@ void ofApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
+
     brush.resize();
     kaleidoscope.resize();
-    movingFbo.resize();
-    canvas.allocate(ofGetWidth(), ofGetHeight());
-    canvas.begin(); ofClear(0, 0); canvas.end();
+    my_timeline.windowResize(w, h);
 }
 
 //--------------------------------------------------------------
