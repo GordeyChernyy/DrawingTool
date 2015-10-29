@@ -7,34 +7,30 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8A223DC3-F5BE-4726-A628-47AE4E2D585B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>DrawingTool</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>337C6E3CB5157444A3DC48F3AA0752979326FE8F</key>
-		<string>https://github.com/mattebb/ofxTablet.git</string>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>https://github.com/microcosm/ofxKinectV2-OSC.git</string>
-		<key>7574FFE9B408D92B6BDCEC9FE1545CF013636E93</key>
-		<string>https://github.com/GordeyChernyy/FBOblend.git</string>
+		<key>90E2F969A762FB62C413A0C44D1F334E6EC3F531</key>
+		<string>https://github.com/danomatika/ofxMidi.git</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>https://github.com/GordeyChernyy/DrawingTool.git</string>
 		<key>D7B37588BD493FB6C16572F25CA0740EC5EAFCA4</key>
 		<string>https://github.com/microcosm/ofxLayerMask.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DrawingTool.xcodeproj</string>
+	<string>DrawingTool.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>337C6E3CB5157444A3DC48F3AA0752979326FE8F</key>
-		<string>../../../addons/ofxTablet</string>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>../../../addons/ofxKinectV2-OSC</string>
-		<key>7574FFE9B408D92B6BDCEC9FE1545CF013636E93</key>
-		<string>../../..</string>
+		<key>90E2F969A762FB62C413A0C44D1F334E6EC3F531</key>
+		<string>../../../addons/ofxMidi</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>../..</string>
 		<key>D7B37588BD493FB6C16572F25CA0740EC5EAFCA4</key>
-		<string>../../../addons/ofxLayerMask</string>
+		<string>../../../../../addons/ofxLayerMask</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/GordeyChernyy/DrawingTool.git</string>
@@ -48,17 +44,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7574FFE9B408D92B6BDCEC9FE1545CF013636E93</string>
-			<key>IDESourceControlWCCName</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</string>
 			<key>IDESourceControlWCCName</key>
-			<string>DrawingTool_orig</string>
+			<string>DrawingTool</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
@@ -80,9 +68,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>337C6E3CB5157444A3DC48F3AA0752979326FE8F</string>
+			<string>90E2F969A762FB62C413A0C44D1F334E6EC3F531</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ofxTablet</string>
+			<string>ofxMidi</string>
 		</dict>
 	</array>
 </dict>
