@@ -1,8 +1,5 @@
 #include "timeline_types.h"
 
-// TODO: Make it so the FBO's are actually store on the time line and editable
-// It's kind of neat having all the GPU junky memory appear, but remeber to initialize FBos'
-
 Timeline::Timeline() {
 }
 
@@ -11,31 +8,43 @@ void Timeline::setup(int x, int y, int width, int height) {
     _y = y;
     _width = width;
     _height = height;
+    // TODO: Get rid of _frame_width and _frame_height?
     _frame_width = ofGetWindowWidth();
     _frame_height = ofGetWindowHeight();
     
-    _clicks.reserve(RESERVE_CLICKS);
-    _bUpdateClickList = true;
-    
     _frames.reserve(RESERVE_FRAMES);
     Frame *frame = new Frame;
-    frame->setup(_frame_width, _frame_height, true);
+    frame->setup(_frame_width, _frame_height);
     _frames.push_back(*frame);
-
-    if(pthread_mutex_init(&_frame_mutex, NULL)) {
-        cout << "frame mutex init failed" << endl;
-        dbg_error();
-    }
-    if(pthread_mutex_init(&_click_mutex, NULL)) {
-        cout << "click mutex init failed" << endl;
-        dbg_error();
-    }
+    
+    _cur_layer = 0;     // count from 0
+    _num_layers = 1;    // count from 1
+    _cur_frame = 0;    // count from 0
+    
+    /* Test max buffers that can be allocated
+    test *cur = &_fbo_test;
+    
+    for(int i = 0 ; i < 360; i++) {
+        cur->fbo = (unsigned char*)malloc(width * height * 4);
+        cur->next = (test *)malloc(sizeof(test));
+        cur = cur->next;
+    } */
+    
+    
+    _bPlaying = false;
+    _start_frame = 0;
+    _stop_frame = 0;
+    
     return;
 }
 
+int Timeline::getCurFrameNum() {
+    return _cur_frame;
+}
+
 // returns Frames vector
-std::vector<Frame> Timeline::getFrames() {
-    return _frames;
+std::vector<Frame> *Timeline::getFrames() {
+    return &_frames;
 }
 
 // returns number of frames
@@ -43,114 +52,49 @@ int Timeline::getNumFrames() {
     return _frames.size();
 }
 
-// adds a frame either at end of timeline or at cur position
-void Timeline::addFrame(int method) {
-    pthread_mutex_lock(&_frame_mutex);
-    
+// adds a frame either at _cur_frame.  Does not change  _cur_frame
+void Timeline::addFrame() {
     Frame *new_frame = new Frame;
-    new_frame->setup(_frame_width, _frame_height, false);
-    switch(method) {
-        case RELATIVE: {
-            int cur_frame = _getCurFrameNum();
-            _frames.insert(_frames.begin() + cur_frame + 1, *new_frame);
-            break; }
-        case ABSOLUTE: {
-            _frames.push_back(*new_frame);
-            break;
-        }
-        default:
-            cout << "Invalid method in Timeline::addFrame!" << endl;
-            dbg_error();
-            break;
-    }
-    
-    _bUpdateClickList = true;
-    pthread_mutex_unlock(&_frame_mutex);
+    new_frame->setup(_frame_width, _frame_height);
+    _frames.insert(_frames.begin() + _cur_frame + 1, *new_frame);
 }
 
-// adds a layer to the current frame, either at the current layer or at the top of the layers
-void Timeline::addLayer(int method) {
-    pthread_mutex_lock(&_frame_mutex);
-    
-    int cur_frame = _getCurFrameNum();
-    _frames[cur_frame].addLayer(method, _frame_width, _frame_height);
-    
-    _bUpdateClickList = true;
-    
-    pthread_mutex_unlock(&_frame_mutex);
+// adds a layer one above the current layer
+void Timeline::addLayer() {
+    _frames[_cur_frame].addLayer(_frame_width, _frame_height, _cur_layer + 1);
+    _num_layers += 1;
+    checkTimelineResize();
 }
 
-// adds an entry to the _clicks array, which MUST be updated under these conditions:
-//  1. a frame or layer is added
-//  2. a frame or layer is removed
-//  3. we change the current frame we are on
-// TODO: Should the size field be generalized from being TIMELINE_FRAME_SIZE?
-void Timeline::updateClickList(int x, int y, int frame_num, int layer_num) {
-    ClickFrame *click = (ClickFrame*)malloc(sizeof(ClickFrame));
-    click->x = x;
-    click->y = y;
-    click->size = TIMELINE_FRAME_SIZE;
-    click->frame_num = frame_num;
-    click->layer_num = layer_num;
-    
-    _clicks.push_back(*click);
-}
-
-// frees all the entries in the _clicks array
-// destroyClickList MUST be updated under these conditions:
-//  1. a frame or layer is added
-//  2. a frame or layer is removed
-//  3. we change the current frame we are on
-void Timeline::destroyClickList() {
-    while(_clicks.size() > 0) {
-        _clicks.pop_back();
+// makes sure we can always draw all our layers
+void Timeline::checkTimelineResize() {
+    int max_h = 0;
+    max_h = (_num_layers * FRAME_SIZE) + (2 * EDGE_SPACER) + NUM_SPACER;
+    while(max_h > _height) {
+        _height += FRAME_SIZE;
+        _y -= FRAME_SIZE;
     }
 }
 
-// Responsible for drawing the contents of the frame, as opposed to drawing on the timeline
-// SHOULD be called by the main app
+// Responsible for drawing the actual FBO for the frame, as opposed to drawing on the timeline
+// This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
-    pthread_mutex_lock(&_frame_mutex);
-    int cur_frame = _getCurFrameNum();
-    _frames[cur_frame].draw();
-    pthread_mutex_unlock(&_frame_mutex);
-}
-
-void Timeline::drawFrameRects(int cur_x, int cur_y, int frame, bool b_cur_frame) {
-    for(int l =0 ;  l < _frames[frame].getLayers().size(); l++) {
-        // the selected frame should be a different color from all the other frames
-        // and the selected layer in that frame should be an even different color
-        if((l == _frames[frame].getCurLayer()) && b_cur_frame) {
-            ofSetColor(COLOR_CURRENT_DRAWSPACE);
-        } else if(b_cur_frame){
-            ofSetColor(COLOR_CUR_FRAME);
-        } else {
-            ofSetColor(COLOR_FRAME);
-        }
-        ofRect(cur_x, cur_y, TIMELINE_FRAME_SIZE, TIMELINE_FRAME_SIZE);
-
-        // if the timeline changed since we last drew, add the frame to the click list
-        if(_bUpdateClickList) {
-            updateClickList(cur_x, cur_y, frame, l);
-        }
-
-        // draw the next layer above the current one
-        cur_y -= (TIMELINE_FRAME_SIZE + TIMELINE_FRAME_SPACER);
-
-        // check to make sure we aren't drawing off of the timeline
-        // TODO: Should we just not draw the layers above this?
-        if (cur_y < (_y + TIMELINE_EDGE_SPACER + TIMELINE_NUMLINE_SPACER)) {
-            break;
+    _frames[_cur_frame].draw();
+    if(_bPlaying) {
+        _cur_frame += 1;
+        if(_cur_frame > _stop_frame) {
+            _cur_frame = _start_frame;
         }
     }
-
 }
 
-void Timeline::draw_frame_num(int x, int frame_num) {
-    if (frame_num % FRAME_NUMBER_GRANULARITY != 1) {
+// Draws a number line with the frame numbers
+// This function returns immediately except 1 out of FRAME_NUM_GRANULARITY times
+void Timeline::drawFrameNum(int x, int frame_num) {
+    if (frame_num % FRAME_NUM_GRANULARITY != 0) {
         return;
     }
-    int y = _y + _height;
+    int y = _y + _height - NUM_SPACER/3; //TODO: This is a hack becaue it looked right, make this based on FRAME_SIZE
     string s;
     ostringstream convert;
     convert << frame_num;
@@ -161,157 +105,130 @@ void Timeline::draw_frame_num(int x, int frame_num) {
     ofDrawBitmapString(s, x, y);
 }
 
-// TODO: Make this work
+// returns the FBO corresponding to the current frame and current layers
 ofFbo *Timeline::getCurFbo() {
-    pthread_mutex_lock(&_frame_mutex);
-    
-    int cur_frame = _getCurFrameNum();
-    
-    ofFbo *retval = _frames[cur_frame].getCurFbo();
-
-    pthread_mutex_unlock(&_frame_mutex);
+    ofFbo *retval = _frames[_cur_frame].getCurFbo(_cur_layer);
     return retval;
 }
+
 
 // Responsible for drawing the timeline, NOT the contents of the frames (use Timeline::drawCurFrame for that)
 // We draw in the middle of the timeline the current frame
-// Going into the draw function, the only info we need is _cur_frame, a pointer to the frame vector
-// and a pointer to the layer vector for each frame vector (which we get from the frame).
 // We start by drawing cur frame and it's layer in the middle.  We color it to indicate it is cur frame
-// TODO: Draw the number line at the bottom
-void Timeline::draw() {
-    pthread_mutex_lock(&_click_mutex);
-    pthread_mutex_lock(&_frame_mutex);
-    
-    // first calculate the coordinates of the middle of the timeline in x dimension, bottom of timeline in y
-    int init_x = _x + _width / 2;
-    int init_y = _y + _height - TIMELINE_EDGE_SPACER - TIMELINE_FRAME_SIZE;
-    int cur_x = 0;
-    int cur_y = 0;
-    int cur_frame = _getCurFrameNum();
-    
-    // if we need to update the clicks list because the timeline has changed, destroy the old one
-    if (_bUpdateClickList) {
-        while(_clicks.size() > 0) {
-            _clicks.pop_back();
-        }
-    }
-    
+void Timeline::drawTimeline() {
     //draw background of timeline
     ofSetColor(COLOR_TIMELINE_BRACKGROUND);
     ofRect(_x, _y, _width, _height);
+
+    // calculate what the frame num of the left-most frame and right-most frame
+    int pot_right = (_width / 2) / FRAME_SIZE; // potential right. max number of frames that fit to right of middle frame
+    int pot_left = (_width / 2) / FRAME_SIZE; // potential left. max number of frames that fit to left of middle frame
+    pot_right -= 1;           // potential right. adjust because we don't count cur frame
     
-    // next draw the current frame at (mid_x, mid_y)
-    cur_x = init_x;
-    cur_y = init_y;
-    draw_frame_num(cur_x, cur_frame);
-    drawFrameRects(cur_x, cur_y, cur_frame, true);
+    int act_left = MIN(_cur_frame, pot_left); // actual left. number of frames to draw left
+    int act_right = MIN(_frames.size() - _cur_frame - 1, pot_right); // actual right. number of frames to draw right
+    int low_frame = _cur_frame - act_left;
+    int high_frame = _cur_frame + act_right;
     
-    // next draw forward from the cur frame
-    cur_x = init_x;
-    cur_y = init_y;
-    for(int f = cur_frame + 1; f < _frames.size(); f++) {
+    // calculate the coordinates of the middle of the timeline in x dimension, bottom of timeline in y
+    int init_x = _x + _width / 2;
+    init_x += -((_cur_frame - low_frame) * FRAME_SIZE);  // adjust for whatever the left most frame to be drawn is
+    int init_y = _y + _height - EDGE_SPACER - FRAME_SIZE- NUM_SPACER;
+    int cur_x = init_x;
+    int cur_y = init_y;
+
+    // TODO: Should f be < or <= s
+    for(int f = low_frame; f <= high_frame; f++) {
+        drawFrameNum(cur_x, f);
+        for(int l = 0;  l < _num_layers; l++) {
+            // the selected frame should be a different color from all the other frames
+            // and the selected layer in that frame should be an even different color
+            if((l == _cur_layer) && (f == _cur_frame)) {
+                ofSetColor(COLOR_CUR_DRAWSPACE);
+            } else if(f == _cur_frame){
+                ofSetColor(COLOR_CUR_FRAME);
+            } else {
+                ofSetColor(COLOR_FRAME);
+            }
+            
+            // First draw a sold rectangle, then border it in black
+            ofFill();
+            ofRect(cur_x, cur_y, FRAME_SIZE, FRAME_SIZE);
+            ofSetColor(ofColor::black);
+            ofNoFill();
+            ofRect(cur_x, cur_y, FRAME_SIZE, FRAME_SIZE);
+            ofFill();
+            
+            // draw the next layer above the current one
+            cur_y -= FRAME_SIZE;
+            
+            // check to make sure we aren't drawing off of the timeline
+            if (cur_y < (_y + EDGE_SPACER + NUM_SPACER)) {
+                dbg_error("About to draw off the edge of the timeline!");
+            }
+        }
+        // reset y to the bottom of the timeline, and iterate x to the right by one frame
         cur_y = init_y;
-        cur_x += TIMELINE_FRAME_SPACER + TIMELINE_FRAME_SIZE;
-        draw_frame_num(cur_x, f);
-        drawFrameRects(cur_x, cur_y, f, false);
-        // make sure we're not drawing off the end of the timeline
-        if(cur_x > (_x + _width - TIMELINE_EDGE_SPACER - TIMELINE_FRAME_SIZE)) {
+        cur_x += FRAME_SIZE;
+        if(cur_x > (_x + _width - EDGE_SPACER - FRAME_SIZE)) {
+            dbg_error("About to draw off the edge of the timeline in x direction!");
             break;
         }
     }
-    
-    // next draw backward from the cur frame
-    cur_x = init_x;
-    cur_y = init_y;
-    for(int f = cur_frame - 1; f >= 0; f--) {
-        cur_y = init_y;
-        cur_x -= (TIMELINE_FRAME_SPACER + TIMELINE_FRAME_SIZE);
-        draw_frame_num(cur_x, f);
-        drawFrameRects(cur_x, cur_y, f, false);
-        // make sure we're not drawing off the end of the timeline
-        if(cur_x < (_x + TIMELINE_EDGE_SPACER)) {
-            break;
-        }
-    }
-    
-    _bUpdateClickList= false;
-    pthread_mutex_unlock(&_frame_mutex);
-    pthread_mutex_unlock(&_click_mutex);
 }
 
-void dbg_error() {
+// when there's an unexpected condition, call this
+void dbg_error(string err_msg) {
+    cout << err_msg << endl;
     cout << "This shouldn't have happened!" << endl;
 }
 
-
-// sets the current frame, either as an offset from the current frame, or
-// 	as an absolute value from frame 0
-void Timeline::setCurFrame(int pos, int method) {
-    pthread_mutex_lock(&_frame_mutex);
-    
-    // first find the old cur frame and set it to no longer be the cur frame
-    int old_cur = BAD_CUR_VAL;
-    for(int i = 0; i < _frames.size(); i++) {
-        if(true == _frames[i].getbCurFrame()) {
-            old_cur = i;
-            break;
+// helper functions for diagnostics (looking for slow down from fbo over-allocation for example)
+int Timeline::countAllocatedFbos() {
+    int out = 0;
+    for(int f = 0; f < _frames.size(); f++) {
+        for(int l = 0; l < _frames[f].getLayers()->size(); l++) {
+            out += 1;
         }
     }
-    
-    if(BAD_CUR_VAL == old_cur ) {
-        cout << "couldn't find cur frame in the timeline!" << endl;
-        dbg_error();
-    }
+    return out;
+}
 
+// sets the current frame, either as an offset from the current frame, or as an absolute value from frame 0
+// TODO: Should we allocate the fbo if all we are doing is steppping over the frame?  Maybe a waste of memory?
+void Timeline::setCurFrame(int pos, int method) {
     // determine the new positon and clamp it between 0 and _frame.size() -1
-    int new_pos = 0;
     switch (method) {
         case RELATIVE:
-            new_pos = ofClamp(old_cur + pos, 0, _frames.size()-  1);
+            _cur_frame = ofClamp(_cur_frame + pos, 0, _frames.size() -  1);
             break;
         case ABSOLUTE:
-            new_pos = ofClamp(pos, 0, _frames.size() - 1);
+            _cur_frame = ofClamp(pos, 0, _frames.size() - 1);
             break;
         default:
-            cout << "Invalid method in Timeline::setbCurFrame" << endl;
-            dbg_error();
-    }
-    
-    // set the new position to have it's cur_frame variable be true
-    _frames[old_cur].setbCurFrame(false);
-    _frames[new_pos].setbCurFrame(true);
-    _bUpdateClickList = true;
-    
-    pthread_mutex_unlock(&_frame_mutex);
-}
-
-// set the cur layer.  can only be used on current frame
-// basically a pass through function to the _layers vector of the current frame
-void Timeline::setCurLayer(int pos, int method) {
-    pthread_mutex_lock(&_frame_mutex);
-    int cur_frame = _getCurFrameNum();
-    _frames[cur_frame].setCurLayer(pos, method);
-    pthread_mutex_unlock(&_frame_mutex);
-}
-
-// get the index of the cur frame by looping through the frames and
-// checking their cur_frame variables
-// MUST be called with the _frame_mutex already locked!
-int Timeline::_getCurFrameNum() {
-    int retval = BAD_CUR_VAL;
-    for(int i = 0; i < _frames.size(); i++) {
-        if(true == _frames[i].getbCurFrame()) {
-            retval = i;
+            dbg_error("Invalid method in Timeline::setbCurFrame");
             break;
-        }
     }
-    if(BAD_CUR_VAL == retval) {
-        // shouldn't hit this case
-        cout << "couldn't find the cur frame number!" << endl;
-        dbg_error();
+    //TODO: Allocate the layer/fbo if it doesn't already exist
+}
+
+// sets the current layer, either as an offset from the current layer, or
+// 	as an absolute value from layer 0
+// TODO: Should we allocate the fbo if all we are doing is steppping over the frame? Maybe a waste of memory?
+void Timeline::setCurLayer(int pos, int method) {
+    // determine the new positon and clamp it between 0 and _num_layers - 2
+    switch(method) {
+        case RELATIVE:
+            _cur_layer = ofClamp(_cur_layer + pos, 0, _num_layers - 1);
+            break;
+        case ABSOLUTE:
+            _cur_layer = ofClamp(pos, 0, _num_layers - 1);
+            break;
+        default:
+            dbg_error("Invalid method in Timeline::setCurLayer" );
+            break;
     }
-    return retval;
+    //TODO: Allocate the fbo if it doesn't already exist
 }
 
 // call this if _x, _y, _width, or _height have changed and these values
@@ -323,8 +240,8 @@ void Timeline::windowResize(int w, int h) {
     _y = ofGetWindowHeight() * (3.0/4.0);
     _width = ofGetWindowWidth() * (3.0/4.0); // width = 75% of screen
     _height = ofGetWindowHeight() * (1.0/5.0); // height == %20 of screen
-
-    _bUpdateClickList = true;
+    
+    checkTimelineResize();
     
     // TODO if we resize, should we resize all the fbo's?
     // or should we keep them small and if they try to draw outside of the original region
@@ -333,32 +250,28 @@ void Timeline::windowResize(int w, int h) {
     return;
 }
 
-
-// TODO: Take into account which mousekey was pressed
-void Timeline::mousePress(const int x, const int y, int mousekey) {
-    // check if the click even happened in the timeline
-    if ((x < _x) || (y < _y)) {
-        return;
-    }
-    else if ((x >= _x + _width) || (y >= _y + _height)) {
+void Timeline::delCurFrame() {
+    int new_cur_frame = 0;
+    
+    if(_frames.size() == 1) {
+        cout << "Can't delete the only frame!" << endl;
         return;
     }
     
-    pthread_mutex_lock(&_click_mutex);
-    // iterate through the drawn objects and check if it is in the region of clickable object
-    for(int i = 0; i < _clicks.size(); i++) {
-        if((x >= _clicks[i].x) && (x < _clicks[i].x + _clicks[i].size)) {
-            if((y >= _clicks[i].y) && (y < _clicks[i].y + _clicks[i].size)) {
-                setCurFrame(_clicks[i].frame_num, ABSOLUTE);
-                setCurLayer(_clicks[i].layer_num, ABSOLUTE);
-                // TODO: We don't necessarily have to do this if layer changed by frame did not
-                // if there is slowdown, check for this
-                _bUpdateClickList = true;
-                break;
-            }
-        }
+    // check if the cur_frame is the last frame
+    // -1 from frame.size() because _cur_frame counts from 0 and _frame.size() counts from 1
+    if(_cur_frame == (_frames.size() - 1)) {
+        new_cur_frame = _cur_frame - 1;
     }
-    pthread_mutex_unlock(&_click_mutex);
+    else {
+        new_cur_frame = _cur_frame;
+    }
+    
+    
+    _frames[_cur_frame].destroyLayers();
+    _frames.erase(_frames.begin() + _cur_frame);
+    
+    _cur_frame = new_cur_frame;
 }
 
 

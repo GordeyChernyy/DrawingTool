@@ -18,6 +18,7 @@
 		63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */; };
 		6615950B1BD679CF00E77D2C /* Frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661595091BD679CF00E77D2C /* Frame.cpp */; };
 		6615950E1BD679D800E77D2C /* Layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6615950C1BD679D800E77D2C /* Layer.cpp */; };
+		66E0591D1BE0DD6900ABAADF /* VideoBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */; };
 		66F79B3D1BD46DE50009C950 /* ofxLayerMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F79B2A1BD46DE50009C950 /* ofxLayerMask.cpp */; };
 		66F79B491BD46E4C0009C950 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F79B471BD46E4C0009C950 /* Timeline.cpp */; };
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
@@ -139,6 +140,8 @@
 		661595091BD679CF00E77D2C /* Frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frame.cpp; sourceTree = "<group>"; };
 		6615950C1BD679D800E77D2C /* Layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Layer.cpp; sourceTree = "<group>"; };
 		661595121BD7929700E77D2C /* timeline_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timeline_types.h; sourceTree = "<group>"; };
+		66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoBrush.cpp; sourceTree = "<group>"; };
+		66E0591C1BE0DD6900ABAADF /* VideoBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBrush.h; sourceTree = "<group>"; };
 		66F79B2A1BD46DE50009C950 /* ofxLayerMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLayerMask.cpp; sourceTree = "<group>"; };
 		66F79B2B1BD46DE50009C950 /* ofxLayerMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLayerMask.h; sourceTree = "<group>"; };
 		66F79B2D1BD46DE50009C950 /* alphaMask_ES2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alphaMask_ES2.frag; sourceTree = "<group>"; };
@@ -712,6 +715,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				7221E9261B74376300AB4529 /* DreamBrush.cpp */,
 				7221E9271B74376300AB4529 /* DreamBrush.h */,
+				66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */,
+				66E0591C1BE0DD6900ABAADF /* VideoBrush.h */,
 				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
 				72F42BD41BA8B3F300674972 /* FramesFbo.h */,
 				7216A3531BB323020036625A /* KinectWin.h */,
@@ -886,6 +891,7 @@
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				7221E9281B74376300AB4529 /* DreamBrush.cpp in Sources */,
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
+				66E0591D1BE0DD6900ABAADF /* VideoBrush.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				7250140F1BB109B500D1CCD5 /* ofxOscSender.cpp in Sources */,
 				720E6CF71BB3074D005CD627 /* Parser.cpp in Sources */,

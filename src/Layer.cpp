@@ -3,30 +3,34 @@
 //@@@@@@@@@@@LAYER CLASS METHODS
 
 // returns the FBO the layer encapsulates
-ofFbo *Layer::getLayer() {
-    return &_layer;
+ofFbo *Layer::getFbo() {
+    return &_fbo;
 }
 
 // cur_layer is a true or false value indicating whether
-void Layer::setup(int width, int height, bool b_cur_layer) {
-    _layer.allocate(width, height);
-    _layer.begin();
+void Layer::setup(int width, int height, int layer_num) {
+    _fbo.allocate(width, height);
+    _fbo.begin();
         ofClear(0,0);
-    _layer.end();
-    _b_cur_layer = b_cur_layer;
+    _fbo.end();
+    _layer_num = layer_num;
+}
+
+int Layer::getLayerNum() {
+    return _layer_num;
+}
+
+void Layer::setLayer(int layer_num) {
+    _layer_num = layer_num;
 }
 
 // draws the contents of the FBO
 void Layer::draw() {
-    _layer.draw(0,0);
+    _fbo.draw(0,0);
 }
 
-// changes the value of _cur_layer to true or false
-void Layer::setbCurLayer(bool new_val) {
-    _b_cur_layer = new_val;
-}
+void Layer::destroy() {
+    // do something to fbo?  unbind?
+    _fbo.unbind();
 
-// changes the value of _cur_layer to true or false
-bool Layer::getbCurLayer() {
-    return _b_cur_layer;
 }
