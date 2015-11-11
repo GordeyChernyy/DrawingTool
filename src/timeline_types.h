@@ -44,6 +44,7 @@ class Layer {
 class Frame {
     private:
         ofxLayerMask _masker;
+        vector<ofFbo> fbos;
         std::vector <int> _mask_layers;
         std::vector<Layer> _layers;
         bool _b_cur_frame;
@@ -68,6 +69,7 @@ class Timeline {
         int _cur_layer;     // count from 0
         int _num_layers;    // count from 1
         int _cur_frame;     // count from 0
+        int frameRate;
         int _x, _y, _width, _height;
         int _frame_width, _frame_height;
         std::vector<Frame> _frames;
@@ -80,6 +82,7 @@ class Timeline {
     
     public:
         Timeline();
+        void setFrameRate(int _frameRate);
         void setup(int x, int y, int width, int height);
         void windowResize(int w, int h);
     

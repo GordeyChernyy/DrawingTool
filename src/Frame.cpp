@@ -39,36 +39,24 @@ void Frame::addLayer(int width, int height, int layer_num) {
     Layer *new_layer = new Layer;
     new_layer->setup(width, height, layer_num);
     _layers.push_back(*new_layer);
-    _mask_layers.push_back(_masker.newLayer());
 }
 
 // width and height are the size of the stuff you're drawing on the screen (so they should be window width and height)
 // cur frame is whether this is the cur frame of the timeline
 void Frame::setup(int width, int height) {
-    _masker.setup(width, height);
-    
     Layer *new_layer = new Layer;
     new_layer->setup(width, height, 0);
     _layers.push_back(*new_layer);
-    
-    _mask_layers.push_back(_masker.newLayer());
 }
 
 // draws the content of the frame (as opposed to the frame on the timeline)
 void Frame::draw() {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     for(int i = 0; i < _layers.size(); i++) {
-        _masker.beginLayer(_mask_layers[i]);
-            ofClear(0, 255);
-            _layers[i].draw();
-        _masker.endLayer(_mask_layers[i]);
-        
-        _masker.beginMask(_mask_layers[i]);
-            ofClear(0, 0, 0, 255);
-            ofSetColor(ofColor::white, 255);
-            _layers[i].draw();
-        _masker.endMask(_mask_layers[i]);
+        _layers[i].draw();
     }
-    _masker.draw();
+    glDisable(GL_BLEND);
 }
 
 void Frame::destroyLayers() {

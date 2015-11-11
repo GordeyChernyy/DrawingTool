@@ -19,7 +19,8 @@ void ofApp::setup(){
     stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
     stageParam.add(pointerColor.set("pointerColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
-
+    stageParam.add(bgColor.set("bgColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
+    
     parameters.setName("parameters");
     parameters.add(stageParam);
     parameters.add(brush.parameters);
@@ -41,7 +42,7 @@ void ofApp::setup(){
     
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
-    ofBackground(0);
+    ofBackground(bgColor);
     
     drag = false;
     currentParameter = 0;
@@ -71,6 +72,7 @@ void ofApp::update(){
 // TODO: Is there a race condition if we get the current fbo, then change frames?
 // TODO: Fbo passthrough
 void ofApp::draw(){
+    ofBackground(bgColor);
     //ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
     ofEnableAlphaBlending();
     ofSetColor(255, 255);
@@ -157,14 +159,14 @@ void ofApp::keyPressed(int key){
         case '4':
             brush.changeColor(3);
             break;
-        case 'r':
+        case ',':
             brushMode = 0;
             break;
-        case 'e':
+        case '.':
             brushMode = 1;
             break;
-        case ' ':
-            // TODO: Generalize brushTr.clear() to other types of brushes
+        case '0':
+// TODO: Generalize brushTr.clear() to other types of brushes
 //            canvas.begin(); ofClear(0, 0); canvas.end();
 //            brush.clear();
 //            movingFbo.resize();
@@ -195,40 +197,43 @@ void ofApp::keyPressed(int key){
             break;
         }
         case '+': {
-            cout << "add layer";
+            cout << "add layer"<< endl;
             my_timeline.addLayer();
             break;
         }
-        case '=': {
-            cout << "add frame";
+        case 's': {
+            cout << "add frame"<< endl;
             my_timeline.addFrame();
+            cout << "add 1 to cur frame";
+            my_timeline.setCurFrame(1, RELATIVE);
+            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
             break;
         }
-        case OF_KEY_LEFT: {
+        case 'd': {
             // TODO: Generalize brushTr.clear() to other types of brushes
-            cout << "sub 1 from cur frame";
+            cout << "sub 1 from cur frame"<< endl;
             my_timeline.setCurFrame(-1, RELATIVE);
             break;
         }
-        case OF_KEY_RIGHT: {
+        case 'f': {
             // TODO: Generalize brushTr.clear() to other types of brushes
-            cout << "add 1 to cur frame";
+            cout << "add 1 to cur frame"<< endl;
             my_timeline.setCurFrame(1, RELATIVE);
             break;
         }
-        case OF_KEY_UP: {
+        case 'r': {
             // TODO: Generalize brushTr.clear() to other types of brushes
             cout << "add 1 from cur layer";
             my_timeline.setCurLayer(1, RELATIVE);
             break;
         }
-        case OF_KEY_DOWN: {
+        case 'v': {
             // TODO: Generalize brushTr.clear() to other types of brushes
             cout << "sub 1 to cur layer";
             my_timeline.setCurLayer(-1, RELATIVE);
             break;
         }
-        case 'p': {
+        case ' ': {
             if(my_timeline.getPlaying()) {
                 my_timeline.setPlaying(false);
             } else {
@@ -266,7 +271,6 @@ void ofApp::mouseMoved(int x, int y ){
 
 }
 void ofApp::tabletMoved(TabletData &data) {
-    cout <<  "data.pressure " << data.pressure << endl;
     if (drag && !enableMouse){
         float penX = data.abs_screen[0]*ofGetScreenWidth() - ofGetWindowPositionX();
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);

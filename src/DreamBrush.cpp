@@ -36,7 +36,8 @@ void DreamBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure){
     fbo->end();
 }
 void DreamBrush::drawBrush(float x, float y, float pressure){
-    ofEnableAlphaBlending();
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     ofVec2f m;
     m.set(x, y);
     history.push_back(m);
@@ -51,7 +52,7 @@ void DreamBrush::drawBrush(float x, float y, float pressure){
             ofLine(h.x, h.y, m.x, m.y);
         }
     }
-    ofDisableAlphaBlending();
+    glDisable(GL_BLEND);
     if (history.size()>historyMax) {
         history.erase(history.begin());
     }

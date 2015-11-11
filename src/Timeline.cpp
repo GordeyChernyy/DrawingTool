@@ -4,6 +4,7 @@ Timeline::Timeline() {
 }
 
 void Timeline::setup(int x, int y, int width, int height) {
+    
     _x = x;
     _y = y;
     _width = width;
@@ -32,12 +33,15 @@ void Timeline::setup(int x, int y, int width, int height) {
     
     
     _bPlaying = false;
+    frameRate = 3;
     _start_frame = 0;
     _stop_frame = 0;
     
     return;
 }
-
+void Timeline::setFrameRate(int _frameRate){
+    frameRate = _frameRate;
+}
 int Timeline::getCurFrameNum() {
     return _cur_frame;
 }
@@ -80,7 +84,7 @@ void Timeline::checkTimelineResize() {
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
     _frames[_cur_frame].draw();
-    if(_bPlaying) {
+    if(_bPlaying && ofGetFrameNum()%frameRate == 0) {
         _cur_frame += 1;
         if(_cur_frame > _stop_frame) {
             _cur_frame = _start_frame;

@@ -58,6 +58,7 @@ public:
     ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
+    ofParameter<ofColor> bgColor;
 
     //ofxLayerMask masker;
     

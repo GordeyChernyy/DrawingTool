@@ -112,11 +112,12 @@ public:
     }
     void drawToCanvas(ofFbo *fbo, ofColor col){
         fbo->begin();
-        ofEnableAlphaBlending();
+        glEnable(GL_BLEND);
+        glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         ofFill();
         ofSetColor(col, opacity);
         drawTriangle(trianglePoints);
-        ofDisableAlphaBlending();
+        glDisable(GL_BLEND);
         fbo->end();
     }
     void drawGraphics(ofColor col){
