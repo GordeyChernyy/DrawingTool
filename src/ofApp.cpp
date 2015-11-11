@@ -60,7 +60,28 @@ void ofApp::update(){
     // light
     lightPosX += (lightPos->x + mouseX - lightPosX)*lightSmooth;
     korg.update();
-    
+    if (korg.sliders[0] == 0) {
+        enableKaleidoscope = false;
+    }
+    if (korg.sliders[0] == 127) {
+        enableKaleidoscope = true;
+    }
+    if (korg.sliders[1] == 0) {
+        enableMovingFbo = false;
+    }
+    if (korg.sliders[1] == 127) {
+        enableMovingFbo = true;
+    }
+    if (korg.sliders[1] == 127) {
+        enableMovingFbo = true;
+    }
+    if (korg.sliders[7] == 0) {
+        brushMode = 0;
+    }
+    if (korg.sliders[7] == 127) {
+        brushMode = 1;
+    }
+
     // korg: change colors
     int col = ofMap(korg.sliders[6], 0, 127, 0, 3);
     brush.changeColor(col);
@@ -74,32 +95,16 @@ void ofApp::update(){
     ofRect(0, 0, ofGetWidth(), ofGetHeight());
     ofDisableAlphaBlending();
     canvas.end();
-    if (korg.buttonsSolo[5]) {
-        enableKaleidoscope = true;
-    }
-    if (korg.buttonsMute[6]) {
-        enableKaleidoscope = false;
-    }
-    if (korg.buttonsSolo[6]) {
-        enableMovingFbo = true;
-    }
-    if (korg.buttonsMute[6]) {
-        enableMovingFbo = false;
-    }
-    if (korg.buttonsRec[6]) {
+
+    if (korg.buttonsRec[7]) {
         movingFbo.resize();
     }
-    if (korg.buttonsSolo[7]) {
-        brushMode = 1;
-    }
-    if (korg.buttonsMute[7]) {
-        brushMode = 0;
-    }
+
     // korg: kaleidoscope
-    mapParameter(korg.sliders[4], kaleidoscope.s4); // distort x
-    mapParameter(korg.sliders[5], kaleidoscope.s5); // distort y
-    mapParameter(korg.knobs[4], kaleidoscope.s6); // offset x
-    mapParameter(korg.knobs[5], kaleidoscope.s7); // offset y
+    mapParameter(korg.knobs[0], kaleidoscope.s4); // distort x
+    mapParameter(korg.knobs[1], kaleidoscope.s5); // distort y
+    mapParameter(korg.knobs[2], kaleidoscope.s6); // offset x
+    mapParameter(korg.knobs[3], kaleidoscope.s7); // offset y
     // light
     mapParameter(korg.sliders[7], lightOpacity); // distort x
 

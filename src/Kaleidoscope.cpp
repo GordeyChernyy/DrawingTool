@@ -11,8 +11,8 @@ void Kaleidoscope::setup(){
     parameters.add(s3.set("posY", 1., 0., 1.));
     parameters.add(s4.set("distortX", 1., 0., 5.));
     parameters.add(s5.set("distortY", 1., 0., 5.));
-    parameters.add(s6.set("offsetX", 1., -1., 1.));
-    parameters.add(s7.set("offsetY", 1., -1., 1.));
+    parameters.add(s6.set("offsetX", 1., -0.4, -0.1));
+    parameters.add(s7.set("offsetY", 1., -0.2, -0.3));
 }
 void Kaleidoscope::update(ofFbo fbo, int x, int y){
     ofSetColor(255, 255, 255, 255);

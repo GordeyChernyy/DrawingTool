@@ -440,8 +440,8 @@
 				720E6CDC1BB3074D005CD627 /* Interpreter.h */,
 				720E6CDD1BB3074D005CD627 /* Joint.cpp */,
 				720E6CDE1BB3074D005CD627 /* Joint.h */,
-				720E6CDF1BB3074D005CD627 /* Skeleton.cpp */,
 				720E6CE01BB3074D005CD627 /* Skeleton.h */,
+				720E6CDF1BB3074D005CD627 /* Skeleton.cpp */,
 			);
 			path = Body;
 			sourceTree = "<group>";
