@@ -12,14 +12,8 @@
 #include "ofxLayerMask.h"
 #include "timeline_types.h"
 
-
-#define TIMELINE_BEGIN 0
-#define TIMELINE_CUR 1
-#define TIMELINE_END 2
-
-#define LAYER_TOP 0
-#define LAYER_CUR 1
-#define LAYER_BOTTOM 2
+// TODO: Make this configurable in the GUI
+#define FRAME_RATE 60
 
 class ofApp : public ofBaseApp{
 public:

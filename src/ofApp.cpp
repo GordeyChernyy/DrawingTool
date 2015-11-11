@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    ofSetFrameRate(FRAME_RATE);
 
     ofEnableAlphaBlending();
     kaleidoscope.setup();
@@ -10,6 +12,7 @@ void ofApp::setup(){
     brushTr.setup();
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
+    stageParam.add(brushModeLabel.set("burshmodelabel", "hidude"));
     stageParam.add(showInfo.set("showInfo", true));
     stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
@@ -86,7 +89,7 @@ void ofApp::draw(){
                 break;
         }
     }
-    my_timeline.draw();
+    my_timeline.drawTimeline();
     ofDisableAlphaBlending();
     if (showGui) {
         gui.draw();
@@ -113,6 +116,7 @@ void ofApp::draw(){
             s.append("r             dream catcher brush\n");
             s.append("-- INFO ---------------------------------\n");
             s.append("fps           "+ ofToString(ofGetFrameRate()) +"\n");
+            s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
             s.append("history size  "+ ofToString(brush.history.size()) +"\n");
             s.append("brush         "+ b +"\n");
             s.append("-- TIPS ---------------------------------\n");
@@ -192,12 +196,12 @@ void ofApp::keyPressed(int key){
         }
         case '+': {
             cout << "add layer";
-            my_timeline.addLayer(ABSOLUTE);
+            my_timeline.addLayer();
             break;
         }
         case '=': {
             cout << "add frame";
-            my_timeline.addFrame(ABSOLUTE);
+            my_timeline.addFrame();
             break;
         }
         case OF_KEY_LEFT: {
@@ -222,6 +226,26 @@ void ofApp::keyPressed(int key){
             // TODO: Generalize brushTr.clear() to other types of brushes
             cout << "sub 1 to cur layer";
             my_timeline.setCurLayer(-1, RELATIVE);
+            break;
+        }
+        case 'p': {
+            if(my_timeline.getPlaying()) {
+                my_timeline.setPlaying(false);
+            } else {
+                my_timeline.setPlaying(true);
+            }
+            break;
+        }
+        case 'i': {
+            my_timeline.setStartFrame(my_timeline.getCurFrameNum());
+            break;
+        }
+        case 'o': {
+            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+            break;
+        }
+        case OF_KEY_BACKSPACE: {
+            my_timeline.delCurFrame();
             break;
         }
         /*case '-': {
@@ -281,12 +305,6 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    // TODO: Should drag only be true if it is not OF_MOUSE_BUTTON_2
-    
-    drag = true;
-    if (button == OF_MOUSE_BUTTON_1) {
-        my_timeline.mousePress(x, y, button);
-    }
 }
 
 //--------------------------------------------------------------
