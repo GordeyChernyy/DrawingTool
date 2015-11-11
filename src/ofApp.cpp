@@ -17,6 +17,7 @@ void ofApp::setup(){
     stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
+    stageParam.add(releaseMode.set("releaseMode", 0));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
     stageParam.add(pointerColor.set("pointerColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
     stageParam.add(bgColor.set("bgColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
@@ -117,10 +118,11 @@ void ofApp::draw(){
             s.append("e             triangle brush\n");
             s.append("r             dream catcher brush\n");
             s.append("-- INFO ---------------------------------\n");
-            s.append("fps           "+ ofToString(ofGetFrameRate()) +"\n");
+            s.append("fps            "+ ofToString(ofGetFrameRate()) +"\n");
             s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
-            s.append("history size  "+ ofToString(brush.history.size()) +"\n");
-            s.append("brush         "+ b +"\n");
+            s.append("history size   "+ ofToString(brush.history.size()) +"\n");
+            s.append("brush          "+ b +"\n");
+            s.append("releaseMode  "+ ofToString(releaseMode)+"\n");
             s.append("-- TIPS ---------------------------------\n");
             s.append("Try to enable movingFbo and Kaleidoscope.\n");
             s.append("It looks interesting if you change color\n");
@@ -147,6 +149,9 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {
+        case 'x':
+            releaseMode > 1 ? releaseMode = 0 : releaseMode++;
+            break;
         case '1':
             brush.changeColor(0);
             break;
@@ -202,9 +207,7 @@ void ofApp::keyPressed(int key){
             break;
         }
         case 's': {
-            cout << "add frame"<< endl;
             my_timeline.addFrame();
-            cout << "add 1 to cur frame";
             my_timeline.setCurFrame(1, RELATIVE);
             my_timeline.setStopFrame(my_timeline.getCurFrameNum());
             break;
@@ -316,6 +319,22 @@ void ofApp::mouseReleased(int x, int y, int button){
     brushTr.clearHistory();
     drag = false;
     brush.clearHistory();
+    switch (releaseMode) {
+        case 0:
+            break;
+        case 1: // auto frame add
+            my_timeline.addFrame();
+            my_timeline.setCurFrame(1, RELATIVE);
+            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+        case 2: // auto next frame
+            if(my_timeline.getCurFrame() == my_timeline.getFrameCount()-1){
+                my_timeline.setCurFrame(0, ABSOLUTE);
+            } else {
+                my_timeline.setCurFrame(1, RELATIVE);
+            }
+            break;
+            
+    }
 }
 
 //--------------------------------------------------------------

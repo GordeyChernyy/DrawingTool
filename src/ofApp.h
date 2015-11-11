@@ -55,6 +55,7 @@ public:
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableMovingFbo;
+    ofParameter<int> releaseMode;
     ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;

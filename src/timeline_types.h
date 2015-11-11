@@ -87,6 +87,9 @@ class Timeline {
         void windowResize(int w, int h);
     
         bool getPlaying() { return _bPlaying;}
+        int getCurFrame() { return _cur_frame;}
+        int getFrameCount() { return _frames.size();}
+    
         void setPlaying(bool newval) { _bPlaying = newval; }
         void setStartFrame(int newval) { _start_frame = newval; }
         void setStopFrame(int newval) { _stop_frame = newval; }
