@@ -17,6 +17,8 @@ void ofApp::setup(){
     stageParam.add(enableMouse.set("enableMouse", true));
     stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
     stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
+    stageParam.add(showOnionSkin.set("showOnionSkin", false));
+    stageParam.add(onionSkinAlpha.set("onionSkinAlpha", 20, 0, 255));
     stageParam.add(releaseMode.set("releaseMode", 0));
     stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
     stageParam.add(pointerColor.set("pointerColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
@@ -53,7 +55,7 @@ void ofApp::setup(){
     canvas.begin(); ofClear(0, 0); canvas.end();
     
     my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
-
+    win.setup();
 }
 
 //--------------------------------------------------------------
@@ -81,7 +83,7 @@ void ofApp::draw(){
         kaleidoscope.draw();
     }else{
         my_timeline.drawCurFrame();
-        
+        if(showOnionSkin) my_timeline.drawOnionSkin(onionSkinAlpha);
         switch (brushMode) { // draw any elements out of canvas
             case 0: // Dream Catcher Brush
                 break;
@@ -92,7 +94,18 @@ void ofApp::draw(){
                 break;
         }
     }
+
     my_timeline.drawTimeline();
+
+    win.begin();
+    ofBackground(255, 255);
+    ofPushMatrix();
+    ofScale(0.5, 0.5);
+    my_timeline.playFramesDetached();
+    ofPopMatrix();
+    win.end();
+    
+    ofPopMatrix();
     ofDisableAlphaBlending();
     if (showGui) {
         gui.draw();
@@ -326,6 +339,7 @@ void ofApp::mouseReleased(int x, int y, int button){
             my_timeline.addFrame();
             my_timeline.setCurFrame(1, RELATIVE);
             my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+            break;
         case 2: // auto next frame
             if(my_timeline.getCurFrame() == my_timeline.getFrameCount()-1){
                 my_timeline.setCurFrame(0, ABSOLUTE);

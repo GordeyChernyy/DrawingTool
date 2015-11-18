@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8A223DC3-F5BE-4726-A628-47AE4E2D585B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>DrawingTool</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
@@ -18,7 +18,7 @@
 		<string>https://github.com/microcosm/ofxLayerMask.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DrawingTool.xcodeproj</string>
+	<string>DrawingTool.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>

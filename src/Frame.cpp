@@ -47,16 +47,17 @@ void Frame::setup(int width, int height) {
     Layer *new_layer = new Layer;
     new_layer->setup(width, height, 0);
     _layers.push_back(*new_layer);
+    alpha = 255;
 }
-
+void Frame::setAlpha(int value){
+    alpha = value;
+}
 // draws the content of the frame (as opposed to the frame on the timeline)
 void Frame::draw() {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    ofSetColor(255, alpha);
     for(int i = 0; i < _layers.size(); i++) {
         _layers[i].draw();
     }
-    glDisable(GL_BLEND);
 }
 
 void Frame::destroyLayers() {

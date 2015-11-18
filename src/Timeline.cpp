@@ -21,6 +21,7 @@ void Timeline::setup(int x, int y, int width, int height) {
     _cur_layer = 0;     // count from 0
     _num_layers = 1;    // count from 1
     _cur_frame = 0;    // count from 0
+    curPlayFrame = 0;
     
     /* Test max buffers that can be allocated
     test *cur = &_fbo_test;
@@ -55,7 +56,6 @@ std::vector<Frame> *Timeline::getFrames() {
 int Timeline::getNumFrames() {
     return _frames.size();
 }
-
 // adds a frame either at _cur_frame.  Does not change  _cur_frame
 void Timeline::addFrame() {
     Frame *new_frame = new Frame;
@@ -79,19 +79,56 @@ void Timeline::checkTimelineResize() {
         _y -= FRAME_SIZE;
     }
 }
-
+void Timeline::beginBlend(){
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+}
+void Timeline::endBlend(){
+    glDisable(GL_BLEND);
+}
+// plays all frames inside _frames. Does not use in out constraints
+void Timeline::playFramesDetached(){
+    beginBlend();
+    _frames[curPlayFrame].draw();
+    endBlend();
+    if(ofGetFrameNum()%frameRate == 0){
+        curPlayFrame += 1;
+        if(curPlayFrame > _frames.size()-1) {
+            curPlayFrame = 0;
+        }
+    }
+}
 // Responsible for drawing the actual FBO for the frame, as opposed to drawing on the timeline
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
+    
+    _frames[_cur_frame].setAlpha(255);
+    beginBlend();
     _frames[_cur_frame].draw();
+    endBlend();
     if(_bPlaying && ofGetFrameNum()%frameRate == 0) {
         _cur_frame += 1;
         if(_cur_frame > _stop_frame) {
             _cur_frame = _start_frame;
         }
     }
+   
 }
-
+void Timeline::drawOnionSkin(int alpha){
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    int frameBefore = _cur_frame-1;
+    int frameAfter = _cur_frame+1;
+    if (frameBefore >= 0) {
+        _frames[frameBefore].setAlpha(alpha);
+        _frames[frameBefore].draw();
+    }
+    if (frameAfter <= _frames.size()-1) {
+        _frames[frameAfter].setAlpha(20);
+        _frames[frameAfter].draw();
+    }
+    glDisable(GL_BLEND);
+}
 // Draws a number line with the frame numbers
 // This function returns immediately except 1 out of FRAME_NUM_GRANULARITY times
 void Timeline::drawFrameNum(int x, int frame_num) {

@@ -42,20 +42,22 @@ class Layer {
 };
 
 class Frame {
-    private:
-        ofxLayerMask _masker;
-        vector<ofFbo> fbos;
-        std::vector <int> _mask_layers;
-        std::vector<Layer> _layers;
-        bool _b_cur_frame;
-    public:
-        std::vector<Layer> *getLayers();
-        ofFbo *getCurFbo(int layer_num);
-        void setup(int width, int height);
-        void draw();
-        void addLayer(int width, int height, int layer_num);
-        Layer *findLayerByLayerNum(int layer_num);
-        void destroyLayers();
+private:
+    ofxLayerMask _masker;
+    vector<ofFbo> fbos;
+    std::vector <int> _mask_layers;
+    std::vector<Layer> _layers;
+    bool _b_cur_frame;
+    int alpha;
+public:
+    std::vector<Layer> *getLayers();
+    ofFbo *getCurFbo(int layer_num);
+    void setAlpha(int value);
+    void setup(int width, int height);
+    void draw();
+    void addLayer(int width, int height, int layer_num);
+    Layer *findLayerByLayerNum(int layer_num);
+    void destroyLayers();
 };
 
 // test max buffers that can be allocated
@@ -69,6 +71,7 @@ class Timeline {
         int _cur_layer;     // count from 0
         int _num_layers;    // count from 1
         int _cur_frame;     // count from 0
+        int curPlayFrame;
         int frameRate;
         int _x, _y, _width, _height;
         int _frame_width, _frame_height;
@@ -94,10 +97,14 @@ class Timeline {
         void setStartFrame(int newval) { _start_frame = newval; }
         void setStopFrame(int newval) { _stop_frame = newval; }
     
+        void playFramesDetached(); // detached from main timeline using curPlayFrame
         void addFrame();
         void addLayer();
         std::vector<Frame> *getFrames();
+        void beginBlend();
+        void endBlend();
         void drawCurFrame();
+        void drawOnionSkin(int alpha); // just before and after
         int getNumFrames();
         void drawTimeline();
         int getCurFrameNum();

@@ -11,7 +11,7 @@
 #include "TriangleBrush.h"
 #include "ofxLayerMask.h"
 #include "timeline_types.h"
-
+#include "MultiWindow.h"
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
@@ -40,7 +40,8 @@ public:
     movingFbo movingFbo;        // moving frames
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     //    KinectWin kinect;
-
+    
+    MultiWindow win;
     ofxPanel gui;
     ofxGuiGroup group;
     ofParameterGroup parameters;
@@ -55,7 +56,10 @@ public:
     ofParameter<bool> enableKaleidoscope;
     ofParameter<bool> enableKinect;
     ofParameter<bool> enableMovingFbo;
+    ofParameter<bool> showOnionSkin;
+    ofParameter<int> onionSkinAlpha;
     ofParameter<int> releaseMode;
+    ofParameter<int> frameRate;
     ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
     ofParameter<float> pointerSize;
     ofParameter<ofColor> pointerColor;
