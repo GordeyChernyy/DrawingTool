@@ -1,7 +1,6 @@
 #ifndef TIMELINE_TYPES_H
 #define TIMELINE_TYPES_H
 #include "ofMain.h"
-#include "ofxLayerMask.h"
 #include <vector>
 #include <pthread.h>
 
@@ -43,7 +42,6 @@ class Layer {
 
 class Frame {
 private:
-    ofxLayerMask _masker;
     vector<ofFbo> fbos;
     std::vector <int> _mask_layers;
     std::vector<Layer> _layers;

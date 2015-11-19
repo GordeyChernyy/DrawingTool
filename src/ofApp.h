@@ -9,7 +9,6 @@
 #include "ofxOsc.h"
 #include "KinectWin.h"
 #include "TriangleBrush.h"
-#include "ofxLayerMask.h"
 #include "timeline_types.h"
 #include "MultiWindow.h"
 // TODO: Make this configurable in the GUI
