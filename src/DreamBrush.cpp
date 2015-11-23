@@ -30,7 +30,7 @@ void DreamBrush::drawToCanvas(float x, float y, float pressure){
         drawBrush(x, y, pressure);
     canvas.end();
 }
-void DreamBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure){
+void DreamBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col){
     fbo->begin();
         drawBrush(x, y, pressure);
     fbo->end();

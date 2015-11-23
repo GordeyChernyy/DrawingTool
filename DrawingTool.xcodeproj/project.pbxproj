@@ -120,6 +120,7 @@
 		093C9EBFCAB5D2649ACF4D0C /* loader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = loader.h; path = ../../../addons/ofxKinect/libs/libfreenect/src/loader.h; sourceTree = SOURCE_ROOT; };
 		0A1DAC09F322AE313A40706D /* ofxToggle.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxToggle.h; path = ../../../addons/ofxGui/src/ofxToggle.h; sourceTree = SOURCE_ROOT; };
 		15E28E421C02770C00546B91 /* TriangleBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleBrush.cpp; sourceTree = "<group>"; };
+		15E28E441C02911800546B91 /* BrushBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrushBase.h; sourceTree = "<group>"; };
 		15F2C6477A769C03A56D1401 /* ofxSlider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSlider.cpp; path = ../../../addons/ofxGui/src/ofxSlider.cpp; sourceTree = SOURCE_ROOT; };
 		17E65988300FBD9AAA2CD0CA /* ofxGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGui.h; path = ../../../addons/ofxGui/src/ofxGui.h; sourceTree = SOURCE_ROOT; };
 		1A5F4B52720C8FA17869537D /* tabletData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tabletData.h; path = ../../../addons/ofxTablet/src/tabletData.h; sourceTree = SOURCE_ROOT; };
@@ -675,6 +676,7 @@
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				725C64B71BFD2C9E00D095CA /* MultiWindow.h */,
+				15E28E441C02911800546B91 /* BrushBase.h */,
 				7221E9261B74376300AB4529 /* DreamBrush.cpp */,
 				7221E9271B74376300AB4529 /* DreamBrush.h */,
 				66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */,

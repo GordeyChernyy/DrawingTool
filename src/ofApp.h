@@ -68,4 +68,7 @@ public:
     
     Timeline my_timeline;
     ofFbo *canvas_ptr;
+
+private:
+    BrushBase * getCurrentBrush();
 };

@@ -8,8 +8,9 @@
 
 #pragma once
 #include "ofMain.h"
+#include "BrushBase.h"
 
-class TriangleBrush{
+class TriangleBrush : public BrushBase {
 public:
     TriangleBrush(){}
     vector<ofVec2f> history;
@@ -23,7 +24,7 @@ public:
     ofParameter<int> indexRange;
 
     void setup();
-    void updateCanvas(ofFbo *fbo, int x, int y, ofColor col);
+    void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col);
     void draw();
     bool isDistanceBigger(ofVec2f a, ofVec2f b, float distance);
     void setTrianglePoints(vector<ofVec2f> sortedCoord, ofVec2f currentPoint);

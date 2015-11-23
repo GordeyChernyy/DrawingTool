@@ -292,17 +292,7 @@ void ofApp::tabletMoved(TabletData &data) {
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
         float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
         float p = data.pressure;
-        switch (brushMode) {
-            case 0:
-                brush.updateCanvas(canvas_ptr, penX, penY, p);
-                break;
-            case 1:
-                brushTr.updateCanvas(canvas_ptr, penX, penY, brush.activeColor);
-                break;
-            default:
-                break;
-            
-        }
+        getCurrentBrush()->updateCanvas(canvas_ptr, penX, penY, p, brush.activeColor);
         brushTr.setPressure(p);
     }
     
@@ -310,16 +300,19 @@ void ofApp::tabletMoved(TabletData &data) {
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     if(enableMouse){
-        switch (brushMode) {
-            case 0:
-                brush.updateCanvas(canvas_ptr, x, y, 1.);
-                break;
-            case 1:
-                brushTr.updateCanvas(canvas_ptr, x, y, brush.activeColor);
-                break;
-            default:
-                break;
-        }
+        getCurrentBrush()->updateCanvas(canvas_ptr, x, y, 1., brush.activeColor);
+    }
+}
+
+BrushBase * ofApp::getCurrentBrush() {
+    switch (brushMode) {
+        case 0:
+            return &brush;
+        case 1:
+            return &brushTr;
+            break;
+        default:
+            break;
     }
 }
 

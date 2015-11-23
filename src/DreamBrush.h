@@ -6,8 +6,9 @@
 //
 //
 #include "ofMain.h"
+#include "BrushBase.h"
 #pragma once
-class DreamBrush{
+class DreamBrush : public BrushBase {
 public:
     void clear();
     void clearHistory(); // remove all elements from history
@@ -16,7 +17,7 @@ public:
     void drawToCanvas(float x, float y, float pressure); // draw to fbo located in this class
     void drawBrush(float x, float y, float pressure); // draw lines
     
-    void updateCanvas(ofFbo *fbo, float x, float y, float pressure); // pass fbo
+    void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col); // pass fbo
     void draw(); // draw fbo located in this class
     void changeColor(int num);
     void changeSwatch(int &swatch);

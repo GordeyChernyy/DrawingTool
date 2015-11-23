@@ -18,7 +18,7 @@ void TriangleBrush::setup(){
             trianglePoints = new ofVec2f[3];
 }
 
-void TriangleBrush::updateCanvas(ofFbo *fbo, int x, int y, ofColor col){
+void TriangleBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col){
             ofVec2f currentPoint(x,y);
             if (history.size() < 4) addPoint(history, currentPoint);
             if (history.size() > 3){
