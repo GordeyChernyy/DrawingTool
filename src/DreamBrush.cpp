@@ -106,3 +106,7 @@ void DreamBrush::resize(){
     canvas.allocate(ofGetWidth(), ofGetHeight());
     canvas.begin(); ofClear(255); canvas.end();
 }
+
+string DreamBrush::name(){
+    return NAME;
+}

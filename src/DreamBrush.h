@@ -8,6 +8,8 @@
 #include "ofMain.h"
 #include "BrushBase.h"
 #pragma once
+#define NAME "Dream Brush";
+
 class DreamBrush : public BrushBase {
 public:
     void clear();
@@ -25,6 +27,7 @@ public:
     void resize();
     void begin();
     void end();
+    string name();
     ofFbo canvas;
     ofParameterGroup parameters;
     ofParameter<int> size;

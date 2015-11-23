@@ -9,6 +9,7 @@
 #pragma once
 #include "ofMain.h"
 #include "BrushBase.h"
+#define NAME "Triangle Brush";
 
 class TriangleBrush : public BrushBase {
 public:
@@ -39,4 +40,5 @@ public:
     void drawToCanvas(ofFbo *fbo, ofColor col);
     void drawGraphics(ofColor col);
     vector<ofVec2f> sortClosest(ofVec2f p, vector<ofVec2f> coords);
+    string name();
 };

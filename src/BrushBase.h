@@ -13,6 +13,7 @@
 class BrushBase {
     public:
         virtual void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col) = 0;
+        virtual string name() = 0;
 };
 
 #endif /* BrushBase_h */

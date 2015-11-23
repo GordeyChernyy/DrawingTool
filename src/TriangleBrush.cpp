@@ -133,3 +133,7 @@ vector<ofVec2f> TriangleBrush::sortClosest(ofVec2f p, vector<ofVec2f> coords){
             }
             return pos;
 }
+
+string TriangleBrush::name(){
+    return NAME;
+}

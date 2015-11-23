@@ -110,18 +110,6 @@ void ofApp::draw(){
     if (showGui) {
         gui.draw();
         if (showInfo) {
-            string b = "";
-            switch (brushMode) {
-                case 0:
-                    b = "Dream Catcher Brush";
-                    break;
-                case 1:
-                    b = "Triangle Brush";
-                    break;
-                    
-                default:
-                    break;
-            }
             string s =
                      "-- KEY ----------------------------------\n";
             s.append("1, 2, 3, 4    change colors\n");
@@ -134,7 +122,7 @@ void ofApp::draw(){
             s.append("fps            "+ ofToString(ofGetFrameRate()) +"\n");
             s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
             s.append("history size   "+ ofToString(dreamBrush.history.size()) +"\n");
-            s.append("brush          "+ b +"\n");
+            s.append("brush          "+ getCurrentBrush()->name() +"\n");
             s.append("releaseMode  "+ ofToString(releaseMode)+"\n");
             s.append("-- TIPS ---------------------------------\n");
             s.append("Try to enable movingFbo and Kaleidoscope.\n");
