@@ -11,6 +11,8 @@
 #include "TriangleBrush.h"
 #include "timeline_types.h"
 #include "MultiWindow.h"
+#include "BrushBase.h"
+
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
