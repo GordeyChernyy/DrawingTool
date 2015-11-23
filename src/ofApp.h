@@ -34,8 +34,8 @@ public:
     
     ofTrueTypeFont font;
     ofFbo canvas;               // fbo which will be passed to brushes
-    DreamBrush brush;           // dream catcher brush
-    TriangleBrush brushTr;      // triangle brush
+    DreamBrush dreamBrush;           // dream catcher brush
+    TriangleBrush triangleBrush;      // triangle brush
     movingFbo movingFbo;        // moving frames
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     //    KinectWin kinect;

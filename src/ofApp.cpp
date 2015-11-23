@@ -7,9 +7,9 @@ void ofApp::setup(){
 
     ofEnableAlphaBlending();
     kaleidoscope.setup();
-    brush.setup();
+    dreamBrush.setup();
     movingFbo.setup();
-    brushTr.setup();
+    triangleBrush.setup();
     stageParam.setName("stageParam");
     stageParam.add(brushMode.set("brushMode", 0, 0, 1));
     stageParam.add(brushModeLabel.set("burshmodelabel", "hidude"));
@@ -26,8 +26,8 @@ void ofApp::setup(){
     
     parameters.setName("parameters");
     parameters.add(stageParam);
-    parameters.add(brush.parameters);
-    parameters.add(brushTr.parameters);
+    parameters.add(dreamBrush.parameters);
+    parameters.add(triangleBrush.parameters);
     parameters.add(kaleidoscope.parameters);
     
     gui.setup(parameters);
@@ -88,7 +88,7 @@ void ofApp::draw(){
             case 0: // Dream Catcher Brush
                 break;
             case 1: // Triangle Brush
-                brushTr.draw(); // this will draw white triangle
+                triangleBrush.draw(); // this will draw white triangle
                 break;
             default:
                 break;
@@ -133,7 +133,7 @@ void ofApp::draw(){
             s.append("-- INFO ---------------------------------\n");
             s.append("fps            "+ ofToString(ofGetFrameRate()) +"\n");
             s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
-            s.append("history size   "+ ofToString(brush.history.size()) +"\n");
+            s.append("history size   "+ ofToString(dreamBrush.history.size()) +"\n");
             s.append("brush          "+ b +"\n");
             s.append("releaseMode  "+ ofToString(releaseMode)+"\n");
             s.append("-- TIPS ---------------------------------\n");
@@ -166,16 +166,16 @@ void ofApp::keyPressed(int key){
             releaseMode > 1 ? releaseMode = 0 : releaseMode++;
             break;
         case '1':
-            brush.changeColor(0);
+            dreamBrush.changeColor(0);
             break;
         case '2':
-            brush.changeColor(1);
+            dreamBrush.changeColor(1);
             break;
         case '3':
-            brush.changeColor(2);
+            dreamBrush.changeColor(2);
             break;
         case '4':
-            brush.changeColor(3);
+            dreamBrush.changeColor(3);
             break;
         case ',':
             brushMode = 0;
@@ -184,9 +184,9 @@ void ofApp::keyPressed(int key){
             brushMode = 1;
             break;
         case '0':
-// TODO: Generalize brushTr.clear() to other types of brushes
+// TODO: Generalize triangleBrush.clear() to other types of brushes
 //            canvas.begin(); ofClear(0, 0); canvas.end();
-//            brush.clear();
+//            dreamBrush.clear();
 //            movingFbo.resize();
             break;
         case 9: // TAB key
@@ -226,25 +226,25 @@ void ofApp::keyPressed(int key){
             break;
         }
         case 'd': {
-            // TODO: Generalize brushTr.clear() to other types of brushes
+            // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "sub 1 from cur frame"<< endl;
             my_timeline.setCurFrame(-1, RELATIVE);
             break;
         }
         case 'f': {
-            // TODO: Generalize brushTr.clear() to other types of brushes
+            // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "add 1 to cur frame"<< endl;
             my_timeline.setCurFrame(1, RELATIVE);
             break;
         }
         case 'r': {
-            // TODO: Generalize brushTr.clear() to other types of brushes
+            // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "add 1 from cur layer";
             my_timeline.setCurLayer(1, RELATIVE);
             break;
         }
         case 'v': {
-            // TODO: Generalize brushTr.clear() to other types of brushes
+            // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "sub 1 to cur layer";
             my_timeline.setCurLayer(-1, RELATIVE);
             break;
@@ -292,24 +292,24 @@ void ofApp::tabletMoved(TabletData &data) {
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
         float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
         float p = data.pressure;
-        getCurrentBrush()->updateCanvas(canvas_ptr, penX, penY, p, brush.activeColor);
-        brushTr.setPressure(p);
+        getCurrentBrush()->updateCanvas(canvas_ptr, penX, penY, p, dreamBrush.activeColor);
+        triangleBrush.setPressure(p);
     }
     
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     if(enableMouse){
-        getCurrentBrush()->updateCanvas(canvas_ptr, x, y, 1., brush.activeColor);
+        getCurrentBrush()->updateCanvas(canvas_ptr, x, y, 1., dreamBrush.activeColor);
     }
 }
 
 BrushBase * ofApp::getCurrentBrush() {
     switch (brushMode) {
         case 0:
-            return &brush;
+            return &dreamBrush;
         case 1:
-            return &brushTr;
+            return &triangleBrush;
             break;
         default:
             break;
@@ -322,9 +322,9 @@ void ofApp::mousePressed(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    brushTr.clearHistory();
+    triangleBrush.clearHistory();
     drag = false;
-    brush.clearHistory();
+    dreamBrush.clearHistory();
     switch (releaseMode) {
         case 0:
             break;
@@ -347,7 +347,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
 
-    brush.resize();
+    dreamBrush.resize();
     kaleidoscope.resize();
     my_timeline.windowResize(w, h);
 }
