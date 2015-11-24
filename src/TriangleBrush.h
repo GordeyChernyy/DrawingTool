@@ -9,7 +9,6 @@
 #pragma once
 #include "ofMain.h"
 #include "BrushBase.h"
-#define NAME "Triangle Brush";
 
 class TriangleBrush : public BrushBase {
 public:

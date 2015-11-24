@@ -7,6 +7,8 @@
 //
 
 #include "DreamBrush.h"
+const string NAME = "Dream Brush";
+
 void DreamBrush::setup(){
     parameters.setName("DreamBrush");
     parameters.add(historyMax.set("historyMax", 2000, 100, 10000));

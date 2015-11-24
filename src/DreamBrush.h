@@ -8,7 +8,6 @@
 #include "ofMain.h"
 #include "BrushBase.h"
 #pragma once
-#define NAME "Dream Brush";
 
 class DreamBrush : public BrushBase {
 public:
