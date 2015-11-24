@@ -84,15 +84,7 @@ void ofApp::draw(){
     }else{
         my_timeline.drawCurFrame();
         if(showOnionSkin) my_timeline.drawOnionSkin(onionSkinAlpha);
-        switch (brushMode) { // draw any elements out of canvas
-            case 0: // Dream Catcher Brush
-                break;
-            case 1: // Triangle Brush
-                triangleBrush.draw(); // this will draw white triangle
-                break;
-            default:
-                break;
-        }
+        getCurrentBrush()->draw();
     }
 
     my_timeline.drawTimeline();

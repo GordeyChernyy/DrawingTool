@@ -7,6 +7,11 @@
 		<enableMovingFbo>0</enableMovingFbo>
 		<pointerSize>1.12245</pointerSize>
 		<pointerColor>255, 255, 255, 255</pointerColor>
+	<burshmodelabel>hidude</burshmodelabel>
+		<showOnionSkin>0</showOnionSkin>
+		<onionSkinAlpha>20</onionSkinAlpha>
+		<releaseMode>0</releaseMode>
+		<bgColor>255, 255, 255, 255</bgColor>
 	</stageParam>
 	<DreamBrush>
 		<historyMax>2000</historyMax>

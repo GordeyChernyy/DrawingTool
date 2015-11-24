@@ -101,8 +101,6 @@ void DreamBrush::changeBrush(int &_brushType){
     }
 }
 void DreamBrush::draw(){
-    ofSetColor(255, 255);
-    canvas.draw(0, 0);
 }
 void DreamBrush::resize(){
     canvas.allocate(ofGetWidth(), ofGetHeight());
