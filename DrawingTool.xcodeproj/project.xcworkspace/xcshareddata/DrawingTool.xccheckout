@@ -12,10 +12,10 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>https://github.com/microcosm/ofxKinectV2-OSC.git</string>
+		<key>703DCF15BBF5318F63B5A515B94336085A2E6037</key>
+		<string>https://github.com/companje/ofxFTGL.git</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>https://github.com/GordeyChernyy/DrawingTool.git</string>
-		<key>D7B37588BD493FB6C16572F25CA0740EC5EAFCA4</key>
-		<string>https://github.com/microcosm/ofxLayerMask.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>DrawingTool.xcodeproj/project.xcworkspace</string>
@@ -23,10 +23,10 @@
 	<dict>
 		<key>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</key>
 		<string>../../../../../addons/ofxKinectV2-OSC</string>
+		<key>703DCF15BBF5318F63B5A515B94336085A2E6037</key>
+		<string>../../../../../addons/ofxFTGL</string>
 		<key>CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36</key>
 		<string>../..</string>
-		<key>D7B37588BD493FB6C16572F25CA0740EC5EAFCA4</key>
-		<string>../../../../../addons/ofxLayerMask</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/GordeyChernyy/DrawingTool.git</string>
@@ -48,17 +48,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</string>
+			<string>703DCF15BBF5318F63B5A515B94336085A2E6037</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ofxKinectV2-OSC</string>
+			<string>ofxFTGL</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D7B37588BD493FB6C16572F25CA0740EC5EAFCA4</string>
+			<string>47CE4DB7D37DE73BB7688BDCEF72504CF39E657B</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ofxLayerMask</string>
+			<string>ofxKinectV2-OSC</string>
 		</dict>
 	</array>
 </dict>

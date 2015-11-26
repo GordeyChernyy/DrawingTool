@@ -12,7 +12,7 @@
 #include "timeline_types.h"
 #include "MultiWindow.h"
 #include "BrushBase.h"
-
+#include "TextBrush.h"
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
@@ -38,10 +38,11 @@ public:
     ofFbo canvas;               // fbo which will be passed to brushes
     DreamBrush dreamBrush;           // dream catcher brush
     TriangleBrush triangleBrush;      // triangle brush
+    TextBrush textBrush;
     movingFbo movingFbo;        // moving frames
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     //    KinectWin kinect;
-    
+   
     MultiWindow win;
     ofxPanel gui;
     ofxGuiGroup group;
@@ -50,6 +51,7 @@ public:
     int currentParameter;
     bool showGui;
     bool drag;
+    
     ofParameter<bool> kinectDebug;
     ofParameter<int> brushMode;
     ofParameter<string> brushModeLabel;
@@ -70,7 +72,8 @@ public:
     
     Timeline my_timeline;
     ofFbo *canvas_ptr;
-
+    
 private:
+    
     BrushBase * getCurrentBrush();
 };

@@ -12,7 +12,6 @@
 
 class TriangleBrush : public BrushBase {
 public:
-    TriangleBrush(){}
     vector<ofVec2f> history;
     vector<ofVec2f> temp;
     ofVec2f *trianglePoints;

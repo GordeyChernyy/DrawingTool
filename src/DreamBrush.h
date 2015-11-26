@@ -11,6 +11,7 @@
 
 class DreamBrush : public BrushBase {
 public:
+
     void clear();
     void clearHistory(); // remove all elements from history
     void cleanHistory(); // resize history 

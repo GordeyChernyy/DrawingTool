@@ -37,6 +37,7 @@ class Layer {
         int getLayerNum();
         void setLayer(int layer_num);
         void draw();
+        void clear();
         void destroy();
 };
 
@@ -56,6 +57,7 @@ public:
     void addLayer(int width, int height, int layer_num);
     Layer *findLayerByLayerNum(int layer_num);
     void destroyLayers();
+    void clear();
 };
 
 // test max buffers that can be allocated
@@ -108,6 +110,8 @@ class Timeline {
         int getCurFrameNum();
         void setCurLayer(int pos, int method);
         void setCurFrame(int pos, int method);
+        void clearCurFrame();
+    
         void drawFrameNum(int x, int frame_num);
         ofFbo *getCurFbo();
         void checkTimelineResize();

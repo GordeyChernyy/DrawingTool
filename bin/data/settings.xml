@@ -1,6 +1,6 @@
 <parameters>
 	<stageParam>
-		<brushMode>1</brushMode>
+		<brushMode>2</brushMode>
 		<showInfo>1</showInfo>
 		<enableMouse>1</enableMouse>
 		<enableKaleidoscope>0</enableKaleidoscope>
@@ -51,4 +51,7 @@
 		<distortY>0.280612</distortY>
 	</Kaleidoscope>
 <parameters/>
+<TextBrush>
+		<maxFontSize>2000</maxFontSize>
+	</TextBrush>
 </parameters>

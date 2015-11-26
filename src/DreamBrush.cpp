@@ -10,6 +10,7 @@
 const string NAME = "Dream Brush";
 
 void DreamBrush::setup(){
+//    BrushBase::names.push_back("BrushBase");
     parameters.setName("DreamBrush");
     parameters.add(historyMax.set("historyMax", 2000, 100, 10000));
     parameters.add(brushType.set("type line", 0, 0, 1));
@@ -45,13 +46,13 @@ void DreamBrush::drawBrush(float x, float y, float pressure){
     history.push_back(m);
     float dist_points = pressure*size*1.;
     for(int i=0; i< history.size(); i++){
-        ofVec2f h = history[i];
-        float joinchance = pressure/history.size() + m.distance(h)/dist_points;
+        ofVec2f *h = &history[i];
+        float joinchance = pressure/history.size() + m.distance(*h)/dist_points;
         if (joinchance < ofRandom(0.4)) {
             ofNoFill();
             ofSetColor(activeColor, opacity);
             ofSetLineWidth(lineWidth);
-            ofLine(h.x, h.y, m.x, m.y);
+            ofLine(h->x, h->y, m.x, m.y);
         }
     }
     glDisable(GL_BLEND);

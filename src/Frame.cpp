@@ -59,7 +59,11 @@ void Frame::draw() {
         _layers[i].draw();
     }
 }
-
+void Frame::clear() {
+    for(int i = 0; i < _layers.size(); i++) {
+        _layers[i].clear();
+    }
+}
 void Frame::destroyLayers() {
     for(int i = 0; i < _layers.size(); i++) {
         _layers[i].destroy();

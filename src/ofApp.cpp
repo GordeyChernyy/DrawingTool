@@ -10,8 +10,10 @@ void ofApp::setup(){
     dreamBrush.setup();
     movingFbo.setup();
     triangleBrush.setup();
+    textBrush.setup("Arial.ttf", "data.txt");
+    
     stageParam.setName("stageParam");
-    stageParam.add(brushMode.set("brushMode", 0, 0, 1));
+    stageParam.add(brushMode.set("brushMode", 2, 0, 2));
     stageParam.add(brushModeLabel.set("burshmodelabel", "hidude"));
     stageParam.add(showInfo.set("showInfo", true));
     stageParam.add(enableMouse.set("enableMouse", true));
@@ -28,7 +30,9 @@ void ofApp::setup(){
     parameters.add(stageParam);
     parameters.add(dreamBrush.parameters);
     parameters.add(triangleBrush.parameters);
+    parameters.add(textBrush.parameters);
     parameters.add(kaleidoscope.parameters);
+//    parameters.add(textBrush.parameters);
     
     gui.setup(parameters);
     gui.loadFromFile("settings.xml");
@@ -56,15 +60,11 @@ void ofApp::setup(){
     
     my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
     win.setup();
+    cout <<  "brushes count = " << BrushBase::getBrushCount()  << endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //if (enableMovingFbo) movingFbo.update();
-    // movingFbo -+
-    //            +-->  kaleidoscope shader
-    // canvas ----+
-    
     if (enableKaleidoscope) {
         kaleidoscope.update(canvas_ptr, mouseX, mouseY);
     }
@@ -76,17 +76,15 @@ void ofApp::update(){
 // TODO: Fbo passthrough
 void ofApp::draw(){
     ofBackground(bgColor);
-    //ofDisableAlphaBlending(); // TODO: blink screen when ofDrawBitmapString
     ofEnableAlphaBlending();
     ofSetColor(255, 255);
     if(enableKaleidoscope){
         kaleidoscope.draw();
     }else{
         my_timeline.drawCurFrame();
-        if(showOnionSkin) my_timeline.drawOnionSkin(onionSkinAlpha);
+        if(showOnionSkin)my_timeline.drawOnionSkin(onionSkinAlpha);
         getCurrentBrush()->draw();
     }
-
     my_timeline.drawTimeline();
 
     win.begin();
@@ -97,7 +95,6 @@ void ofApp::draw(){
     ofPopMatrix();
     win.end();
     
-    ofPopMatrix();
     ofDisableAlphaBlending();
     if (showGui) {
         gui.draw();
@@ -107,17 +104,20 @@ void ofApp::draw(){
             s.append("1, 2, 3, 4    change colors\n");
             s.append("TAB           hide gui\n");
             s.append("q, w          cycle through parameters\n");
-            s.append("SPACE         clear image\n");
+            s.append("SPACE         play image\n");
+            s.append("s             create new frame\n");
+            s.append("f             next frame\n");
+            s.append("d             previous frame\n");
             s.append("e             triangle brush\n");
-            s.append("r             dream catcher brush\n");
+            s.append(",             dream catcher brush\n");
+            s.append("-             clear image\n");
             s.append("-- INFO ---------------------------------\n");
             s.append("fps            "+ ofToString(ofGetFrameRate()) +"\n");
             s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
             s.append("history size   "+ ofToString(dreamBrush.history.size()) +"\n");
             s.append("brush          "+ getCurrentBrush()->name() +"\n");
-            s.append("releaseMode  "+ ofToString(releaseMode)+"\n");
+            s.append("releaseMode    "+ ofToString(releaseMode)+"\n");
             s.append("-- TIPS ---------------------------------\n");
-            s.append("Try to enable movingFbo and Kaleidoscope.\n");
             s.append("It looks interesting if you change color\n");
             s.append("and draw at the same time.\n");
             s.append("Kaleidoscope is still in development. Po-\n");
@@ -130,13 +130,10 @@ void ofApp::draw(){
             ofDisableAlphaBlending();
         }
     }
+    // draw mouse pointer
     ofFill();
     ofSetColor(pointerColor);
-    
     ofCircle(mouseX, mouseY, pointerSize);
-
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -197,6 +194,10 @@ void ofApp::keyPressed(int key){
         case '+': {
             cout << "add layer"<< endl;
             my_timeline.addLayer();
+            break;
+        }
+        case '-': {
+            my_timeline.clearCurFrame();
             break;
         }
         case 's': {
@@ -288,8 +289,12 @@ BrushBase * ofApp::getCurrentBrush() {
     switch (brushMode) {
         case 0:
             return &dreamBrush;
+            break;
         case 1:
             return &triangleBrush;
+            break;
+        case 2:
+            return &textBrush;
             break;
         default:
             break;
@@ -298,6 +303,7 @@ BrushBase * ofApp::getCurrentBrush() {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+    drag = true;
 }
 
 //--------------------------------------------------------------

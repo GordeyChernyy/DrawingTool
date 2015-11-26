@@ -12,9 +12,16 @@
 #define BrushBase_h
 class BrushBase {
     public:
-        virtual void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col) = 0;
-        virtual string name() = 0;
-        virtual void draw() = 0;
+    BrushBase(){
+        brushCount++;
+    }
+    static int getBrushCount(){
+        return brushCount;
+    }
+    static int brushCount;
+    virtual void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col) = 0;
+    virtual string name() = 0;
+    virtual void draw() = 0;
 };
 
 #endif /* BrushBase_h */

@@ -28,7 +28,11 @@ void Layer::setLayer(int layer_num) {
 void Layer::draw() {
     _fbo.draw(0,0);
 }
-
+void Layer::clear() {
+    _fbo.begin();
+        ofClear(0,0);
+    _fbo.end();
+}
 void Layer::destroy() {
     // do something to fbo?  unbind?
     _fbo.unbind();
