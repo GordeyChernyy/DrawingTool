@@ -11,3 +11,5 @@ ofxKinect
 ofxXmlSettings
 
 ofxTablet
+
+ofxFTGL (https://github.com/companje/ofxFTGL) 
