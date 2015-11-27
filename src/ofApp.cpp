@@ -2,70 +2,35 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    
     ofSetFrameRate(FRAME_RATE);
 
-    ofEnableAlphaBlending();
     kaleidoscope.setup();
     dreamBrush.setup();
-    movingFbo.setup();
     triangleBrush.setup();
     textBrush.setup("Arial.ttf", "data.txt");
+    my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
+    win.setup();
     
-    stageParam.setName("stageParam");
-    stageParam.add(brushMode.set("brushMode", 2, 0, 2));
-    stageParam.add(brushModeLabel.set("burshmodelabel", "hidude"));
-    stageParam.add(showInfo.set("showInfo", true));
-    stageParam.add(enableMouse.set("enableMouse", true));
-    stageParam.add(enableKaleidoscope.set("enableKaleidoscope", false));
-    stageParam.add(enableMovingFbo.set("enableMovingFbo", false));
-    stageParam.add(showOnionSkin.set("showOnionSkin", false));
-    stageParam.add(onionSkinAlpha.set("onionSkinAlpha", 20, 0, 255));
-    stageParam.add(releaseMode.set("releaseMode", 0));
-    stageParam.add(pointerSize.set("pointerSize", 5., 0., 10.));
-    stageParam.add(pointerColor.set("pointerColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
-    stageParam.add(bgColor.set("bgColor", ofColor(255, 255), ofColor(0, 0), ofColor(255, 255)));
-    
-    parameters.setName("parameters");
-    parameters.add(stageParam);
-    parameters.add(dreamBrush.parameters);
-    parameters.add(triangleBrush.parameters);
-    parameters.add(textBrush.parameters);
-    parameters.add(kaleidoscope.parameters);
-//    parameters.add(textBrush.parameters);
-    
-    gui.setup(parameters);
-    gui.loadFromFile("settings.xml");
-    gui.minimizeAll();
-    vector<string> names = gui.getControlNames();
-    
-    // set gui headers color
-    for (int i = 0; i<gui.getNumControls(); i++) {
-        ofColor col = ofColor(0, 162, 208);
-        gui.getGroup(names[i]).setHeaderBackgroundColor(col);
-        gui.getGroup(names[i]).setTextColor(ofColor(0));
-        gui.getGroup(names[i]).setBorderColor(col);
-    }
+    parameterManager.add(dreamBrush.parameters);
+    parameterManager.add(triangleBrush.parameters);
+    parameterManager.add(kaleidoscope.parameters);
+    parameterManager.add(textBrush.parameters);
+    parameterManager.setup();
     
     ofxTablet::start();
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
-    ofBackground(bgColor);
-    
+
     drag = false;
-    currentParameter = 0;
-    showGui = true;
+
     font.loadFont("Arial.ttf", 12);
-    canvas.allocate(ofGetWidth(), ofGetHeight());
-    canvas.begin(); ofClear(0, 0); canvas.end();
     
-    my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
-    win.setup();
+    ofBackground(parameterManager.bgColor);
     cout <<  "brushes count = " << BrushBase::getBrushCount()  << endl;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if (enableKaleidoscope) {
+    if (parameterManager.enableKaleidoscope) {
         kaleidoscope.update(canvas_ptr, mouseX, mouseY);
     }
     canvas_ptr = my_timeline.getCurFbo();
@@ -75,14 +40,15 @@ void ofApp::update(){
 // TODO: Is there a race condition if we get the current fbo, then change frames?
 // TODO: Fbo passthrough
 void ofApp::draw(){
-    ofBackground(bgColor);
+    ofBackground(parameterManager.bgColor);
     ofEnableAlphaBlending();
     ofSetColor(255, 255);
-    if(enableKaleidoscope){
+    if(parameterManager.enableKaleidoscope){
         kaleidoscope.draw();
     }else{
         my_timeline.drawCurFrame();
-        if(showOnionSkin)my_timeline.drawOnionSkin(onionSkinAlpha);
+        if(parameterManager.showOnionSkin)
+            my_timeline.drawOnionSkin(parameterManager.onionSkinAlpha);
         getCurrentBrush()->draw();
     }
     my_timeline.drawTimeline();
@@ -96,9 +62,9 @@ void ofApp::draw(){
     win.end();
     
     ofDisableAlphaBlending();
-    if (showGui) {
-        gui.draw();
-        if (showInfo) {
+    parameterManager.draw();
+    if (parameterManager.showGui) {
+        if (parameterManager.showInfo) {
             string s =
                      "-- KEY ----------------------------------\n";
             s.append("1, 2, 3, 4    change colors\n");
@@ -116,7 +82,7 @@ void ofApp::draw(){
             s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
             s.append("history size   "+ ofToString(dreamBrush.history.size()) +"\n");
             s.append("brush          "+ getCurrentBrush()->name() +"\n");
-            s.append("releaseMode    "+ ofToString(releaseMode)+"\n");
+            s.append("releaseMode    "+ ofToString(parameterManager.releaseMode)+"\n");
             s.append("-- TIPS ---------------------------------\n");
             s.append("It looks interesting if you change color\n");
             s.append("and draw at the same time.\n");
@@ -124,23 +90,23 @@ void ofApp::draw(){
             s.append("sition of drawing is not matching. Try \n");
             s.append("to draw more on the left top corner.\n");
             ofSetColor(0, 255); // shadow
-            ofDrawBitmapString(s, gui.getWidth()+41, 21);
+            ofDrawBitmapString(s, parameterManager.getWidth()+41, 21);
             ofSetColor(255, 255);
-            ofDrawBitmapString(s, gui.getWidth()+40, 20);
+            ofDrawBitmapString(s, parameterManager.getWidth()+40, 20);
             ofDisableAlphaBlending();
         }
     }
     // draw mouse pointer
     ofFill();
-    ofSetColor(pointerColor);
-    ofCircle(mouseX, mouseY, pointerSize);
+    ofSetColor(parameterManager.pointerColor);
+    ofCircle(mouseX, mouseY, parameterManager.pointerSize);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {
         case 'x':
-            releaseMode > 1 ? releaseMode = 0 : releaseMode++;
+            parameterManager.releaseMode > 1 ? parameterManager.releaseMode = 0 : parameterManager.releaseMode++;
             break;
         case '1':
             dreamBrush.changeColor(0);
@@ -155,10 +121,10 @@ void ofApp::keyPressed(int key){
             dreamBrush.changeColor(3);
             break;
         case ',':
-            brushMode = 0;
+            parameterManager.brushMode = 0;
             break;
         case '.':
-            brushMode = 1;
+            parameterManager.brushMode = 1;
             break;
         case '0':
 // TODO: Generalize triangleBrush.clear() to other types of brushes
@@ -167,28 +133,14 @@ void ofApp::keyPressed(int key){
 //            movingFbo.resize();
             break;
         case 9: // TAB key
-            showGui ^= true;
+            parameterManager.showGui ^= true;
             break;
         case 'q':{ //left
-            currentParameter--;
-            if (currentParameter<0) {
-                currentParameter = gui.getNumControls()-1;
-            };
-            vector<string> names = gui.getControlNames();
-            gui.minimizeAll();
-            gui.getGroup(names[currentParameter]).maximize();
-            cout <<  "name " << names[currentParameter] << endl;
+            parameterManager.expandPrev();
             break;
         }
         case 'w':{ //right
-            currentParameter++;
-            if (currentParameter>gui.getNumControls()-1) {
-                currentParameter = 0;
-            }
-            vector<string> names = gui.getControlNames();
-            gui.minimizeAll();
-            gui.getGroup(names[currentParameter]).maximize();
-            cout <<  "name " << names[currentParameter] << endl;
+            parameterManager.expandNext();
             break;
         }
         case '+': {
@@ -268,7 +220,7 @@ void ofApp::mouseMoved(int x, int y ){
 
 }
 void ofApp::tabletMoved(TabletData &data) {
-    if (drag && !enableMouse){
+    if (drag && !parameterManager.enableMouse){
         float penX = data.abs_screen[0]*ofGetScreenWidth() - ofGetWindowPositionX();
         float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
         float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
@@ -280,13 +232,13 @@ void ofApp::tabletMoved(TabletData &data) {
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    if(enableMouse){
+    if(parameterManager.enableMouse){
         getCurrentBrush()->updateCanvas(canvas_ptr, x, y, 1., dreamBrush.activeColor);
     }
 }
 
 BrushBase * ofApp::getCurrentBrush() {
-    switch (brushMode) {
+    switch (parameterManager.brushMode) {
         case 0:
             return &dreamBrush;
             break;
@@ -311,7 +263,7 @@ void ofApp::mouseReleased(int x, int y, int button){
     triangleBrush.clearHistory();
     drag = false;
     dreamBrush.clearHistory();
-    switch (releaseMode) {
+    switch (parameterManager.releaseMode) {
         case 0:
             break;
         case 1: // auto frame add
@@ -326,13 +278,11 @@ void ofApp::mouseReleased(int x, int y, int button){
                 my_timeline.setCurFrame(1, RELATIVE);
             }
             break;
-            
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
     dreamBrush.resize();
     kaleidoscope.resize();
     my_timeline.windowResize(w, h);

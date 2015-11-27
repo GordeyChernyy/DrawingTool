@@ -13,7 +13,6 @@ private:
     ofParameterGroup parameters;
     ofParameterGroup stageParam;
     int currentParameter;
-    bool showGui;
     
     void setupStageParameters(){
         stageParam.setName("stageParam");
@@ -36,6 +35,7 @@ public:
     ParameterManager(){
         setupStageParameters();
     }
+        bool showGui;
     ofParameter<bool> kinectDebug;
     ofParameter<int> brushMode;
     ofParameter<string> brushModeLabel;
@@ -71,10 +71,13 @@ public:
     void draw (){
         gui.draw();
     }
+    int getWidth(){
+        return gui.getWidth();
+    }
     void add(ofParameterGroup _parameters){
         parameters.add(_parameters);
     }
-    void showNext (){
+    void expandNext (){
         currentParameter++;
         if (currentParameter>gui.getNumControls()-1) {
             currentParameter = 0;
@@ -84,7 +87,7 @@ public:
         gui.getGroup(names[currentParameter]).maximize();
         cout <<  "name " << names[currentParameter] << endl;
     }
-    void showPrev (){
+    void expandPrev (){
         currentParameter--;
         if (currentParameter<0) {
             currentParameter = gui.getNumControls()-1;
@@ -95,4 +98,4 @@ public:
         cout <<  "name " << names[currentParameter] << endl;
     }
     
-}
+};

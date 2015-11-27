@@ -13,6 +13,7 @@
 #include "MultiWindow.h"
 #include "BrushBase.h"
 #include "TextBrush.h"
+#include "ParameterManager.h"
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
@@ -35,44 +36,16 @@ public:
     void tabletMoved(TabletData &data);
     
     ofTrueTypeFont font;
-    ofFbo canvas;               // fbo which will be passed to brushes
     DreamBrush dreamBrush;           // dream catcher brush
     TriangleBrush triangleBrush;      // triangle brush
     TextBrush textBrush;
-    movingFbo movingFbo;        // moving frames
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
-    //    KinectWin kinect;
-   
     MultiWindow win;
-    ofxPanel gui;
-    ofxGuiGroup group;
-    ofParameterGroup parameters;
-    ofParameterGroup stageParam;
-    int currentParameter;
-    bool showGui;
-    bool drag;
-    
-    ofParameter<bool> kinectDebug;
-    ofParameter<int> brushMode;
-    ofParameter<string> brushModeLabel;
-    ofParameter<bool> showInfo;
-    ofParameter<bool> enableKaleidoscope;
-    ofParameter<bool> enableKinect;
-    ofParameter<bool> enableMovingFbo;
-    ofParameter<bool> showOnionSkin;
-    ofParameter<int> onionSkinAlpha;
-    ofParameter<int> releaseMode;
-    ofParameter<int> frameRate;
-    ofParameter<bool> enableMouse; // mouse and tablet has a different resolution!
-    ofParameter<float> pointerSize;
-    ofParameter<ofColor> pointerColor;
-    ofParameter<ofColor> bgColor;
-
-    //ofxLayerMask masker;
-    
+    ParameterManager parameterManager;
     Timeline my_timeline;
     ofFbo *canvas_ptr;
     
+    bool drag;
 private:
     
     BrushBase * getCurrentBrush();
