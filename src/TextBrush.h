@@ -43,8 +43,8 @@ public:
         
         string letter = textUtility.getNextLetter();
         int width = font.getWidth(letter);
-        ofSetColor(150);
-        ofRect(x, y-fontSize, width, fontSize);
+//        ofSetColor(0, 0, 0, 0);
+//        ofRect(x, y-fontSize, width, fontSize);
         ofSetColor(col);
         font.draw(letter, x, y);
         
