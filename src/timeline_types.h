@@ -3,19 +3,20 @@
 #include "ofMain.h"
 #include <vector>
 #include <pthread.h>
+#include "ofxFTGLFont.h"
 
-#define FRAME_SIZE 15
-#define NUM_SPACER 10
-#define EDGE_SPACER 5
+#define FRAME_SIZE 10
+#define NUM_SPACER 4
+#define EDGE_SPACER 23
 #define FRAME_NUM_GRANULARITY 3
 
 #define ABSOLUTE 1
 #define RELATIVE 2
 
 #define COLOR_TIMELINE_BRACKGROUND ofColor::fromHex(0xCC9314)
-#define COLOR_CUR_DRAWSPACE ofColor::fromHex(0xFFFFAA)
-#define COLOR_CUR_FRAME ofColor::fromHex(0xD4D46A)
-#define COLOR_FRAME ofColor::fromHex(0x40FFE4)
+#define COLOR_CUR_DRAWSPACE ofColor::fromHex(0xe33e90)
+#define COLOR_CUR_FRAME ofColor::fromHex(0xaeaeae)
+#define COLOR_FRAME ofColor::fromHex(0xc7c7c7)
 
 #define RESERVE_FRAMES 2000
 
@@ -68,6 +69,7 @@ public:
 
 class Timeline {
     private:
+        ofxFTGLFont font;
         int _cur_layer;     // count from 0
         int _num_layers;    // count from 1
         int _cur_frame;     // count from 0

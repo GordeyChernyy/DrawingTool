@@ -37,7 +37,8 @@ void Timeline::setup(int x, int y, int width, int height) {
     frameRate = 3;
     _start_frame = 0;
     _stop_frame = 0;
-    
+    font.loadFont("Arial.ttf");
+    font.setSize(8);
     return;
 }
 void Timeline::setFrameRate(int _frameRate){
@@ -138,15 +139,13 @@ void Timeline::drawFrameNum(int x, int frame_num) {
     if (frame_num % FRAME_NUM_GRANULARITY != 0) {
         return;
     }
-    int y = _y + _height - NUM_SPACER/3; //TODO: This is a hack becaue it looked right, make this based on FRAME_SIZE
+    int y = _y + _height; //TODO: This is a hack becaue it looked right, make this based on FRAME_SIZE
     string s;
     ostringstream convert;
     convert << frame_num;
     s = convert.str();
-    ofSetColor(ofColor::black); // shadow
-    ofDrawBitmapString(s, x + 1, y + 1);
-    ofSetColor(ofColor::peachPuff);
-    ofDrawBitmapString(s, x, y);
+    ofSetColor(ofColor::black);
+    font.drawString(s, x-font.getWidth(s)/2, y);
 }
 
 // returns the FBO corresponding to the current frame and current layers
@@ -162,7 +161,7 @@ ofFbo *Timeline::getCurFbo() {
 void Timeline::drawTimeline() {
     //draw background of timeline
     ofSetColor(COLOR_TIMELINE_BRACKGROUND);
-    ofRect(_x, _y, _width, _height);
+//    ofRect(_x, _y, _width, _height);
 
     // calculate what the frame num of the left-most frame and right-most frame
     int pot_right = (_width / 2) / FRAME_SIZE; // potential right. max number of frames that fit to right of middle frame
@@ -195,12 +194,9 @@ void Timeline::drawTimeline() {
                 ofSetColor(COLOR_FRAME);
             }
             
-            // First draw a sold rectangle, then border it in black
             ofFill();
-            ofRect(cur_x, cur_y, FRAME_SIZE, FRAME_SIZE);
+            ofCircle(cur_x, cur_y, FRAME_SIZE/3, FRAME_SIZE/3);
             ofSetColor(ofColor::black);
-            ofNoFill();
-            ofRect(cur_x, cur_y, FRAME_SIZE, FRAME_SIZE);
             ofFill();
             
             // draw the next layer above the current one
