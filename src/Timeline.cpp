@@ -139,7 +139,7 @@ void Timeline::drawFrameNum(int x, int frame_num) {
     if (frame_num % FRAME_NUM_GRANULARITY != 0) {
         return;
     }
-    int y = _y + _height; //TODO: This is a hack becaue it looked right, make this based on FRAME_SIZE
+    int y = _y + _height-20; //TODO: This is a hack becaue it looked right, make this based on FRAME_SIZE
     string s;
     ostringstream convert;
     convert << frame_num;

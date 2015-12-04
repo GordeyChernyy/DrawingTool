@@ -14,6 +14,7 @@
 #include "BrushBase.h"
 #include "TextBrush.h"
 #include "ParameterManager.h"
+#include "ofxFTGLFont.h"
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
@@ -32,10 +33,11 @@ public:
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-   
+        void drawInfo();
     void tabletMoved(TabletData &data);
     
-    ofTrueTypeFont font;
+    ofxFTGLFont font;
+    int fontsize;
     DreamBrush dreamBrush;           // dream catcher brush
     TriangleBrush triangleBrush;      // triangle brush
     TextBrush textBrush;

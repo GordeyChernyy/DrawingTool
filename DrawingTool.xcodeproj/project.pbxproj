@@ -330,6 +330,8 @@
 		7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		7250142D1BB10B5200D1CCD5 /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
 		725C64B71BFD2C9E00D095CA /* MultiWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWindow.h; sourceTree = "<group>"; };
+		72BF3C821C0D5E0200958501 /* TransformUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformUtility.h; sourceTree = "<group>"; };
+		72C884191C113F4A00497985 /* CoordHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordHistory.h; sourceTree = "<group>"; };
 		72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleBrush.h; sourceTree = "<group>"; };
 		72F42BD41BA8B3F300674972 /* FramesFbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FramesFbo.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		72F8373F1C0529FC001DABB9 /* TextBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBrush.h; sourceTree = "<group>"; };
@@ -836,6 +838,22 @@
 			path = osc;
 			sourceTree = "<group>";
 		};
+		72BF3C801C0D5CDA00958501 /* Brushes */ = {
+			isa = PBXGroup;
+			children = (
+				721197051C06C9F1009D56CA /* BrushBase.cpp */,
+				15E28E441C02911800546B91 /* BrushBase.h */,
+				72F8373F1C0529FC001DABB9 /* TextBrush.h */,
+				7221E9261B74376300AB4529 /* DreamBrush.cpp */,
+				7221E9271B74376300AB4529 /* DreamBrush.h */,
+				66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */,
+				66E0591C1BE0DD6900ABAADF /* VideoBrush.h */,
+				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
+				15E28E421C02770C00546B91 /* TriangleBrush.cpp */,
+			);
+			name = Brushes;
+			sourceTree = "<group>";
+		};
 		88F1833860A1CE3288861DF1 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -962,17 +980,11 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				725C64B71BFD2C9E00D095CA /* MultiWindow.h */,
 				721197031C069F1E009D56CA /* ParameterManager.h */,
-				721197051C06C9F1009D56CA /* BrushBase.cpp */,
-				15E28E441C02911800546B91 /* BrushBase.h */,
+				72BF3C821C0D5E0200958501 /* TransformUtility.h */,
+				72C884191C113F4A00497985 /* CoordHistory.h */,
+				72BF3C801C0D5CDA00958501 /* Brushes */,
 				72176B631C054CAF00C8CE04 /* TextUtility.h */,
 				72176B681C06433C00C8CE04 /* Font.h */,
-				72F8373F1C0529FC001DABB9 /* TextBrush.h */,
-				7221E9261B74376300AB4529 /* DreamBrush.cpp */,
-				7221E9271B74376300AB4529 /* DreamBrush.h */,
-				66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */,
-				66E0591C1BE0DD6900ABAADF /* VideoBrush.h */,
-				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
-				15E28E421C02770C00546B91 /* TriangleBrush.cpp */,
 				72F42BD41BA8B3F300674972 /* FramesFbo.h */,
 				7216A3531BB323020036625A /* KinectWin.h */,
 				720647181BC577F800976C21 /* Kaleidoscope.frag */,

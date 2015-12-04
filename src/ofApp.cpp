@@ -21,8 +21,9 @@ void ofApp::setup(){
     ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
 
     drag = false;
-
-    font.loadFont("Arial.ttf", 12);
+    
+    fontsize = 11;
+    font.loadFont("CourierNew.ttf", fontsize);
     
     ofBackground(parameterManager.bgColor);
     cout <<  "brushes count = " << BrushBase::getBrushCount()  << endl;
@@ -60,48 +61,67 @@ void ofApp::draw(){
     my_timeline.playFramesDetached();
     ofPopMatrix();
     win.end();
-    
     ofDisableAlphaBlending();
+
     parameterManager.draw();
+    
     if (parameterManager.showGui) {
-        if (parameterManager.showInfo) {
-            string s =
-                     "-- KEY ----------------------------------\n";
-            s.append("1, 2, 3, 4    change colors\n");
-            s.append("TAB           hide gui\n");
-            s.append("q, w          cycle through parameters\n");
-            s.append("SPACE         play image\n");
-            s.append("s             create new frame\n");
-            s.append("f             next frame\n");
-            s.append("d             previous frame\n");
-            s.append("e             triangle brush\n");
-            s.append(",             dream catcher brush\n");
-            s.append("-             clear image\n");
-            s.append("-- INFO ---------------------------------\n");
-            s.append("fps            "+ ofToString(ofGetFrameRate()) +"\n");
-            s.append("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) +"\n");
-            s.append("history size   "+ ofToString(dreamBrush.history.size()) +"\n");
-            s.append("brush          "+ getCurrentBrush()->name() +"\n");
-            s.append("releaseMode    "+ ofToString(parameterManager.releaseMode)+"\n");
-            s.append("-- TIPS ---------------------------------\n");
-            s.append("It looks interesting if you change color\n");
-            s.append("and draw at the same time.\n");
-            s.append("Kaleidoscope is still in development. Po-\n");
-            s.append("sition of drawing is not matching. Try \n");
-            s.append("to draw more on the left top corner.\n");
-            ofSetColor(0, 255); // shadow
-            ofDrawBitmapString(s, parameterManager.getWidth()+41, 21);
-            ofSetColor(255, 255);
-            ofDrawBitmapString(s, parameterManager.getWidth()+40, 20);
-            ofDisableAlphaBlending();
-        }
+        drawInfo();
     }
     // draw mouse pointer
     ofFill();
     ofSetColor(parameterManager.pointerColor);
     ofCircle(mouseX, mouseY, parameterManager.pointerSize);
 }
-
+void ofApp::drawInfo(){
+    if (parameterManager.showInfo) {
+        vector<string> s;
+        s.push_back("-- KEY ----------------------------------");
+        s.push_back("1, 2, 3, 4    change colors");
+        s.push_back("TAB           hide gui");
+        s.push_back("q, w          cycle through parameters");
+        s.push_back("SPACE         play image");
+        s.push_back("s             create new frame");
+        s.push_back("f             next frame");
+        s.push_back("d             previous frame");
+        s.push_back("e             triangle brush");
+        s.push_back(",             dream catcher brush");
+        s.push_back("-             clear image");
+        s.push_back("x             releaseMode: ");
+        s.push_back("x             press first time: auto cre-");
+        s.push_back("              ate mode on pen release");
+        s.push_back("x             press second time: auto");
+        s.push_back("              next frame");
+        s.push_back("x             third time: return to defau");
+        s.push_back("              lt.");
+        s.push_back("-- INFO ---------------------------------");
+        s.push_back("fps            "+ ofToString(ofGetFrameRate()) );
+        s.push_back("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) );
+        s.push_back("history size   "+ ofToString(dreamBrush.history.size()) );
+        s.push_back("brush          "+ getCurrentBrush()->name() );
+        s.push_back("releaseMode    "+ ofToString(parameterManager.releaseMode));
+        s.push_back("-- TIPS ---------------------------------");
+        s.push_back("It looks interesting if you change color");
+        s.push_back("and draw at the same time.");
+        s.push_back("Kaleidoscope is still in development. Po-");
+        s.push_back("sition of drawing is not matching. Try ");
+        s.push_back("to draw more on the left top corner.");
+        int width = 280;
+        int border = 20;
+        int x = ofGetWidth()-width-border*2;
+        int y = 20;
+        int lineHeight = 13;
+        ofEnableAlphaBlending();
+        ofFill();
+        ofSetColor(255,120);
+        ofRect(x-border, y-fontsize-border, width+border*2, lineHeight*(s.size()-1)+border*2);
+        ofSetColor(0, 255);
+        for (int i = 0; i < s.size()-1; i++) {
+            font.drawString(s[i], x, y+lineHeight*i);
+        }
+        ofDisableAlphaBlending();
+    }
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     switch (key) {

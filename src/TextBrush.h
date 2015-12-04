@@ -11,10 +11,15 @@
 #include "BrushBase.h"
 #include "TextUtility.h"
 #include "Font.h"
+#include "CoordHistory.h"
+#include "TransformUtility.h"
 
 const string NAME = "Text Brush";
 
 class TextBrush : public BrushBase {
+private:
+    CoordHistory coordHistory;
+    TransformUtility transformUtility;
 public:
     Font font;
     vector<string> dataletters;
@@ -27,6 +32,8 @@ public:
     string fontFile;
     
     void setup (string _fontFile, string pathToTextFile){
+        coordHistory.setup(2);
+
         parameters.setName("TextBrush");
         parameters.add(fontSize.set("fontSize", 20, 20, 200));
         fontSize.addListener(this, &TextBrush::changeFontSize);
@@ -39,16 +46,24 @@ public:
         font.setup(fontFile, fontSize);
     }
     void updateCanvas (ofFbo *fbo, float x, float y, float pressure, ofColor col){
+        transformUtility.setPosition(ofVec2f (x,y));
+        transformUtility.setPivot(ofVec2f (0,0));
+        transformUtility.setScale(1.0);
+        transformUtility.setAngle(transformUtility.getAngle(coordHistory.getPrev(), ofVec2f (x,y) ));
+
         fbo->begin();
         
         string letter = textUtility.getNextLetter();
         int width = font.getWidth(letter);
-//        ofSetColor(0, 0, 0, 0);
-//        ofRect(x, y-fontSize, width, fontSize);
+        
+        transformUtility.begin();
         ofSetColor(col);
-        font.draw(letter, x, y);
+        font.draw(letter, 0, 0);
+        transformUtility.end();
         
         fbo->end();
+
+        coordHistory.add(ofVec2f(x,y));
     }
     void draw (){
         ofSetColor(0);
