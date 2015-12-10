@@ -276,13 +276,13 @@ BrushBase * ofApp::getCurrentBrush() {
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     drag = true;
+    getCurrentBrush()->onMouseDown(x,y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    triangleBrush.clearHistory();
+    getCurrentBrush()->onMouseDown(x,y);
     drag = false;
-    dreamBrush.clearHistory();
     switch (parameterManager.releaseMode) {
         case 0:
             break;

@@ -22,7 +22,9 @@ public:
         maxSize = _maxSize;
     }
     void add(ofVec2f pos){
-        history.push_back(pos);
+        if(pos != getPrev()){ // avoid dublicate
+            history.push_back(pos);
+        }
         clean();
     }
     void clean(){
@@ -33,9 +35,14 @@ public:
     ofVec2f getPrev(){
         if(history.size()>0)
             return history[history.size()-1];
+        
     }
     void addToDistance(ofVec2f pos){
         distance += getPrev().distance(pos);
+        cout <<  "distance = " << distance  << endl;
+    }
+    float getDistance(){
+        return distance;
     }
     void clearDistance(){
         distance = 0;

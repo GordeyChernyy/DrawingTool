@@ -23,6 +23,8 @@ public:
     ofParameter<int> indexRange;
 
     void setup();
+    void onMouseUp(int x, int y);
+    void onMouseDown(int x, int y);
     void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col);
     void draw();
     bool isDistanceBigger(ofVec2f a, ofVec2f b, float distance);

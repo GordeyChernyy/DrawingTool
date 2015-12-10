@@ -32,7 +32,7 @@ public:
     string fontFile;
     
     void setup (string _fontFile, string pathToTextFile){
-        coordHistory.setup(2);
+        coordHistory.setup(100);
 
         parameters.setName("TextBrush");
         parameters.add(fontSize.set("fontSize", 20, 20, 200));
@@ -45,25 +45,36 @@ public:
     void changeFontSize (int &fontSize) {
         font.setup(fontFile, fontSize);
     }
-    void updateCanvas (ofFbo *fbo, float x, float y, float pressure, ofColor col){
-        transformUtility.setPosition(ofVec2f (x,y));
-        transformUtility.setPivot(ofVec2f (0,0));
-        transformUtility.setScale(1.0);
-        transformUtility.setAngle(transformUtility.getAngle(coordHistory.getPrev(), ofVec2f (x,y) ));
-
-        fbo->begin();
-        
-        string letter = textUtility.getNextLetter();
-        int width = font.getWidth(letter);
-        
-        transformUtility.begin();
-        ofSetColor(col);
-        font.draw(letter, 0, 0);
-        transformUtility.end();
-        
-        fbo->end();
-
+    void onMouseUp(int x, int y){
+        coordHistory.clean();
+    }
+    void onMouseDown(int x, int y){
         coordHistory.add(ofVec2f(x,y));
+    }
+    void updateCanvas (ofFbo *fbo, float x, float y, float pressure, ofColor col){
+        int width = font.getWidth("p");
+        
+        if(coordHistory.getDistance() > width){
+            string letter = textUtility.getNextLetter();
+            cout <<  letter  << endl;
+            transformUtility.setPosition(ofVec2f (x,y));
+            transformUtility.setPivot(ofVec2f (0,0));
+            transformUtility.setScale(pressure);
+            transformUtility.setAngle(coordHistory.getPrev(), ofVec2f (x,y));
+            
+            fbo->begin();
+            
+            transformUtility.begin();
+            ofSetColor(col);
+            font.draw(letter, 0, 0);
+            transformUtility.end();
+            
+            fbo->end();
+            coordHistory.clearDistance();
+        }
+        coordHistory.addToDistance(ofVec2f (x,y));
+        coordHistory.add(ofVec2f(x,y));
+        
     }
     void draw (){
         ofSetColor(0);

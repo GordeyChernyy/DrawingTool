@@ -36,6 +36,11 @@ void TriangleBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, o
                 }
             }
 }
+void TriangleBrush::onMouseDown(int x, int y){
+}
+void TriangleBrush::onMouseUp(int x, int y){
+    clearHistory();
+}
 
 void TriangleBrush::draw(){
         ofFill();

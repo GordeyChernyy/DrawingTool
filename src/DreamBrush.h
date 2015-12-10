@@ -16,6 +16,8 @@ public:
     void clearHistory(); // remove all elements from history
     void cleanHistory(); // resize history 
     void setup();
+    void onMouseUp(int x, int y);
+    void onMouseDown(int x, int y);
     void drawToCanvas(float x, float y, float pressure); // draw to fbo located in this class
     void drawBrush(float x, float y, float pressure); // draw lines
     

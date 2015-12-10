@@ -5,8 +5,10 @@
 //  Created by Zerc on 11/30/15.
 //
 //
+#ifndef TransformUtility_h
 #include "ofMain.h"
 #pragma once
+#define TransformUtility_h
 
 class TransformUtility {
 private:
@@ -20,6 +22,20 @@ public:
         pivot = ofVec2f(0, 0);
         position = ofVec2f(0, 0);
         scale = 1.0;
+    }
+    void setAngle (ofVec2f startPoint, ofVec2f endPoint){
+        ofVec2f zero(0,1);
+        if (startPoint != endPoint ){
+            angle = zero.angle(endPoint-startPoint);
+        } else {
+            angle = -90;
+        }
+        
+        cout <<  "angle= " << angle <<
+        " | startPoint= " << startPoint <<
+        " | endPoint= " << endPoint <<
+        "\n------------------------------"  << endl;
+        
     }
     void setAngle (float _angle){
         angle = _angle;
@@ -36,7 +52,7 @@ public:
     void setScale (float _scale){
         scale = _scale;
     }
-    void begin(){
+    void begin (){
         ofPushMatrix();
         ofTranslate (pivot);
         ofTranslate (position-pivot);
@@ -44,7 +60,7 @@ public:
         ofScale (scale, scale);
         ofTranslate (-pivot);
     }
-    void end(){
+    void end (){
         ofPopMatrix();
     }
     float getAngle (ofVec2f startPoint, ofVec2f endPoint){
@@ -52,3 +68,5 @@ public:
         return zero.angle(endPoint-startPoint);
     }
 };
+
+#endif 

@@ -65,6 +65,12 @@ void DreamBrush::cleanHistory(){
         history.erase(history.begin());
     }
 }
+void DreamBrush::onMouseDown(int x, int y){
+    clearHistory();
+}
+void DreamBrush::onMouseUp(int x, int y){
+    clearHistory();
+}
 void DreamBrush::clearHistory(){
     history.clear();
 }

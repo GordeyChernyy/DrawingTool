@@ -46,7 +46,6 @@ private:
         for (int i = 0; i < data.length(); i++) {
             char &c = data.at(i);
             letters->push_back(c);
-            
         }
     }
 public:
