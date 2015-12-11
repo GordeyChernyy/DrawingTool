@@ -44,7 +44,7 @@ public:
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     MultiWindow win;
     ParameterManager parameterManager;
-    Timeline my_timeline;
+    Timeline timeline;
     ofFbo *canvas_ptr;
     
     bool drag;

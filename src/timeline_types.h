@@ -47,7 +47,7 @@ private:
     vector<ofFbo> fbos;
     std::vector <int> _mask_layers;
     std::vector<Layer> _layers;
-    bool _b_cur_frame;
+    bool _bcurrFrame;
     int alpha;
 public:
     std::vector<Layer> *getLayers();
@@ -66,58 +66,82 @@ public:
     unsigned char *fbo;
     struct _test *next;
 } test;*/
-
+class Clip {
+private:
+    int currFrame;
+    int currLayer;
+    int numLayers;
+    int inPoint;
+    int outPoint;
+    vector<Frame> frames;
+public:
+    Clip(int w, int h);
+    int *getCurrFrameNum (){return &currFrame;}
+    int *getCurrLayerNum (){return &currLayer;}
+    int *getNumLayers (){return &numLayers;}
+    int *getInPoint (){return &inPoint;}
+    int *getOutPoint (){return &outPoint;}
+    
+    Frame *getCurrFrame (){return &frames[currFrame];}
+    Frame *getFrame (int num){return &frames[num];}
+    ofFbo *getCurrFbo (){return frames[currFrame].getCurFbo(currLayer);}
+    vector<Frame> *getFrames (){return &frames;}
+    
+    void setup(int w, int h);
+    void setOutPointToCurrent (){outPoint = currFrame;};
+    void setInPointToCurrent (){inPoint = currFrame;};
+};
 class Timeline {
     private:
         ofxFTGLFont font;
-        int _cur_layer;     // count from 0
-        int _num_layers;    // count from 1
-        int _cur_frame;     // count from 0
-        int curPlayFrame;
         int frameRate;
-        int _x, _y, _width, _height;
-        int _frame_width, _frame_height;
-        std::vector<Frame> _frames;
+        int _x, _y, width, height;
+        int frameWidth, frameHeight;
+ 
+        vector<Clip>  clips;
+        int currClip;
     
-        bool _bPlaying;
-        int _start_frame, _stop_frame;
-    
-        // Test max buffers that can be allocated
-        //test _fbo_test;
-    
+        bool isPlaying;
     public:
         Timeline();
+    
+        bool getPlaying() { return isPlaying;}
+        vector<Frame> *getFrames();
+        int *getCurrFrameNum();
+        Frame *getCurrFrame();
+        Frame *getFrame(int num);
+        int *getCurrLayerNum();
+        int *getNumLayers();
+        int *getInPoint();
+        int *getOutPoint();
+        int getFrameCount();
+    
+        void setup(int x, int y, int _width, int _height);
         void setFrameRate(int _frameRate);
-        void setup(int x, int y, int width, int height);
-        void windowResize(int w, int h);
-    
-        bool getPlaying() { return _bPlaying;}
-        int getCurFrame() { return _cur_frame;}
-        int getFrameCount() { return _frames.size();}
-    
-        void setPlaying(bool newval) { _bPlaying = newval; }
-        void setStartFrame(int newval) { _start_frame = newval; }
-        void setStopFrame(int newval) { _stop_frame = newval; }
-    
-        void playFramesDetached(); // detached from main timeline using curPlayFrame
-        void addFrame();
-        void addLayer();
-        std::vector<Frame> *getFrames();
-        void beginBlend();
-        void endBlend();
-        void drawCurFrame();
-        void drawOnionSkin(int alpha); // just before and after
-        int getNumFrames();
-        void drawTimeline();
-        int getCurFrameNum();
+        void setPlaying(bool newval) { isPlaying = newval; }
+        void setInPointToCurrent();
+        void setOutPointToCurrent();
         void setCurLayer(int pos, int method);
         void setCurFrame(int pos, int method);
-        void clearCurFrame();
     
+        void addFrame();
+        void addLayer();
+        void beginBlend();
+        void endBlend();
+        void windowResize(int w, int h);
+    
+        void drawCurFrame();
+        void drawOnionSkin(int alpha); // just before and after
+        void drawTimeline();
         void drawFrameNum(int x, int frame_num);
-        ofFbo *getCurFbo();
+    
+        void clearCurFrame();
         void checkTimelineResize();
-        int countAllocatedFbos();
         void delCurFrame();
+
+        ofFbo *getCurFbo();
+        Clip *getCurrClip();
+    
+        int countAllocatedFbos();
 };
 #endif

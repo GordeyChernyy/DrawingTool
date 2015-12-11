@@ -79,6 +79,7 @@
 		725014341BB10B5200D1CCD5 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 725014281BB10B5200D1CCD5 /* OscPrintReceivedElements.cpp */; };
 		725014351BB10B5200D1CCD5 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7250142A1BB10B5200D1CCD5 /* OscReceivedElements.cpp */; };
 		725014361BB10B5200D1CCD5 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */; };
+		72530BC11C19C4AB00368629 /* Clip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72530BBF1C19C4AB00368629 /* Clip.cpp */; };
 		7ADB04AF67C568EAFAEBA546 /* ofxKinectExtras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01438542609FC64F1EC60EEB /* ofxKinectExtras.cpp */; };
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
@@ -171,12 +172,12 @@
 		50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxXmlSettings.cpp; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
 		53D30D781F0DD82321A166EA /* tabletCocoa.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tabletCocoa.h; path = ../../../addons/ofxTablet/src/tabletCocoa.h; sourceTree = SOURCE_ROOT; };
-		661595091BD679CF00E77D2C /* Frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frame.cpp; sourceTree = "<group>"; };
+		661595091BD679CF00E77D2C /* Frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Frame.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		6615950C1BD679D800E77D2C /* Layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Layer.cpp; sourceTree = "<group>"; };
-		661595121BD7929700E77D2C /* timeline_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timeline_types.h; sourceTree = "<group>"; };
+		661595121BD7929700E77D2C /* timeline_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = timeline_types.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoBrush.cpp; sourceTree = "<group>"; };
 		66E0591C1BE0DD6900ABAADF /* VideoBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBrush.h; sourceTree = "<group>"; };
-		66F79B471BD46E4C0009C950 /* Timeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timeline.cpp; sourceTree = "<group>"; };
+		66F79B471BD46E4C0009C950 /* Timeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Timeline.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		682082DEC78C75C8FB18B7DB /* flags.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = flags.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/flags.c; sourceTree = SOURCE_ROOT; };
 		6F930947CA4BCA2665A4F4E8 /* libfreenect_audio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = libfreenect_audio.h; path = ../../../addons/ofxKinect/libs/libfreenect/include/libfreenect_audio.h; sourceTree = SOURCE_ROOT; };
 		71958293AC5292DE4B7C619D /* registration.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 30; name = registration.c; path = ../../../addons/ofxKinect/libs/libfreenect/src/registration.c; sourceTree = SOURCE_ROOT; };
@@ -329,6 +330,7 @@
 		7250142B1BB10B5200D1CCD5 /* OscReceivedElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		7250142C1BB10B5200D1CCD5 /* OscTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		7250142D1BB10B5200D1CCD5 /* OscTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		72530BBF1C19C4AB00368629 /* Clip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Clip.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		725C64B71BFD2C9E00D095CA /* MultiWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWindow.h; sourceTree = "<group>"; };
 		72BF3C821C0D5E0200958501 /* TransformUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformUtility.h; sourceTree = "<group>"; };
 		72C884191C113F4A00497985 /* CoordHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordHistory.h; sourceTree = "<group>"; };
@@ -467,10 +469,11 @@
 		661595051BD6799400E77D2C /* timeline */ = {
 			isa = PBXGroup;
 			children = (
-				66F79B471BD46E4C0009C950 /* Timeline.cpp */,
-				661595091BD679CF00E77D2C /* Frame.cpp */,
-				6615950C1BD679D800E77D2C /* Layer.cpp */,
 				661595121BD7929700E77D2C /* timeline_types.h */,
+				6615950C1BD679D800E77D2C /* Layer.cpp */,
+				661595091BD679CF00E77D2C /* Frame.cpp */,
+				72530BBF1C19C4AB00368629 /* Clip.cpp */,
+				66F79B471BD46E4C0009C950 /* Timeline.cpp */,
 			);
 			name = timeline;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				725014351BB10B5200D1CCD5 /* OscReceivedElements.cpp in Sources */,
 				720E6CF41BB3074D005CD627 /* Skeleton.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				72530BC11C19C4AB00368629 /* Clip.cpp in Sources */,
 				72136CE21C066D18003F5C64 /* FTBitmapGlyph.cpp in Sources */,
 				720E6CF11BB3074D005CD627 /* Hand.cpp in Sources */,
 				66F79B491BD46E4C0009C950 /* Timeline.cpp in Sources */,

@@ -4,12 +4,14 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "703DCF15BBF5318F63B5A515B94336085A2E6037" : 0,
     "47CE4DB7D37DE73BB7688BDCEF72504CF39E657B" : 0,
     "CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36" : 0,
     "337C6E3CB5157444A3DC48F3AA0752979326FE8F" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8A223DC3-F5BE-4726-A628-47AE4E2D585B",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "703DCF15BBF5318F63B5A515B94336085A2E6037" : "..\/..\/addons\/ofxFTGL",
     "47CE4DB7D37DE73BB7688BDCEF72504CF39E657B" : "..\/..\/addons\/ofxKinectV2-OSC",
     "CCF4048C5F4D1F2EC88C174E2B55A0D21EFD2B36" : "DrawingTool\/",
     "337C6E3CB5157444A3DC48F3AA0752979326FE8F" : "..\/..\/addons\/ofxTablet"
@@ -27,6 +29,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/microcosm\/ofxKinectV2-OSC.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "47CE4DB7D37DE73BB7688BDCEF72504CF39E657B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/companje\/ofxFTGL.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "703DCF15BBF5318F63B5A515B94336085A2E6037"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:GordeyChernyy\/DrawingTool.git",

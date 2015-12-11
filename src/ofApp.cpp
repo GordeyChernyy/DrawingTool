@@ -8,7 +8,7 @@ void ofApp::setup(){
     dreamBrush.setup();
     triangleBrush.setup();
     textBrush.setup("Arial.ttf", "data.txt");
-    my_timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
+    timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
     win.setup();
     
     parameterManager.add(dreamBrush.parameters);
@@ -34,7 +34,7 @@ void ofApp::update(){
     if (parameterManager.enableKaleidoscope) {
         kaleidoscope.update(canvas_ptr, mouseX, mouseY);
     }
-    canvas_ptr = my_timeline.getCurFbo();
+    canvas_ptr = timeline.getCurFbo();
 }
 
 //--------------------------------------------------------------
@@ -47,18 +47,18 @@ void ofApp::draw(){
     if(parameterManager.enableKaleidoscope){
         kaleidoscope.draw();
     }else{
-        my_timeline.drawCurFrame();
+        timeline.drawCurFrame();
         if(parameterManager.showOnionSkin)
-            my_timeline.drawOnionSkin(parameterManager.onionSkinAlpha);
+            timeline.drawOnionSkin(parameterManager.onionSkinAlpha);
         getCurrentBrush()->draw();
     }
-    my_timeline.drawTimeline();
+    timeline.drawTimeline();
 
     win.begin();
     ofBackground(255, 255);
     ofPushMatrix();
     ofScale(0.5, 0.5);
-    my_timeline.playFramesDetached();
+    // player
     ofPopMatrix();
     win.end();
     ofDisableAlphaBlending();
@@ -96,7 +96,7 @@ void ofApp::drawInfo(){
         s.push_back("              lt.");
         s.push_back("-- INFO ---------------------------------");
         s.push_back("fps            "+ ofToString(ofGetFrameRate()) );
-        s.push_back("allocated fbos "+ ofToString(my_timeline.countAllocatedFbos()) );
+        s.push_back("allocated fbos "+ ofToString(timeline.countAllocatedFbos()) );
         s.push_back("history size   "+ ofToString(dreamBrush.history.size()) );
         s.push_back("brush          "+ getCurrentBrush()->name() );
         s.push_back("releaseMode    "+ ofToString(parameterManager.releaseMode));
@@ -165,66 +165,66 @@ void ofApp::keyPressed(int key){
         }
         case '+': {
             cout << "add layer"<< endl;
-            my_timeline.addLayer();
+            timeline.addLayer();
             break;
         }
         case '-': {
-            my_timeline.clearCurFrame();
+            timeline.clearCurFrame();
             break;
         }
         case 's': {
-            my_timeline.addFrame();
-            my_timeline.setCurFrame(1, RELATIVE);
-            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+            timeline.addFrame();
+            timeline.setCurFrame(1, RELATIVE);
+            timeline.setOutPointToCurrent();
             break;
         }
         case 'd': {
             // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "sub 1 from cur frame"<< endl;
-            my_timeline.setCurFrame(-1, RELATIVE);
+            timeline.setCurFrame(-1, RELATIVE);
             break;
         }
         case 'f': {
             // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "add 1 to cur frame"<< endl;
-            my_timeline.setCurFrame(1, RELATIVE);
+            timeline.setCurFrame(1, RELATIVE);
             break;
         }
         case 'r': {
             // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "add 1 from cur layer";
-            my_timeline.setCurLayer(1, RELATIVE);
+            timeline.setCurLayer(1, RELATIVE);
             break;
         }
         case 'v': {
             // TODO: Generalize triangleBrush.clear() to other types of brushes
             cout << "sub 1 to cur layer";
-            my_timeline.setCurLayer(-1, RELATIVE);
+            timeline.setCurLayer(-1, RELATIVE);
             break;
         }
         case ' ': {
-            if(my_timeline.getPlaying()) {
-                my_timeline.setPlaying(false);
+            if(timeline.getPlaying()) {
+                timeline.setPlaying(false);
             } else {
-                my_timeline.setPlaying(true);
+                timeline.setPlaying(true);
             }
             break;
         }
         case 'i': {
-            my_timeline.setStartFrame(my_timeline.getCurFrameNum());
+            timeline.setInPointToCurrent();
             break;
         }
         case 'o': {
-            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+            timeline.setOutPointToCurrent();
             break;
         }
         case OF_KEY_BACKSPACE: {
-            my_timeline.delCurFrame();
+            timeline.delCurFrame();
             break;
         }
         /*case '-': {
             cout << "center on cur frame!";
-            my_timeline.centerOnCurFrame();
+            timeline.centerOnCurFrame();
             break;
         }*/
     }
@@ -287,15 +287,15 @@ void ofApp::mouseReleased(int x, int y, int button){
         case 0:
             break;
         case 1: // auto frame add
-            my_timeline.addFrame();
-            my_timeline.setCurFrame(1, RELATIVE);
-            my_timeline.setStopFrame(my_timeline.getCurFrameNum());
+            timeline.addFrame();
+            timeline.setCurFrame(1, RELATIVE);
+            timeline.setOutPointToCurrent();
             break;
         case 2: // auto next frame
-            if(my_timeline.getCurFrame() == my_timeline.getFrameCount()-1){
-                my_timeline.setCurFrame(0, ABSOLUTE);
+            if(*timeline.getCurrFrameNum() == timeline.getFrameCount()-1){
+                timeline.setCurFrame(0, ABSOLUTE);
             } else {
-                my_timeline.setCurFrame(1, RELATIVE);
+                timeline.setCurFrame(1, RELATIVE);
             }
             break;
     }
@@ -305,7 +305,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 void ofApp::windowResized(int w, int h){
     dreamBrush.resize();
     kaleidoscope.resize();
-    my_timeline.windowResize(w, h);
+    timeline.windowResize(w, h);
 }
 
 //--------------------------------------------------------------
