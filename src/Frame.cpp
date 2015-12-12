@@ -64,6 +64,13 @@ void Frame::clear() {
         _layers[i].clear();
     }
 }
+void Frame::clear(int layerNum) {
+    for(int i = 0; i < _layers.size(); i++) {
+        if (i == layerNum) {
+             _layers[i].clear();
+        }
+    }
+}
 void Frame::destroyLayers() {
     for(int i = 0; i < _layers.size(); i++) {
         _layers[i].destroy();

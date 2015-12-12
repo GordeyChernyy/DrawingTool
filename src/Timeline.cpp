@@ -13,8 +13,9 @@ void Timeline::setup(int x, int y, int _width, int _height) {
     frameHeight = ofGetWindowHeight();
     
     currClip = 0;
-    Clip *clip = new Clip(width, height);
+    Clip *clip = new Clip();
     clips.push_back(*clip);
+    addFrame();
     
     isPlaying = false;
     frameRate = 3;
@@ -56,10 +57,15 @@ ofFbo *Timeline::getCurFbo() {
 }
 
 // adds a frame either at currFrame.  Does not change  currFrame
-void Timeline::addFrame() {
+void Timeline::addFrameNextTo() {
     Frame *new_frame = new Frame;
     new_frame->setup(frameWidth, frameHeight);
     getFrames()->insert(getFrames()->begin() + *getCurrFrameNum() + 1, *new_frame);
+}
+void Timeline::addFrame(){
+    Frame *new_frame = new Frame;
+    new_frame->setup(frameWidth, frameHeight);
+    getFrames()->insert(getFrames()->begin(), *new_frame);
 }
 
 // adds a layer one above the current layer
@@ -131,7 +137,7 @@ void Timeline::endBlend(){
     glDisable(GL_BLEND);
 }
 void Timeline::clearCurFrame(){
-   getCurrFrame()->clear();
+   getCurrFrame()->clear(*getCurrLayerNum());
 }
 void Timeline::delCurFrame() {
     int newcurrFrame = 0;
@@ -159,6 +165,7 @@ void Timeline::delCurFrame() {
 // Responsible for drawing the actual FBO for the frame, as opposed to drawing on the Timeline
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
+    cout <<  "count= " << getFrameCount()  << endl;
     getCurrFrame()->setAlpha(255);
     beginBlend();
     getCurrFrame()->draw();
@@ -233,7 +240,7 @@ void Timeline::drawTimeline() {
         for(int l = 0;  l < *getNumLayers(); l++) {
             // the selected frame should be a different color from all the other frames
             // and the selected layer in that frame should be an even different color
-            if((l == *getNumLayers()) && (f == *getCurrFrameNum())) {
+            if((l == *getCurrLayerNum()) && (f == *getCurrFrameNum())) {
                 ofSetColor(COLOR_CUR_DRAWSPACE);
             } else if(f == *getCurrFrameNum()){
                 ofSetColor(COLOR_CUR_FRAME);

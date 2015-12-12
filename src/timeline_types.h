@@ -59,6 +59,7 @@ public:
     Layer *findLayerByLayerNum(int layer_num);
     void destroyLayers();
     void clear();
+    void clear(int layerNum);
 };
 
 // test max buffers that can be allocated
@@ -75,7 +76,7 @@ private:
     int outPoint;
     vector<Frame> frames;
 public:
-    Clip(int w, int h);
+    Clip();
     int *getCurrFrameNum (){return &currFrame;}
     int *getCurrLayerNum (){return &currLayer;}
     int *getNumLayers (){return &numLayers;}
@@ -87,7 +88,6 @@ public:
     ofFbo *getCurrFbo (){return frames[currFrame].getCurFbo(currLayer);}
     vector<Frame> *getFrames (){return &frames;}
     
-    void setup(int w, int h);
     void setOutPointToCurrent (){outPoint = currFrame;};
     void setInPointToCurrent (){inPoint = currFrame;};
 };
@@ -124,6 +124,7 @@ class Timeline {
         void setCurLayer(int pos, int method);
         void setCurFrame(int pos, int method);
     
+        void addFrameNextTo();
         void addFrame();
         void addLayer();
         void beginBlend();

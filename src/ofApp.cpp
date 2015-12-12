@@ -53,7 +53,6 @@ void ofApp::draw(){
         getCurrentBrush()->draw();
     }
     timeline.drawTimeline();
-
     win.begin();
     ofBackground(255, 255);
     ofPushMatrix();
@@ -72,6 +71,7 @@ void ofApp::draw(){
     ofFill();
     ofSetColor(parameterManager.pointerColor);
     ofCircle(mouseX, mouseY, parameterManager.pointerSize);
+    
 }
 void ofApp::drawInfo(){
     if (parameterManager.showInfo) {
@@ -173,7 +173,7 @@ void ofApp::keyPressed(int key){
             break;
         }
         case 's': {
-            timeline.addFrame();
+            timeline.addFrameNextTo();
             timeline.setCurFrame(1, RELATIVE);
             timeline.setOutPointToCurrent();
             break;
@@ -287,7 +287,7 @@ void ofApp::mouseReleased(int x, int y, int button){
         case 0:
             break;
         case 1: // auto frame add
-            timeline.addFrame();
+            timeline.addFrameNextTo();
             timeline.setCurFrame(1, RELATIVE);
             timeline.setOutPointToCurrent();
             break;
