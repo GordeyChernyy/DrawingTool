@@ -1,4 +1,5 @@
 Makefile
+obj
 bin/DrawingTool.app
 bin/DrawingTool.app/*
 bin/DrawingToolDebug.app
