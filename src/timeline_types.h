@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include <vector>
 #include <pthread.h>
-#include "ofxFTGLFont.h"
 
 #define FRAME_SIZE 10
 #define NUM_SPACER 4
@@ -30,8 +29,9 @@ void dbg_error(string err_msg);
 
 class Layer {
     private:
-        ofFbo _fbo;
-        int _layer_num;
+        ofFbo fbo;
+        int layerNum;
+        int x, y;
     public:
         ofFbo *getFbo();
         void setup(int width, int height, int layer_num);
@@ -46,7 +46,7 @@ class Frame {
 private:
     vector<ofFbo> fbos;
     std::vector <int> _mask_layers;
-    std::vector<Layer> _layers;
+    std::vector<Layer> layers;
     bool _bcurrFrame;
     int alpha;
 public:
@@ -93,7 +93,7 @@ public:
 };
 class Timeline {
     private:
-        ofxFTGLFont font;
+        ofTrueTypeFont font;
         int frameRate;
         int _x, _y, width, height;
         int frameWidth, frameHeight;
@@ -110,6 +110,8 @@ class Timeline {
         int *getCurrFrameNum();
         Frame *getCurrFrame();
         Frame *getFrame(int num);
+        ofFbo *getCurFbo();
+        Clip *getCurrClip();
         int *getCurrLayerNum();
         int *getNumLayers();
         int *getInPoint();
@@ -139,9 +141,6 @@ class Timeline {
         void clearCurFrame();
         void checkTimelineResize();
         void delCurFrame();
-
-        ofFbo *getCurFbo();
-        Clip *getCurrClip();
     
         int countAllocatedFbos();
 };

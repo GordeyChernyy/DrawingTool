@@ -88,7 +88,7 @@ void TriangleBrush::drawTriangle(ofVec2f *c){
 void TriangleBrush::debugArray(vector<ofVec2f> array){
             for (int i = 0; i<array.size(); i++) {
                 ofSetColor(255, 0, 0);
-                ofCircle(array[i], 5);
+                ofDrawCircle(array[i], 5);
             }
 }
 void TriangleBrush::addPoint(vector<ofVec2f> &array, ofVec2f pos){

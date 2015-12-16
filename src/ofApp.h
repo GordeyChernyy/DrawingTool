@@ -3,18 +3,16 @@
 #include "ofMain.h"
 #include "DreamBrush.h"
 #include "ofxGui.h"
-#include "ofxTablet.h"
+//#include "ofxTablet.h"
 #include "Kaleidoscope.h"
 #include "FramesFbo.h"
-#include "ofxOsc.h"
-#include "KinectWin.h"
 #include "TriangleBrush.h"
 #include "timeline_types.h"
 #include "MultiWindow.h"
 #include "BrushBase.h"
-#include "TextBrush.h"
+//#include "TextBrush.h"
 #include "ParameterManager.h"
-#include "ofxFTGLFont.h"
+//#include "ofxFTGLFont.h"
 // TODO: Make this configurable in the GUI
 #define FRAME_RATE 60
 
@@ -34,13 +32,13 @@ public:
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
         void drawInfo();
-    void tabletMoved(TabletData &data);
+//    void tabletMoved(TabletData &data);
     
-    ofxFTGLFont font;
+    ofTrueTypeFont font;
     int fontsize;
     DreamBrush dreamBrush;           // dream catcher brush
     TriangleBrush triangleBrush;      // triangle brush
-    TextBrush textBrush;
+//    TextBrush textBrush;
     Kaleidoscope kaleidoscope;  // shader which distort fbo passed in
     MultiWindow win;
     ParameterManager parameterManager;

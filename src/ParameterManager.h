@@ -5,8 +5,10 @@
 //  Created by Zerc on 11/25/15.
 //
 //
-#include "ofxOsc.h"
-#pragma once 
+#pragma once
+#include "ofxGui.h"
+#include "ofMain.h"
+
 class ParameterManager {
 private:
     ofxPanel gui;
@@ -16,7 +18,7 @@ private:
     
     void setupStageParameters(){
         stageParam.setName("stageParam");
-        stageParam.add(brushMode.set("brushMode", 2, 0, 2));
+        stageParam.add(brushMode.set("brushMode", 0, 0, 2));
         stageParam.add(brushModeLabel.set("burshmodelabel", "hidude"));
         stageParam.add(showInfo.set("showInfo", true));
         stageParam.add(enableMouse.set("enableMouse", true));

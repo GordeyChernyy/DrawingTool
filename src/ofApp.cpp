@@ -7,23 +7,23 @@ void ofApp::setup(){
     kaleidoscope.setup();
     dreamBrush.setup();
     triangleBrush.setup();
-    textBrush.setup("Arial.ttf", "data.txt");
+//    textBrush.setup("Arial.ttf", "data.txt");
     timeline.setup(ofGetWidth() / 8, ofGetWindowHeight() * .75, ofGetWindowWidth() * (6.0/8.0), ofGetWindowHeight() * .2);
     win.setup();
     
     parameterManager.add(dreamBrush.parameters);
     parameterManager.add(triangleBrush.parameters);
     parameterManager.add(kaleidoscope.parameters);
-    parameterManager.add(textBrush.parameters);
+//    parameterManager.add(textBrush.parameters);
     parameterManager.setup();
     
-    ofxTablet::start();
-    ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
+//    ofxTablet::start();
+//    ofAddListener(ofxTablet::tabletEvent, this, &ofApp::tabletMoved);
 
     drag = false;
     
-    fontsize = 11;
-    font.loadFont("CourierNew.ttf", fontsize);
+    fontsize = 9;
+    font.load("CourierNew.ttf", fontsize);
     
     ofBackground(parameterManager.bgColor);
     cout <<  "brushes count = " << BrushBase::getBrushCount()  << endl;
@@ -70,7 +70,7 @@ void ofApp::draw(){
     // draw mouse pointer
     ofFill();
     ofSetColor(parameterManager.pointerColor);
-    ofCircle(mouseX, mouseY, parameterManager.pointerSize);
+    ofDrawCircle(mouseX, mouseY, parameterManager.pointerSize);
     
 }
 void ofApp::drawInfo(){
@@ -114,7 +114,7 @@ void ofApp::drawInfo(){
         ofEnableAlphaBlending();
         ofFill();
         ofSetColor(255,120);
-        ofRect(x-border, y-fontsize-border, width+border*2, lineHeight*(s.size()-1)+border*2);
+        ofDrawRectangle(x-border, y-fontsize-border, width+border*2, lineHeight*(s.size()-1)+border*2);
         ofSetColor(0, 255);
         for (int i = 0; i < s.size()-1; i++) {
             font.drawString(s[i], x, y+lineHeight*i);
@@ -239,17 +239,17 @@ void ofApp::keyReleased(int key){
 void ofApp::mouseMoved(int x, int y ){
 
 }
-void ofApp::tabletMoved(TabletData &data) {
-    if (drag && !parameterManager.enableMouse){
-        float penX = data.abs_screen[0]*ofGetScreenWidth() - ofGetWindowPositionX();
-        float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
-        float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
-        float p = data.pressure;
-        getCurrentBrush()->updateCanvas(canvas_ptr, penX, penY, p, dreamBrush.activeColor);
-        triangleBrush.setPressure(p);
-    }
-    
-}
+//void ofApp::tabletMoved(TabletData &data) {
+//    if (drag && !parameterManager.enableMouse){
+//        float penX = data.abs_screen[0]*ofGetScreenWidth() - ofGetWindowPositionX();
+//        float penYinv = ofMap(data.abs_screen[1], 0, 1, 1, 0);
+//        float penY = penYinv*ofGetScreenHeight() - ofGetWindowPositionY();
+//        float p = data.pressure;
+//        getCurrentBrush()->updateCanvas(canvas_ptr, penX, penY, p, dreamBrush.activeColor);
+//        triangleBrush.setPressure(p);
+//    }
+//    
+//}
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     if(parameterManager.enableMouse){
@@ -266,7 +266,7 @@ BrushBase * ofApp::getCurrentBrush() {
             return &triangleBrush;
             break;
         case 2:
-            return &textBrush;
+//            return &textBrush;
             break;
         default:
             break;

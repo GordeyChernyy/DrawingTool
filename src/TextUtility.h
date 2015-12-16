@@ -21,7 +21,7 @@ private:
         ifstream fin;
         //open your text file
         fin.open (ofToDataPath(path).c_str());
-        while (fin != NULL){
+        while (fin.good()){
             string str;
             getline(fin, str);
             lines.push_back(str);

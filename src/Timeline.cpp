@@ -20,8 +20,7 @@ void Timeline::setup(int x, int y, int _width, int _height) {
     isPlaying = false;
     frameRate = 3;
 
-    font.loadFont("Arial.ttf");
-    font.setSize(8);
+    font.load("Arial.ttf", 8);
     return;
 }
 vector<Frame> *Timeline::getFrames(){
@@ -206,7 +205,7 @@ void Timeline::drawFrameNum(int x, int frame_num) {
     convert << frame_num;
     s = convert.str();
     ofSetColor(ofColor::black);
-    font.drawString(s, x-font.getWidth(s)/2, y);
+    font.drawString(s, x-2, y);
 }
 
 // Responsible for drawing the Timeline, NOT the contents of the frames (use Timeline::drawCurFrame for that)
@@ -215,7 +214,7 @@ void Timeline::drawFrameNum(int x, int frame_num) {
 void Timeline::drawTimeline() {
     //draw background of Timeline
     ofSetColor(COLOR_TIMELINE_BRACKGROUND);
-//    ofRect(_x, _y, width, height);
+//    ofDrawRectangle(_x, _y, width, height);
 
     // calculate what the frame num of the left-most frame and right-most frame
     int pot_right = (width / 2) / FRAME_SIZE; // potential right. max number of frames that fit to right of middle frame
@@ -249,7 +248,7 @@ void Timeline::drawTimeline() {
             }
             
             ofFill();
-            ofCircle(cur_x, cur_y, FRAME_SIZE/3, FRAME_SIZE/3);
+            ofDrawCircle(cur_x, cur_y, FRAME_SIZE/3, FRAME_SIZE/3);
             ofSetColor(ofColor::black);
             ofFill();
             

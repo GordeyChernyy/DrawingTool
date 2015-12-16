@@ -8,19 +8,18 @@
 
 #pragma once
 #include "ofMain.h"
-#include "ofxFTGLFont.h"
+
 class Font {
 private:
-    ofxFTGLFont font;
+    ofTrueTypeFont font;
 public:
     void setup(string path, int size){
-        font.loadFont(path);
-        font.setSize(size);
+//        font.load();
     }
     void draw(string content, int x, int y){
-        font.drawString(content, x, y);
+//        font.drawString(content, x, y);
     }
     int getWidth(string content){
-        return font.getWidth(content);
+//        return font.getWidth(content);
     }
 };

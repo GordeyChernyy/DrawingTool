@@ -4,4 +4,3 @@ ofxOpenCv
 ofxSvg
 ofxXmlSettings
 ofxAutoReloadedShader
-ofxTablet
