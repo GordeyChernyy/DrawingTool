@@ -12,13 +12,14 @@ void Crop::start(ofFbo *fbo){
     int w = fbo->getWidth();
     int h = fbo->getHeight();
 
-//    for(int y=h-1; y>=0; y--){
-//        for(int x=0;x<w;x++){
-//            pixels[x*3+y*w*3]; // red channel on an rgb image
-//            if(y>0){
-//                pixels[x*3+(y-1)*w*3];
-//                // get the pixel 1 line above this one
-//            }
-//        }
-//    }
+    for(auto line: pixels.getLines()){
+        for(auto pixel: line.getPixels()){
+            pixel[0]; // red channel on any image
+            if(line.getLineNum()>0){
+                auto pixelAbove =  pixel - pixels.getWidth();
+                // get the pixel 1 line above this one
+            }
+        }
+    }
+
 }

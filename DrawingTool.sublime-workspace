@@ -1,0 +1,654 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"par",
+				"parameterManager"
+			],
+			[
+				"ofget",
+				"ofGetWindowHeight"
+			],
+			[
+				"dream",
+				"DreamBrush"
+			],
+			[
+				"curr",
+				"currTransform	Transform"
+			],
+			[
+				"Ve",
+				"Vector3	Vector3"
+			],
+			[
+				"cen",
+				"centerPos	Vector2"
+			],
+			[
+				"is",
+				"isRotate	bool"
+			],
+			[
+				"for",
+				"for	for"
+			],
+			[
+				"ta",
+				"target	GameObject"
+			],
+			[
+				"Instanci",
+				"Instantiate(Object original)	Object"
+			],
+			[
+				"ce",
+				"centerPos	Vector2"
+			],
+			[
+				"V",
+				"Vector2	Vector2"
+			],
+			[
+				"R",
+				"RotateAround(Vector3 axis, float angle)	void"
+			],
+			[
+				"m",
+				"Normalize()	void"
+			],
+			[
+				"ma",
+				"magnitude	float { get; }"
+			],
+			[
+				"Ma",
+				"Mathf	Mathf"
+			],
+			[
+				"v",
+				"ViewportToWorldPoint(Vector3 position)	Vector3"
+			],
+			[
+				"Scree",
+				"ScreenToWorldPoint(Vector3 position)	Vector3"
+			],
+			[
+				"n",
+				"new	new"
+			],
+			[
+				"p",
+				"position	Vector3 { get; set; }"
+			],
+			[
+				"g",
+				"green	Color { get; }"
+			],
+			[
+				"dr",
+				"DrawRay(Vector3 start, Vector3 dir)	void"
+			],
+			[
+				"get",
+				"GetComponent<T>()	T"
+			],
+			[
+				"ro",
+				"rotation	Quaternion { get; set; }"
+			],
+			[
+				"r",
+				"SetEulerRotation(float x, float y, float z)	void"
+			],
+			[
+				"ve",
+				"Vector3	Vector3"
+			],
+			[
+				"rot",
+				"EulerRotation(Vector3 euler)	Quaternion"
+			],
+			[
+				"L",
+				"LookAt(Transform target, Vector3 worldUp)	void"
+			],
+			[
+				"in",
+				"Input	Input"
+			],
+			[
+				"loo",
+				"LookAt(Vector3 worldPosition)	void"
+			],
+			[
+				"se",
+				"SetAxisAngle(Vector3 axis, float angle)	void"
+			],
+			[
+				"Ro",
+				"Rotate(Vector3 axis, float angle)	void"
+			],
+			[
+				"s",
+				"startXPos"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "DrawingTool.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Font.cpp",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/ParameterManager.h",
+			"settings":
+			{
+				"buffer_size": 3462,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Vintageous/Vintageous.sublime-build",
+					""
+				],
+				[
+					"Packages/Vintageous/Vintageous.sublime-build",
+					"Vintageous - Test (All)"
+				],
+				[
+					"Packages/Vintageous/Vintageous.sublime-build",
+					"Vintageous - Test (This File Only)"
+				]
+			],
+			[
+				"Packages/Vintageous/Vintageous.sublime-build",
+				"Vintageous - Test (All)"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pa",
+		"selected_items":
+		[
+			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"clang",
+				"Set Syntax: ClangErrorPanel"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"linter",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"lin",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"om",
+				"OmniSharpSublime: Run All Tests"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown Light"
+			],
+			[
+				"ma",
+				"Set Syntax: Markdown"
+			],
+			[
+				"\\",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"colo",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"prin",
+				"Snippet: print value"
+			],
+			[
+				"Snippet: ",
+				"Snippet: print value"
+			],
+			[
+				"make",
+				"SnippetMaker: Make Snippet"
+			],
+			[
+				"pack re",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 210.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/bin",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src"
+	],
+	"file_history":
+	[
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/.ycm_extra_conf.py",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/ClangAutoComplete/ClangAutoComplete.sublime-settings",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/Kaleidoscope.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/Frame.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/ofApp.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/DreamBrush.cpp",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/main.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/BrushBase.h",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/BrushBase.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/ofApp.h",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/SublimeLinter-contrib-clang/messages.json",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/R_PuzzleSlot.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/PuzzleDrag.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/PuzzleManager.cs",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/OmniSharp/PrebuiltOmniSharpServer/config.json",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/R_Puzzle.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/RotateAround.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/Pseudocode.md",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/PuzzleSlot.cs",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/AceJump/AceJump.sublime-settings",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/AceJump.sublime-settings",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/AceJump/README.md",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/RadialCloner.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/AngleDrag.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/BubbleControl.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/CanvasBubble.prefab",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/ScriptDevelop.sublime-project",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/colliderSlot.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/ContentFitter.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/RotationDrag.unity",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/SlotMat.mat",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/Slots.c4d",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/Untitled.unity",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/value.unity",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/wordControl.cs",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/print.sublime-snippet",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/CanvasBubbleControl.cs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/ScriptDevelop.userprefs",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/ScriptDevelop.sln",
+		"/Users/gordey/Documents/Unity/ScriptDevelop/Assembly-CSharp.csproj",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/Drag.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Philosopharium.sublime-project",
+		"/Users/gordey/Documents/Unity/Philosopharium/Test",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"-I../../..",
+			"'",
+			"-I../../../",
+			"I",
+			"'",
+			"SLOTS",
+			"slots",
+			"SLOTS",
+			"slots",
+			"isSlot",
+			"isSlots",
+			"isSlot$",
+			"^isSlot$",
+			"\n	R_Pu",
+			"^isSlot$",
+			"isSlot",
+			"}\n",
+			"isSlot",
+			"isEmpty",
+			"PuzzleSlot",
+			"easy_motion",
+			"value",
+			"clone",
+			"speed",
+			"            clone.GetComponent<RotateAround>().isRotate = true;",
+			"            clone.GetComponent<RotateAround>().isRotate = true;\n",
+			"2",
+			"value",
+			"type",
+			"value",
+			"type",
+			"Dot",
+			"radius",
+			"r",
+			"radius",
+			"circle",
+			"distance",
+			"mousePos",
+			"m",
+			"normalized",
+			"transfor",
+			"position",
+			"using UnityEngine;\nusing System.Collections;\n\npublic class AngleDrag : MonoBehaviour\n{\n                                                                                                    public GameObject circle;\n                                                                                                    public BoxCollider collider;\n                                                                                                    void Awake()\n                                                                                                    {\n                                                                                                                                                                                                        collider = gameObject.GetComponent<BoxCollider>();\n                                                                                                    }\n                                                                                                    void OnMouseDown()\n                                                                                                    {\n                                                                                                    }\n                                                                                                    void OnMouseDrag()\n                                                                                                    {\n                                                                                                                                                                                                        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));\n                                                                                                    }\n                                                                                                    float angle\n                                                                                                    {\n                                                                                                                                                                                                        get\n                                                                                                                                                                                                        {\n\n		\n",
+			"rotationOb",
+			"rotationObj",
+			"Vec",
+			"float",
+			"angle",
+			"		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;\n",
+			"gameobj",
+			"startXPos",
+			"ScreenToWorldPoint"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "DrawingTool.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								45
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/Font.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 93,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92,
+								93
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/ParameterManager.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3462,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2594,
+								2594
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 647.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 100.0
+	},
+	"output.vi_out":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "DrawingTool.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"puzz",
+				"Assets/PuzzleDrag.cs"
+			],
+			[
+				"r",
+				"Assets/R_Puzzle.cs"
+			],
+			[
+				"an",
+				"Assets/AngleDrag.cs"
+			],
+			[
+				"ang",
+				"Assets/AngleDrag.cs"
+			],
+			[
+				"",
+				"Assets/AngleDrag.cs"
+			],
+			[
+				"dr",
+				"Assets/PuzzleDrag.cs"
+			],
+			[
+				"dra",
+				"Assets/Scripts/Drag.cs"
+			],
+			[
+				"drag",
+				"Assets/Scripts/Drag.cs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 339.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

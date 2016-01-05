@@ -28,18 +28,18 @@
 void dbg_error(string err_msg);
 
 class Layer {
-    private:
-        ofFbo fbo;
-        int layerNum;
-        int x, y;
-    public:
-        ofFbo *getFbo();
-        void setup(int width, int height, int layer_num);
-        int getLayerNum();
-        void setLayer(int layer_num);
-        void draw();
-        void clear();
-        void destroy();
+private:
+    ofFbo fbo;
+    int layerNum;
+    int x, y;
+public:
+    ofFbo *getFbo();
+    void setup(int width, int height, int layer_num);
+    int getLayerNum();
+    void setLayer(int layer_num);
+    void draw();
+    void clear();
+    void destroy();
 };
 
 class Frame {
@@ -92,56 +92,67 @@ public:
     void setInPointToCurrent (){inPoint = currFrame;};
 };
 class Timeline {
-    private:
-        ofTrueTypeFont font;
-        int frameRate;
-        int _x, _y, width, height;
-        int frameWidth, frameHeight;
- 
-        vector<Clip>  clips;
-        int currClip;
+private:
+    ofTrueTypeFont font;
+    int frameRate;
+    int _x, _y, width, height;
+    int frameWidth, frameHeight;
     
-        bool isPlaying;
-    public:
-        Timeline();
+    vector<Clip>  clips;
+    int currClip;
     
-        bool getPlaying() { return isPlaying;}
-        vector<Frame> *getFrames();
-        int *getCurrFrameNum();
-        Frame *getCurrFrame();
-        Frame *getFrame(int num);
-        ofFbo *getCurFbo();
-        Clip *getCurrClip();
-        int *getCurrLayerNum();
-        int *getNumLayers();
-        int *getInPoint();
-        int *getOutPoint();
-        int getFrameCount();
-    
-        void setup(int x, int y, int _width, int _height);
-        void setFrameRate(int _frameRate);
-        void setPlaying(bool newval) { isPlaying = newval; }
-        void setInPointToCurrent();
-        void setOutPointToCurrent();
-        void setCurLayer(int pos, int method);
-        void setCurFrame(int pos, int method);
-    
-        void addFrameNextTo();
-        void addFrame();
-        void addLayer();
-        void beginBlend();
-        void endBlend();
-        void windowResize(int w, int h);
-    
-        void drawCurFrame();
-        void drawOnionSkin(int alpha); // just before and after
-        void drawTimeline();
-        void drawFrameNum(int x, int frame_num);
-    
-        void clearCurFrame();
-        void checkTimelineResize();
-        void delCurFrame();
-    
-        int countAllocatedFbos();
+    bool isPlaying;
+    ofParameter<bool> showOnionSkin;
+    ofParameter<int> onionSkinAlpha;
+    ofParameter<int> autoFrameHandleMode;
+public:
+    ofParameterGroup parameters;
+    Timeline();
+
+    bool getPlaying() { return isPlaying;}
+    vector<Frame> *getFrames();
+    int *getCurrFrameNum();
+    Frame *getCurrFrame();
+    Frame *getFrame(int num);
+    ofFbo *getCurFbo();
+    Clip *getCurrClip();
+    int *getCurrLayerNum();
+    int *getNumLayers();
+    int *getInPoint();
+    int *getOutPoint();
+    int getFrameCount();
+
+    void setup(int x, int y, int _width, int _height);
+    void setFrameRate(int _frameRate);
+    void setPlaying(bool newval) { isPlaying = newval; }
+    void setInPointToCurrent();
+    void setOutPointToCurrent();
+    void setCurLayer(int pos, int method);
+    void setCurFrame(int pos, int method);
+
+    void autoFrameHandleSwitch();
+    void autoFrameHandle();
+    void playPause();
+    void addFrameNextTo();
+    void addAndMove();
+    void moveLeft();
+    void moveRight();
+    void addFrame();
+    void addLayer();
+    void beginBlend();
+    void endBlend();
+    void windowResize(int w, int h);
+
+    void draw();
+    void drawCurFrame();
+    void drawOnionSkin(int alpha); // just before and after
+    void drawTimeline();
+    void drawFrameNum(int x, int frame_num);
+
+    void clearCurFrame();
+    void checkTimelineResize();
+    void delCurFrame();
+
+    int countAllocatedFbos();
 };
 #endif

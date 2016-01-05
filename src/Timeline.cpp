@@ -21,7 +21,10 @@ void Timeline::setup(int x, int y, int _width, int _height) {
     frameRate = 3;
 
     font.load("Arial.ttf", 8);
-    return;
+    parameters.setName("Timeline");
+    parameters.add(showOnionSkin.set("showOnionSkin", false));
+    parameters.add(autoFrameHandleMode.set("autoFrameHandleMode", 0, 0, 2));
+    parameters.add(onionSkinAlpha.set("autoFrameHandleMode", 200, 0, 255));
 }
 vector<Frame> *Timeline::getFrames(){
     return clips[currClip].getFrames();
@@ -305,6 +308,47 @@ void Timeline::windowResize(int w, int h) {
     // or should we stretch the fbo's to the new dimension (almost certainly no, but it's an idea)
     return;
 }
+void Timeline::draw(){
+    drawCurFrame();
+    drawTimeline();
 
-
-
+}
+void Timeline::autoFrameHandleSwitch(){
+    autoFrameHandleMode > 1 ? autoFrameHandleMode = 0 : autoFrameHandleMode++;
+}
+void Timeline::autoFrameHandle(){
+    switch (autoFrameHandleMode) {
+        case 0:
+            break;
+        case 1: // auto frame add
+            addFrameNextTo();
+            setCurFrame(1, RELATIVE);
+            setOutPointToCurrent();
+            break;
+        case 2: // auto next frame
+            if(*getCurrFrameNum() == getFrameCount()-1){
+                setCurFrame(0, ABSOLUTE);
+            } else {
+                setCurFrame(1, RELATIVE);
+            }
+            break;
+    }
+}
+void Timeline::addAndMove(){
+    addFrameNextTo();
+    setCurFrame(1, RELATIVE);
+    setOutPointToCurrent();
+}
+void Timeline::moveLeft(){
+    setCurFrame(-1, RELATIVE);
+}
+void Timeline::moveRight(){
+    setCurFrame(1, RELATIVE);
+}
+void Timeline::playPause(){
+    if(getPlaying()) {
+        setPlaying(false);
+    } else {
+        setPlaying(true);
+    }
+}
