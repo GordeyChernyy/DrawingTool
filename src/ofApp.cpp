@@ -25,8 +25,8 @@ void ofApp::draw(){
     // draw
     canvasM.draw();
     brush()->draw();
-    ofDisableAlphaBlending();
     uiM.draw();
+    ofDisableAlphaBlending();
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

@@ -1,4 +1,3 @@
-Makefile
 obj
 bin/DrawingTool.app
 bin/DrawingTool.app/*

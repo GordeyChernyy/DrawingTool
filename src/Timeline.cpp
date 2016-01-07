@@ -311,7 +311,6 @@ void Timeline::windowResize(int w, int h) {
 void Timeline::draw(){
     drawCurFrame();
     drawTimeline();
-
 }
 void Timeline::autoFrameHandleSwitch(){
     autoFrameHandleMode > 1 ? autoFrameHandleMode = 0 : autoFrameHandleMode++;
