@@ -4,7 +4,6 @@
 void ofApp::setup(){
     ofSetFrameRate(FRAME_RATE);
     
-    win.setup();
     brushM.setup();
     canvasM.setup(ofGetWidth(), ofGetHeight());
     uiM.add(canvasM.parameters);
@@ -21,12 +20,11 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(uiM.bgColor);
     ofEnableAlphaBlending();
-    ofSetColor(255, 255);
-    // draw
+    ofSetColor(255,255);
     canvasM.draw();
     brush()->draw();
-    uiM.draw();
     ofDisableAlphaBlending();
+    uiM.draw();
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
