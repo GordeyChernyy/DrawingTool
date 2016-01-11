@@ -11,7 +11,9 @@
 
 class DreamBrush : public BrushBase {
 public:
-
+    DreamBrush(){
+        setup();
+    }
     void clear();
     void clearHistory(); // remove all elements from history
     void cleanHistory(); // resize history 
@@ -31,7 +33,6 @@ public:
     void end();
     string name();
     ofFbo canvas;
-    ofParameterGroup parameters;
     ofParameter<int> size;
     ofParameter<int> brushType;
     ofParameter<string> brushTypeS;

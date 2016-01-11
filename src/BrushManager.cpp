@@ -8,27 +8,16 @@
 
 #include "BrushManager.hpp"
 void BrushManager::setup(ofParameterGroup *rootParameters){
-    cout <<  "brush count in manager = " << BrushBase::getBrushCount()  << endl;
-    int brushCountMax = BrushBase::getBrushCount()-1;
-    dreamBrush.setup();
-    triangleBrush.setup();
+    brushes.push_back(new TriangleBrush());
+    brushes.push_back(new DreamBrush());
+    
     parameters.setName("BrushManager");
-    parameters.add(currentBrush.set("currentBrush", 0, 0, brushCountMax));
-    parameters.add(dreamBrush.parameters);
-    parameters.add(triangleBrush.parameters);
+    parameters.add(currentBrush.set("currentBrush", 0, 0, brushes.size()-1));
+    for (auto brush:brushes) parameters.add(brush->parameters);
     rootParameters->add(parameters);
 }
 BrushBase *BrushManager::getCurrentBrush(){
-    switch (currentBrush) {
-        case 0:
-            return &dreamBrush;
-            break;
-        case 1:
-            return &triangleBrush;
-            break;
-        default:
-            break;
-    }
+    return brushes[currentBrush];
 }
 void BrushManager::setCurrentBrush(int num){
     if(num<=currentBrush.getMax()){

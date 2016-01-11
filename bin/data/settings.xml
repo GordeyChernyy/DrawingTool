@@ -1,0 +1,46 @@
+<group>
+	<stageParam>
+		<brushMode>0</brushMode>
+		<burshmodelabel>hidude</burshmodelabel>
+		<showInfo>1</showInfo>
+		<enableMouse>1</enableMouse>
+		<enableKaleidoscope>0</enableKaleidoscope>
+		<enableMovingFbo>0</enableMovingFbo>
+		<showOnionSkin>0</showOnionSkin>
+		<onionSkinAlpha>20</onionSkinAlpha>
+		<releaseMode>0</releaseMode>
+		<pointerSize>5</pointerSize>
+		<pointerColor>255, 255, 255, 255</pointerColor>
+		<bgColor>255, 255, 255, 255</bgColor>
+	</stageParam>
+	<BrushManager>
+		<currentBrush>1</currentBrush>
+		<TriangleBrush>
+			<dotDistance>50</dotDistance>
+			<pointChoice>50</pointChoice>
+			<indexRange>5</indexRange>
+			<opacity>120</opacity>
+		</TriangleBrush>
+		<DreamBrush>
+			<historyMax>1392</historyMax>
+			<type_triangle>1</type_triangle>
+			<size>658</size>
+			<opacity>66.4848</opacity>
+			<lineWidth>0.2</lineWidth>
+			<swatch>2</swatch>
+			<bgColor>0, 0, 0, 0</bgColor>
+			<activeColor>0, 0, 0, 0</activeColor>
+			<col1>254, 5, 12, 255</col1>
+			<col2>138, 4, 109, 255</col2>
+			<col3>254, 129, 253, 255</col3>
+		</DreamBrush>
+	</BrushManager>
+	<CanvasManager>
+		<currentCanvas>0</currentCanvas>
+		<Timeline>
+			<showOnionSkin>0</showOnionSkin>
+			<autoFrameHandleMode>200</autoFrameHandleMode>
+		</Timeline>
+	</CanvasManager>
+<group/>
+</group>

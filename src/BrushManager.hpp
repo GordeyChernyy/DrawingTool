@@ -23,10 +23,8 @@ public:
     ofParameterGroup parameters;
     BrushBase *getCurrentBrush();
 private:
-    int getBrushCount();
+    vector<BrushBase*> brushes;
     ofParameter<int> currentBrush;
-    TriangleBrush triangleBrush;
-    DreamBrush dreamBrush;
 };
 
 #endif /* BrushManager_hpp */

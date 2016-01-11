@@ -347,8 +347,8 @@
 				7221E9271B74376300AB4529 /* DreamBrush.h */,
 				66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */,
 				66E0591C1BE0DD6900ABAADF /* VideoBrush.h */,
-				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
 				15E28E421C02770C00546B91 /* TriangleBrush.cpp */,
+				72C9226C1BC0CAFD002B0261 /* TriangleBrush.h */,
 			);
 			name = Brushes;
 			sourceTree = "<group>";

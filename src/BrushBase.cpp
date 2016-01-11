@@ -8,4 +8,3 @@
 
 #include "BrushBase.h"
 
-int BrushBase::brushCount = 0;

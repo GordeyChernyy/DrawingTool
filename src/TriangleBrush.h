@@ -12,11 +12,13 @@
 
 class TriangleBrush : public BrushBase {
 public:
+    TriangleBrush(){
+        setup();
+    }
     vector<ofVec2f> history;
     vector<ofVec2f> temp;
     ofVec2f *trianglePoints;
     float pressure;
-    ofParameterGroup parameters;
     ofParameter<float> opacity;
     ofParameter<int> dotDistance;
     ofParameter<int> pointChoice;
