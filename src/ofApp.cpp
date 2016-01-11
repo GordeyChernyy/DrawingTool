@@ -4,10 +4,8 @@
 void ofApp::setup(){
     ofSetFrameRate(FRAME_RATE);
     
-    brushM.setup();
-    canvasM.setup(ofGetWidth(), ofGetHeight());
-    uiM.add(canvasM.parameters);
-    uiM.add(brushM.parameters);
+    brushM.setup(uiM.getParameters());
+    canvasM.setup(ofGetWidth(), ofGetHeight(), uiM.getParameters());
     uiM.setup();
     
     ofBackground(uiM.bgColor);

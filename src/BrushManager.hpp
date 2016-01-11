@@ -18,7 +18,7 @@
 
 class BrushManager{
 public:
-    void setup();
+    void setup(ofParameterGroup *rootParameters);
     void setCurrentBrush(int num);
     ofParameterGroup parameters;
     BrushBase *getCurrentBrush();

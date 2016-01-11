@@ -7,11 +7,11 @@
 //
 
 #include "CanvasManager.hpp"
-void CanvasManager::setup(int w, int h){
+void CanvasManager::setup(int w, int h, ofParameterGroup *rootParameters){
     parameters.setName("CanvasManager");
     parameters.add(currCanvasMode.set("currentCanvas", 0, 0, 0));
     parameters.add(timeline.parameters);
-//    parameters.add(timeline.parameters);
+    rootParameters->add(parameters);
     timeline.setup(w / 8, h * .75, w * (6.0/8.0), h * .2);
 }
 ofFbo *CanvasManager::getCurrFbo(){

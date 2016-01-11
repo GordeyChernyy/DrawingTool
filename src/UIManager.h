@@ -44,6 +44,7 @@ public:
     void draw();
     int getWidth();
     void add(ofParameterGroup _parameters);
+    ofParameterGroup *getParameters(){return &parameters;}
     void expandNext ();
     void expandPrev ();
 };

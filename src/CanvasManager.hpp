@@ -19,9 +19,11 @@ private:
 public:
     Timeline *getTimeline();
     ofParameterGroup parameters;
-    void setup(int w, int h);
+    void setup(int w, int h, ofParameterGroup *rootParameters);
     ofFbo *getCurrFbo();
     void draw();
+    void draw(int size);
+    void draw(int a, int b);
     void autoFrameHandle();
 };
 
