@@ -1,4 +1,4 @@
-#include "timeline_types.h"
+#include "Timeline.h"
 
 Timeline::Timeline() {
 }
@@ -12,10 +12,13 @@ void Timeline::setup(int x, int y, int _width, int _height) {
     frameWidth = ofGetWindowWidth();
     frameHeight = ofGetWindowHeight();
     
-    currClip = 0;
-    Clip *clip = new Clip();
-    clips.push_back(*clip);
     addFrame();
+    
+    curlayerNum = 0;
+    numLayers = 1;
+    inPoint = 0;
+    outPoint = 0;
+    curFrame = 0;
     
     isPlaying = false;
     frameRate = 3;
@@ -26,54 +29,48 @@ void Timeline::setup(int x, int y, int _width, int _height) {
     parameters.add(autoFrameHandleMode.set("autoFrameHandleMode", 0, 0, 2));
     parameters.add(onionSkinAlpha.set("autoFrameHandleMode", 200, 0, 255));
 }
-vector<Frame> *Timeline::getFrames(){
-    return clips[currClip].getFrames();
-}
-Frame *Timeline::getCurrFrame(){
-    return clips[currClip].getCurrFrame();
-}
+
 Frame *Timeline::getFrame(int num){
-    return clips[currClip].getFrame(num);
+    if ((num > frames.size()) || (num < 0)) {
+        cout << "Problem in Timeline::getFrame" << endl;
+        num = ofClamp(num, 0, frames.size());
+    }
+    return &frames[num];
 }
-int *Timeline::getCurrFrameNum(){
-    return clips[currClip].getCurrFrameNum();
+
+int Timeline::getNumLayers(){
+    return numLayers;
 }
-int *Timeline::getCurrLayerNum(){
-    return clips[currClip].getCurrLayerNum();
+int Timeline::getInPoint(){
+    return inPoint;
 }
-int *Timeline::getNumLayers(){
-    return clips[currClip].getNumLayers();
-}
-int *Timeline::getInPoint(){
-    return clips[currClip].getInPoint();
-}
-int *Timeline::getOutPoint(){
-    return clips[currClip].getOutPoint();
+int Timeline::getOutPoint(){
+    return outPoint;
 }
 int Timeline::getFrameCount(){
-    return getFrames()->size();
+    return frames.size();
 }
 // returns the FBO corresponding to the current frame and current layers
 ofFbo *Timeline::getCurFbo() {
-    return clips[currClip].getCurrFbo();
+    return frames[curFrame].getCurFbo(curlayerNum);
 }
 
 // adds a frame either at currFrame.  Does not change  currFrame
 void Timeline::addFrameNextTo() {
     Frame *new_frame = new Frame;
     new_frame->setup(frameWidth, frameHeight);
-    getFrames()->insert(getFrames()->begin() + *getCurrFrameNum() + 1, *new_frame);
+    frames.insert(frames.begin() + curFrame + 1, *new_frame);
 }
 void Timeline::addFrame(){
     Frame *new_frame = new Frame;
     new_frame->setup(frameWidth, frameHeight);
-    getFrames()->insert(getFrames()->begin(), *new_frame);
+    frames.insert(frames.begin(), *new_frame);
 }
 
 // adds a layer one above the current layer
 void Timeline::addLayer() {
-    getCurrFrame()->addLayer(frameWidth, frameHeight, *getCurrLayerNum() + 1);
-    *getNumLayers() += 1;
+    frames[curFrame].addLayer(frameWidth, frameHeight, curlayerNum + 1);
+    numLayers += 1;
     checkTimelineResize();
 }
 
@@ -86,10 +83,10 @@ void Timeline::setCurFrame(int pos, int method) {
     // determine the new positon and clamp it between 0 and _frame.size() -1
     switch (method) {
         case RELATIVE:
-            *getCurrFrameNum() = ofClamp(*getCurrFrameNum() + pos, 0, getFrames()->size() -  1);
+            curFrame = ofClamp(curFrame + pos, 0, frames.size() -  1);
             break;
         case ABSOLUTE:
-            *getCurrFrameNum() = ofClamp(pos, 0, getFrames()->size() - 1);
+            curFrame = ofClamp(pos, 0, frames.size() - 1);
             break;
         default:
             dbg_error("Invalid method in Timeline::setbCurFrame");
@@ -105,10 +102,10 @@ void Timeline::setCurLayer(int pos, int method) {
     // determine the new positon and clamp it between 0 and numLayers - 2
     switch(method) {
         case RELATIVE:
-            *getCurrLayerNum() = ofClamp(*getCurrLayerNum() + pos, 0, *getNumLayers() - 1);
+            curlayerNum = ofClamp(curlayerNum + pos, 0, numLayers - 1);
             break;
         case ABSOLUTE:
-            *getCurrLayerNum() = ofClamp(pos, 0, *getNumLayers() - 1);
+            curlayerNum = ofClamp(pos, 0, numLayers - 1);
             break;
         default:
             dbg_error("Invalid method in Timeline::setCurLayer" );
@@ -117,15 +114,15 @@ void Timeline::setCurLayer(int pos, int method) {
     //TODO: Allocate the fbo if it doesn't already exist
 }
 void Timeline::setOutPointToCurrent(){
-    clips[currClip].setOutPointToCurrent();
+    outPoint = curFrame;
 }
 void Timeline::setInPointToCurrent(){
-    clips[currClip].setInPointToCurrent();
+    inPoint = curFrame;
 }
 // makes sure we can always draw all our layers
 void Timeline::checkTimelineResize() {
     int max_h = 0;
-    max_h = (*getNumLayers() * FRAME_SIZE) + (2 * EDGE_SPACER) + NUM_SPACER;
+    max_h = (numLayers * FRAME_SIZE) + (2 * EDGE_SPACER) + NUM_SPACER;
     while(max_h > height) {
         height += FRAME_SIZE;
         _y -= FRAME_SIZE;
@@ -139,43 +136,43 @@ void Timeline::endBlend(){
     glDisable(GL_BLEND);
 }
 void Timeline::clearCurFrame(){
-   getCurrFrame()->clear(*getCurrLayerNum());
+   frames[curFrame].clear(curlayerNum);
 }
 void Timeline::delCurFrame() {
     int newcurrFrame = 0;
     
-    if(getFrames()->size() == 1) {
+    if(frames.size() == 1) {
         cout << "Can't delete the only frame!" << endl;
         return;
     }
     
     // check if the cur_frame is the last frame
     // -1 from frame.size() because currFrame counts from 0 and _frame.size() counts from 1
-    if(*getCurrFrameNum() == (getFrames()->size() - 1)) {
-        newcurrFrame = *getCurrFrameNum() - 1;
+    if(curFrame == (frames.size() - 1)) {
+        newcurrFrame = curFrame - 1;
     }
     else {
-        newcurrFrame = *getCurrFrameNum();
+        newcurrFrame = curFrame;
     }
     
     
-    getCurrFrame()->destroyLayers();
-    getFrames()->erase(getFrames()->begin() + *getCurrFrameNum());
+    frames[curFrame].destroyLayers();
+    frames.erase(frames.begin() + curFrame);
     
-    *getCurrFrameNum() = newcurrFrame;
+    curFrame = newcurrFrame;
 }
 // Responsible for drawing the actual FBO for the frame, as opposed to drawing on the Timeline
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
     cout <<  "count= " << getFrameCount()  << endl;
-    getCurrFrame()->setAlpha(255);
+    frames[curFrame].setAlpha(255);
     beginBlend();
-    getCurrFrame()->draw();
+    frames[curFrame].draw();
     endBlend();
     if(isPlaying && ofGetFrameNum()%frameRate == 0) {
-        *getCurrFrameNum() += 1;
-        if(*getCurrFrameNum() > *getOutPoint()) {
-            *getCurrFrameNum() = *getInPoint();
+        curFrame += 1;
+        if(curFrame > getOutPoint()) {
+            curFrame = getInPoint();
         }
     }
     
@@ -183,13 +180,13 @@ void Timeline::drawCurFrame() {
 void Timeline::drawOnionSkin(int alpha){
     glEnable(GL_BLEND);
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    int frameBefore = *getCurrFrameNum()-1;
-    int frameAfter = *getCurrFrameNum()+1;
+    int frameBefore = curFrame-1;
+    int frameAfter = curFrame+1;
     if (frameBefore >= 0) {
         getFrame(frameBefore)->setAlpha(alpha);
         getFrame(frameBefore)->draw();
     }
-    if (frameAfter <= getFrames()->size()-1) {
+    if (frameAfter <= frames.size()-1) {
         getFrame(frameBefore)->setAlpha(20);
         getFrame(frameBefore)->draw();
     }
@@ -224,14 +221,14 @@ void Timeline::drawTimeline() {
     int pot_left = (width / 2) / FRAME_SIZE; // potential left. max number of frames that fit to left of middle frame
     pot_right -= 1;           // potential right. adjust because we don't count cur frame
     
-    int act_left = MIN(*getCurrFrameNum(), pot_left); // actual left. number of frames to draw left
-    int act_right = MIN(getFrames()->size() - *getCurrFrameNum() - 1, pot_right); // actual right. number of frames to draw right
-    int low_frame = *getCurrFrameNum() - act_left;
-    int high_frame = *getCurrFrameNum() + act_right;
+    int act_left = MIN(curFrame, pot_left); // actual left. number of frames to draw left
+    int act_right = MIN(frames.size() - curFrame - 1, pot_right); // actual right. number of frames to draw right
+    int low_frame = curFrame - act_left;
+    int high_frame = curFrame + act_right;
     
     // calculate the coordinates of the middle of the Timeline in x dimension, bottom of Timeline in y
     int init_x = _x + width / 2;
-    init_x += -((*getCurrFrameNum() - low_frame) * FRAME_SIZE);  // adjust for whatever the left most frame to be drawn is
+    init_x += -((curFrame - low_frame) * FRAME_SIZE);  // adjust for whatever the left most frame to be drawn is
     int init_y = _y + height - EDGE_SPACER - FRAME_SIZE- NUM_SPACER;
     int cur_x = init_x;
     int cur_y = init_y;
@@ -239,12 +236,12 @@ void Timeline::drawTimeline() {
     // TODO: Should f be < or <= s
     for(int f = low_frame; f <= high_frame; f++) {
         drawFrameNum(cur_x, f);
-        for(int l = 0;  l < *getNumLayers(); l++) {
+        for(int l = 0;  l < numLayers; l++) {
             // the selected frame should be a different color from all the other frames
             // and the selected layer in that frame should be an even different color
-            if((l == *getCurrLayerNum()) && (f == *getCurrFrameNum())) {
+            if((l == curlayerNum) && (f == curFrame)) {
                 ofSetColor(COLOR_CUR_DRAWSPACE);
-            } else if(f == *getCurrFrameNum()){
+            } else if(f == curFrame){
                 ofSetColor(COLOR_CUR_FRAME);
             } else {
                 ofSetColor(COLOR_FRAME);
@@ -282,7 +279,7 @@ void dbg_error(string err_msg) {
 // helper functions for diagnostics (looking for slow down from fbo over-allocation for example)
 int Timeline::countAllocatedFbos() {
     int out = 0;
-    for(int f = 0; f < getFrames()->size(); f++) {
+    for(int f = 0; f < frames.size(); f++) {
         for(int l = 0; l < getFrame(f)->getLayers()->size(); l++) {
             out += 1;
         }
@@ -325,7 +322,7 @@ void Timeline::autoFrameHandle(){
             setOutPointToCurrent();
             break;
         case 2: // auto next frame
-            if(*getCurrFrameNum() == getFrameCount()-1){
+            if(curFrame == getFrameCount()-1){
                 setCurFrame(0, ABSOLUTE);
             } else {
                 setCurFrame(1, RELATIVE);

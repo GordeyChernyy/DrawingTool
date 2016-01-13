@@ -10,7 +10,7 @@
 #define CanvasManager_hpp
 
 #include "ofMain.h"
-#include "timeline_types.h"
+#include "Timeline.h"
 
 class CanvasManager{
 private:

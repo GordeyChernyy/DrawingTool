@@ -1,16 +1,16 @@
 //
-//  ColorHandle.hpp
+//  ColorManager.hpp
 //  DrawingTool
 //
 //  Created by Zerc on 1/4/16.
 //
 //
 
-#ifndef ColorHandle_hpp
-#define ColorHandle_hpp
+#ifndef ColorManager_hpp
+#define ColorManager_hpp
 
 #include "ofMain.h"
-class ColorHandle{
+class ColorManager{
 public:
     ofParameterGroup parameters;
     ofColor getCurrColor();
@@ -97,4 +97,4 @@ private:
         
     };
 };
-#endif /* ColorHandle_hpp */
+#endif /* ColorManager_hpp */

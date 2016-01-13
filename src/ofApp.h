@@ -5,7 +5,7 @@
 #include "ofxGui.h"
 #include "Kaleidoscope.h"
 #include "FramesFbo.h"
-#include "timeline_types.h"
+#include "Timeline.h"
 #include "MultiWindow.h"
 #include "Crop.hpp"
 #include "UIManager.h"

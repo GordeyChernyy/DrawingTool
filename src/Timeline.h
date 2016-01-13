@@ -1,6 +1,7 @@
 #ifndef TIMELINE_TYPES_H
 #define TIMELINE_TYPES_H
 #include "ofMain.h"
+#include "Frame.h"
 #include <vector>
 #include <pthread.h>
 
@@ -27,70 +28,6 @@
 
 void dbg_error(string err_msg);
 
-class Layer {
-private:
-    ofFbo fbo;
-    int layerNum;
-    int x, y;
-public:
-    ofFbo *getFbo();
-    void setup(int width, int height, int layer_num);
-    int getLayerNum();
-    void setLayer(int layer_num);
-    void draw();
-    void clear();
-    void destroy();
-};
-
-class Frame {
-private:
-    vector<ofFbo> fbos;
-    std::vector <int> _mask_layers;
-    std::vector<Layer> layers;
-    bool _bcurrFrame;
-    int alpha;
-public:
-    std::vector<Layer> *getLayers();
-    ofFbo *getCurFbo(int layer_num);
-    void setAlpha(int value);
-    void setup(int width, int height);
-    void draw();
-    void addLayer(int width, int height, int layer_num);
-    Layer *findLayerByLayerNum(int layer_num);
-    void destroyLayers();
-    void clear();
-    void clear(int layerNum);
-};
-
-// test max buffers that can be allocated
-/*typedef struct _test {
-    unsigned char *fbo;
-    struct _test *next;
-} test;*/
-class Clip {
-private:
-    int currFrame;
-    int currLayer;
-    int numLayers;
-    int inPoint;
-    int outPoint;
-    vector<Frame> frames;
-public:
-    Clip();
-    int *getCurrFrameNum (){return &currFrame;}
-    int *getCurrLayerNum (){return &currLayer;}
-    int *getNumLayers (){return &numLayers;}
-    int *getInPoint (){return &inPoint;}
-    int *getOutPoint (){return &outPoint;}
-    
-    Frame *getCurrFrame (){return &frames[currFrame];}
-    Frame *getFrame (int num){return &frames[num];}
-    ofFbo *getCurrFbo (){return frames[currFrame].getCurFbo(currLayer);}
-    vector<Frame> *getFrames (){return &frames;}
-    
-    void setOutPointToCurrent (){outPoint = currFrame;};
-    void setInPointToCurrent (){inPoint = currFrame;};
-};
 class Timeline {
 private:
     ofTrueTypeFont font;
@@ -98,8 +35,11 @@ private:
     int _x, _y, width, height;
     int frameWidth, frameHeight;
     
-    vector<Clip>  clips;
-    int currClip;
+    int curlayerNum;
+    int numLayers;
+    int inPoint, outPoint;
+    int curFrame;
+    vector<Frame> frames;
     
     bool isPlaying;
     ofParameter<bool> showOnionSkin;
@@ -111,15 +51,14 @@ public:
 
     bool getPlaying() { return isPlaying;}
     vector<Frame> *getFrames();
-    int *getCurrFrameNum();
     Frame *getCurrFrame();
     Frame *getFrame(int num);
     ofFbo *getCurFbo();
-    Clip *getCurrClip();
-    int *getCurrLayerNum();
-    int *getNumLayers();
-    int *getInPoint();
-    int *getOutPoint();
+    int getNumLayers();
+    int getInPoint();
+    int getOutPoint();
+    void setInPoint(int newVal) {inPoint = newVal;}
+    void setOutPoint(int newVal) {outPoint = newVal;}
     int getFrameCount();
 
     void setup(int x, int y, int _width, int _height);

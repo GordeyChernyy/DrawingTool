@@ -1,4 +1,4 @@
-#include "timeline_types.h"
+#include "Frame.h"
 
 //@@@@@@@@@@@FRAME CLASS METHODS
 
@@ -27,7 +27,8 @@ ofFbo *Frame::getCurFbo(int layer_num) {
         addLayer(ofGetWindowWidth(), ofGetWindowHeight(), layer_num);
         tmp_layer = findLayerByLayerNum(layer_num);
         if(NULL == tmp_layer) {
-            dbg_error("Tried adding a layer but it didn't work!");
+            //dbg_error("Tried adding a layer but it didn't work!");
+            return NULL;
         }
     }
 
@@ -40,7 +41,6 @@ void Frame::addLayer(int width, int height, int layer_num) {
     new_layer->setup(width, height, layer_num);
     layers.push_back(*new_layer);
 }
-
 // width and height are the size of the stuff you're drawing on the screen (so they should be window width and height)
 // cur frame is whether this is the cur frame of the timeline
 void Frame::setup(int width, int height) {
