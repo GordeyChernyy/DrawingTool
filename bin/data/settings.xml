@@ -33,7 +33,23 @@
 			<col1>254, 5, 12, 255</col1>
 			<col2>138, 4, 109, 255</col2>
 			<col3>254, 129, 253, 255</col3>
+		<type_line>0</type_line>
 		</DreamBrush>
+		<PyramidBrush>
+			<historyMax>1392</historyMax>
+			<brushType>1</brushType>
+			<size>1.1</size>
+			<opacity>66.4848</opacity>
+			<lineWidth>0.2</lineWidth>
+			<swatch>2</swatch>
+			<bgColor>0, 0, 0, 0</bgColor>
+			<activeColor>0, 0, 0, 0</activeColor>
+			<col1>254, 5, 12, 255</col1>
+			<col2>138, 4, 109, 255</col2>
+			<col3>254, 129, 253, 255</col3>
+		<type_line>0</type_line>
+		</PyramidBrush>
+	<group/>
 	</BrushManager>
 	<CanvasManager>
 		<currentCanvas>0</currentCanvas>

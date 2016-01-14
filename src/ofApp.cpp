@@ -113,16 +113,16 @@ void ofApp::mouseMoved(int x, int y ){
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    brush()->updateCanvas(fbo(), x, y, 0.3, ofColor(0));
+    brush()->updateCanvas(canvasM.getTimeline(), fbo(), x, y, 0.3, ofColor(0));
 }
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    brush()->onMouseDown(x, y);
+    brush()->onMouseDown(canvasM.getTimeline(),  fbo(), x, y);
 }
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
     canvasM.autoFrameHandle();
-    brush()->onMouseUp(x, y);
+    brush()->onMouseUp(canvasM.getTimeline(), fbo(), x, y);
 }
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){

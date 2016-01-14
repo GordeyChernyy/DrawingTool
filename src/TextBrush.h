@@ -45,13 +45,13 @@ public:
     void changeFontSize (int &fontSize) {
         font.setup(fontFile, fontSize);
     }
-    void onMouseUp(int x, int y){
+    void onMouseUp(Timeline *timeline, ofFbo *fbo,int x, int y){
         coordHistory.clean();
     }
-    void onMouseDown(int x, int y){
+    void onMouseDown(Timeline *timeline, ofFbo *fbo,int x, int y){
         coordHistory.add(ofVec2f(x,y));
     }
-    void updateCanvas (ofFbo *fbo, float x, float y, float pressure, ofColor col){
+    void updateCanvas (Timeline *timeline, ofFbo *fbo, float x, float y, float pressure, ofColor col){
         int width = font.getWidth("p");
         
         if(coordHistory.getDistance() > width){

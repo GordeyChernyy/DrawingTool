@@ -10,6 +10,7 @@
 void BrushManager::setup(ofParameterGroup *rootParameters){
     brushes.push_back(new TriangleBrush());
     brushes.push_back(new DreamBrush());
+    brushes.push_back(new PyramidBrush());
     
     parameters.setName("BrushManager");
     parameters.add(currentBrush.set("currentBrush", 0, 0, brushes.size()-1));

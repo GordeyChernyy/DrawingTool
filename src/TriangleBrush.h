@@ -9,6 +9,7 @@
 #pragma once
 #include "ofMain.h"
 #include "BrushBase.h"
+#include "Timeline.h"
 
 class TriangleBrush : public BrushBase {
 public:
@@ -25,9 +26,9 @@ public:
     ofParameter<int> indexRange;
 
     void setup();
-    void onMouseUp(int x, int y);
-    void onMouseDown(int x, int y);
-    void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col);
+    void onMouseUp(Timeline *timeline, ofFbo *fbo,int x, int y);
+    void onMouseDown(Timeline *timeline, ofFbo *fbo,int x, int y);
+    void updateCanvas(Timeline *timeline, ofFbo *fbo, float x, float y, float pressure, ofColor col);
     void draw();
     bool isDistanceBigger(ofVec2f a, ofVec2f b, float distance);
     void setTrianglePoints(vector<ofVec2f> sortedCoord, ofVec2f currentPoint);

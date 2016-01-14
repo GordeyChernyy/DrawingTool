@@ -7,6 +7,7 @@
 //
 #include "ofMain.h"
 #include "BrushBase.h"
+#include "Timeline.h"
 #pragma once
 
 class DreamBrush : public BrushBase {
@@ -18,12 +19,12 @@ public:
     void clearHistory(); // remove all elements from history
     void cleanHistory(); // resize history 
     void setup();
-    void onMouseUp(int x, int y);
-    void onMouseDown(int x, int y);
+    void onMouseUp(Timeline *timeline, ofFbo *fbo, int x, int y);
+    void onMouseDown(Timeline *timeline, ofFbo *fbo, int x, int y);
     void drawToCanvas(float x, float y, float pressure); // draw to fbo located in this class
     void drawBrush(float x, float y, float pressure); // draw lines
     
-    void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col); // pass fbo
+    void updateCanvas(Timeline *timeline, ofFbo *fbo, float x, float y, float pressure, ofColor col); // pass fbo
     void draw(); // draw fbo located in this class
     void changeColor(int num);
     void changeSwatch(int &swatch);

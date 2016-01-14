@@ -33,7 +33,7 @@ void DreamBrush::drawToCanvas(float x, float y, float pressure){
         drawBrush(x, y, pressure);
     canvas.end();
 }
-void DreamBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col){
+void DreamBrush::updateCanvas(Timeline *timeline, ofFbo *fbo, float x, float y, float pressure, ofColor col){
     fbo->begin();
         drawBrush(x, y, pressure);
     fbo->end();
@@ -65,10 +65,10 @@ void DreamBrush::cleanHistory(){
         history.erase(history.begin());
     }
 }
-void DreamBrush::onMouseDown(int x, int y){
+void DreamBrush::onMouseDown(Timeline *timeline, ofFbo *fbo, int x, int y){
     clearHistory();
 }
-void DreamBrush::onMouseUp(int x, int y){
+void DreamBrush::onMouseUp(Timeline *timeline, ofFbo *fbo, int x, int y){
     clearHistory();
 }
 void DreamBrush::clearHistory(){

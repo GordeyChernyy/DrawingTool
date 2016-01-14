@@ -19,7 +19,7 @@ void TriangleBrush::setup(){
             trianglePoints = new ofVec2f[3];
 }
 
-void TriangleBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col){
+void TriangleBrush::updateCanvas(Timeline *timeline, ofFbo *fbo, float x, float y, float pressure, ofColor col){
             ofVec2f currentPoint(x,y);
             if (history.size() < 4) addPoint(history, currentPoint);
             if (history.size() > 3){
@@ -36,9 +36,9 @@ void TriangleBrush::updateCanvas(ofFbo *fbo, float x, float y, float pressure, o
                 }
             }
 }
-void TriangleBrush::onMouseDown(int x, int y){
+void TriangleBrush::onMouseDown(Timeline *timeline, ofFbo *fbo,int x, int y){
 }
-void TriangleBrush::onMouseUp(int x, int y){
+void TriangleBrush::onMouseUp(Timeline *timeline, ofFbo *fbo,int x, int y){
     clearHistory();
 }
 

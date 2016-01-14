@@ -8,7 +8,7 @@
 
 #pragma once
 #include "ofMain.h"
-
+#include "Timeline.h"
 class VideoBrush{
     public:
         void clear();
@@ -18,7 +18,7 @@ class VideoBrush{
         void drawToCanvas(float x, float y, float pressure); // draw to fbo located in this class
         void drawBrush(float x, float y, float pressure); // draw lines
         
-        void updateCanvas(ofFbo *fbo, float x, float y, float pressure); // pass fbo
+        void updateCanvas(Timeline *timeline, ofFbo *fbo, float x, float y, float pressure); // pass fbo
         void draw(); // draw fbo located in this class
         void changeColor(int num);
         void changeSwatch(int &swatch);
