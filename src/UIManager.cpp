@@ -58,7 +58,7 @@ void UIManager::drawInfo(){
         s.push_back("s             create new frame");
         s.push_back("f             next frame");
         s.push_back("d             previous frame");
-        s.push_back("e             triangle brush");
+        s.push_back(".             triangle brush");
         s.push_back(",             dream catcher brush");
         s.push_back("-             clear image");
         s.push_back("x             releaseMode: ");
