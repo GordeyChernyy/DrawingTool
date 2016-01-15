@@ -50,6 +50,7 @@ public:
     Timeline();
 
     bool getPlaying() { return isPlaying;}
+    bool isAllocated(int i, int j);
     vector<Frame> *getFrames();
     Frame *getCurrFrame();
     Frame *getFrame(int num);
@@ -57,6 +58,9 @@ public:
     int getNumLayers();
     int getInPoint();
     int getOutPoint();
+    int getNumFrames();
+    int getCurLayerNum(){return curlayerNum;}
+    int getCurFrameNum(){return curFrame;}
     void setInPoint(int newVal) {inPoint = newVal;}
     void setOutPoint(int newVal) {outPoint = newVal;}
     int getFrameCount();
@@ -68,7 +72,9 @@ public:
     void setOutPointToCurrent();
     void setCurLayer(int pos, int method);
     void setCurFrame(int pos, int method);
-
+    void setLayerNum(int newVal);
+    void setFrameNum(int newVal);
+    
     void autoFrameHandleSwitch();
     void autoFrameHandle();
     void playPause();

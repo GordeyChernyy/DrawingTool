@@ -24,6 +24,7 @@
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
 		721197061C06C9F1009D56CA /* BrushBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721197051C06C9F1009D56CA /* BrushBase.cpp */; };
 		7212090B1C45D8E2001792C9 /* ColorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721209091C45D8E2001792C9 /* ColorManager.cpp */; };
+		721209131C45FAB8001792C9 /* ClipManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721209111C45FAB8001792C9 /* ClipManager.cpp */; };
 		7221E9281B74376300AB4529 /* DreamBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7221E9261B74376300AB4529 /* DreamBrush.cpp */; };
 		7227A4BC1BBF7F7E00848EB4 /* Kaleidoscope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */; };
 		722C30F21C3B3FED007ED0AA /* CanvasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722C30F01C3B3FED007ED0AA /* CanvasManager.cpp */; };
@@ -138,6 +139,8 @@
 		7212090A1C45D8E2001792C9 /* ColorManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorManager.hpp; sourceTree = "<group>"; };
 		7212090D1C45D999001792C9 /* Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layer.h; sourceTree = "<group>"; };
 		721209101C45F4A6001792C9 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		721209111C45FAB8001792C9 /* ClipManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClipManager.cpp; sourceTree = "<group>"; };
+		721209121C45FAB8001792C9 /* ClipManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClipManager.hpp; sourceTree = "<group>"; };
 		72176B631C054CAF00C8CE04 /* TextUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtility.h; sourceTree = "<group>"; };
 		72176B681C06433C00C8CE04 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		7221E9261B74376300AB4529 /* DreamBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = DreamBrush.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -289,6 +292,8 @@
 		661595051BD6799400E77D2C /* timeline */ = {
 			isa = PBXGroup;
 			children = (
+				721209111C45FAB8001792C9 /* ClipManager.cpp */,
+				721209121C45FAB8001792C9 /* ClipManager.hpp */,
 				6615950C1BD679D800E77D2C /* Layer.cpp */,
 				7212090D1C45D999001792C9 /* Layer.h */,
 				661595091BD679CF00E77D2C /* Frame.cpp */,
@@ -658,6 +663,7 @@
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				66E0591D1BE0DD6900ABAADF /* VideoBrush.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				721209131C45FAB8001792C9 /* ClipManager.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,

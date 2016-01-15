@@ -41,6 +41,9 @@ Frame *Timeline::getFrame(int num){
 int Timeline::getNumLayers(){
     return numLayers;
 }
+int Timeline::getNumFrames(){
+    return frames.size();
+}
 int Timeline::getInPoint(){
     return inPoint;
 }
