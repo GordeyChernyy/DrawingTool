@@ -12,9 +12,20 @@
 #include "ofMain.h"
 class ColorManager{
 public:
+    ColorManager(){
+        parameters.setName("ColorManager");
+        parameters.add(colorNum.set("colorNum", 0, 0, 3));
+        parameters.add(swatchNum.set("swatchNum", 0, 0, 12));
+    }
+    void setup(ofParameterGroup *rootParameters){
+        rootParameters->add(parameters);
+    }
     ofParameterGroup parameters;
-    ofColor getCurrColor();
+    ofColor getCurColor() {return swatches[swatchNum][colorNum];}
+    void setColorNum(int newVal) {colorNum=newVal;}
+    void setSwatchNum(int newVal) {swatchNum=newVal;}
 private:
+    ofParameter<int> colorNum;
     ofParameter<int> swatchNum;
     ofColor swatches[13][4] = {
         {

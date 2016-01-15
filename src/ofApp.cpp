@@ -4,10 +4,11 @@
 void ofApp::setup(){
     ofSetFrameRate(FRAME_RATE);
     
+    colorM.setup(uiM.getParameters());
     brushM.setup(uiM.getParameters());
     canvasM.setup(ofGetWidth(), ofGetHeight(), uiM.getParameters());
     uiM.setup();
-    
+
     ofBackground(uiM.bgColor);
 }
 //--------------------------------------------------------------
@@ -31,12 +32,16 @@ void ofApp::keyPressed(int key){
             canvasM.getTimeline()->autoFrameHandleSwitch();
             break;
         case '1':
+            colorM.setColorNum(0);
             break;
         case '2':
+            colorM.setColorNum(1);
             break;
         case '3':
+            colorM.setColorNum(2);
             break;
         case '4':
+            colorM.setColorNum(3);
             break;
         case ',':
             brushM.setCurrentBrush(0);
@@ -113,7 +118,7 @@ void ofApp::mouseMoved(int x, int y ){
 }
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-    brush()->updateCanvas(fbo(), x, y, 0.3, ofColor(0));
+    brush()->updateCanvas(fbo(), x, y, 0.3, colorM.getCurColor());
 }
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){

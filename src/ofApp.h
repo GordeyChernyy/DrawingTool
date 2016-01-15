@@ -11,6 +11,7 @@
 #include "UIManager.h"
 #include "BrushManager.hpp"
 #include "CanvasManager.hpp"
+#include "ColorManager.cpp"
 
 #define FRAME_RATE 60
 
@@ -34,9 +35,11 @@ public:
     UIManager uiM;
     CanvasManager canvasM;
     BrushManager brushM;
+    ColorManager colorM;
+    
     ofFbo *fbo();
     BrushBase *brush();
-
+    
     MultiWindow win;
 private:
     

@@ -34,6 +34,7 @@ void UIManager::setup(){
     vector<string> names = gui.getControlNames();
     // set gui headers color
     for (int i = 0; i<gui.getNumControls(); i++) {
+        cout <<  "gui name = " << names[i]  << endl;
         ofColor col = ofColor(0, 162, 208);
         gui.getGroup(names[i]).setHeaderBackgroundColor(col);
         gui.getGroup(names[i]).setTextColor(ofColor(0));
