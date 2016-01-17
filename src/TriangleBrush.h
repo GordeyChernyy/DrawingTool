@@ -23,7 +23,8 @@ public:
     ofParameter<int> dotDistance;
     ofParameter<int> pointChoice;
     ofParameter<int> indexRange;
-
+    
+    void update(){}
     void setup();
     void onMouseUp(int x, int y);
     void onMouseDown(int x, int y);

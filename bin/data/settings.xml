@@ -14,7 +14,7 @@
 		<bgColor>255, 255, 255, 255</bgColor>
 	</stageParam>
 	<BrushManager>
-		<currentBrush>1</currentBrush>
+		<currentBrush>2</currentBrush>
 		<TriangleBrush>
 			<dotDistance>50</dotDistance>
 			<pointChoice>50</pointChoice>
@@ -33,7 +33,15 @@
 			<col1>254, 5, 12, 255</col1>
 			<col2>138, 4, 109, 255</col2>
 			<col3>254, 129, 253, 255</col3>
+		<type_line>0</type_line>
 		</DreamBrush>
+	<MeshBrush>
+			<historyMax>1000</historyMax>
+			<type_line>0</type_line>
+			<size>300</size>
+			<opacity>20</opacity>
+			<lineWidth>0.2</lineWidth>
+		</MeshBrush>
 	</BrushManager>
 	<CanvasManager>
 		<currentCanvas>0</currentCanvas>
@@ -43,4 +51,8 @@
 		</Timeline>
 	</CanvasManager>
 <group/>
+<ColorManager>
+		<colorNum>3</colorNum>
+		<swatchNum>0</swatchNum>
+	</ColorManager>
 </group>

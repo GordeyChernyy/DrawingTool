@@ -19,6 +19,7 @@ private:
     virtual void updateCanvas(ofFbo *fbo, float x, float y, float pressure, ofColor col) = 0;
     virtual void onMouseDown(int x, int y) = 0;
     virtual void onMouseUp(int x, int y) = 0;
+    virtual void update() = 0;
     virtual string name() = 0;
     virtual void draw() = 0;
 };

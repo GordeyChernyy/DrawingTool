@@ -70,6 +70,7 @@ void UIManager::drawInfo(){
         s.push_back("x             third time: return to defau");
         s.push_back("              lt.");
         s.push_back("-- INFO ---------------------------------");
+        s.push_back("frame rate: " + ofToString(ofGetFrameRate()));
         s.push_back("-- TIPS ---------------------------------");
         s.push_back("It looks interesting if you change color");
         s.push_back("and draw at the same time.");

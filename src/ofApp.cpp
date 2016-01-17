@@ -8,12 +8,21 @@ void ofApp::setup(){
     brushM.setup(uiM.getParameters());
     canvasM.setup(ofGetWidth(), ofGetHeight(), uiM.getParameters());
     uiM.setup();
-
+    
+    osc.setup(12345);
+    osc.add("/mouse/position");
+    
+    
     ofBackground(uiM.bgColor);
 }
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    brush()->update();
+    osc.update();
+    int x = osc.getData("/mouse/position").valuesInt[0];
+    int y = osc.getData("/mouse/position").valuesInt[1];
+    float _x = ofMap(x, 0, 400, 0, 5);
+//    brush()->parameters.get<float>("lineWidth").set(_x);
 }
 //--------------------------------------------------------------
 void ofApp::draw(){

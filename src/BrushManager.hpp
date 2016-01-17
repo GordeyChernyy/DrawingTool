@@ -14,6 +14,7 @@
 #include "TextBrush.h"
 #include "DreamBrush.h"
 #include "TriangleBrush.h"
+#include "MeshBrush.hpp"
 #include "UIManager.h"
 
 class BrushManager{
@@ -22,6 +23,7 @@ public:
     void setCurrentBrush(int num);
     ofParameterGroup parameters;
     BrushBase *getCurrentBrush();
+    BrushBase *getBrush(string name);
 private:
     vector<BrushBase*> brushes;
     ofParameter<int> currentBrush;

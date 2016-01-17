@@ -82,7 +82,7 @@ void TriangleBrush::eraseFirst(vector<ofVec2f> &array){
 }
 
 void TriangleBrush::drawTriangle(ofVec2f *c){
-            ofTriangle(c[0], c[1], c[2]);
+            ofDrawTriangle(c[0], c[1], c[2]);
 }
 
 void TriangleBrush::debugArray(vector<ofVec2f> array){

@@ -12,6 +12,7 @@
 #include "BrushManager.hpp"
 #include "CanvasManager.hpp"
 #include "ColorManager.cpp"
+#include "OSCReceiver.hpp"
 
 #define FRAME_RATE 60
 
@@ -36,6 +37,7 @@ public:
     CanvasManager canvasM;
     BrushManager brushM;
     ColorManager colorM;
+    OSCReceiver osc;
     
     ofFbo *fbo();
     BrushBase *brush();
