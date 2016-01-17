@@ -7,7 +7,7 @@
 //
 
 #include "DreamBrush.h"
-const string NAME = "Dream Brush";
+const string NAME = "DreamBrush";
 
 void DreamBrush::setup(){
     parameters.setName("DreamBrush");

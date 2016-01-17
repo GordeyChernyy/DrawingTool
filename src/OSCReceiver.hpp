@@ -63,14 +63,14 @@ public:
             for (int i = 0; i < dataCount; i++){
                 if(m.getAddress() == messages[i]){
                     for(int j = 0; j < m.getNumArgs(); j++){
-                        if(m.getArgType(i) == OFXOSC_TYPE_INT32){
-                           data[i].valuesInt[j] = m.getArgAsInt32(i);
+                        if(m.getArgType(j) == OFXOSC_TYPE_INT32){
+                           data[i].valuesInt[j] = m.getArgAsInt32(j);
                         }
-                        else if(m.getArgType(i) == OFXOSC_TYPE_FLOAT){
-                           data[i].valuesFloat[j] = m.getArgAsFloat(i);
+                        else if(m.getArgType(j) == OFXOSC_TYPE_FLOAT){
+                           data[i].valuesFloat[j] = m.getArgAsFloat(j);
                         }
-                        else if(m.getArgType(i) == OFXOSC_TYPE_STRING){
-                           data[i].valuesString[j] = m.getArgAsString(i);
+                        else if(m.getArgType(j) == OFXOSC_TYPE_STRING){
+                           data[i].valuesString[j] = m.getArgAsString(j);
                         }
                         else{
                             cout <<  "unknown type of data" << endl;
@@ -78,7 +78,7 @@ public:
                        
                     }
                 } else {
-                    cout <<  "message not found" << endl;
+//                    cout <<  "message not found" << endl;
                 }
             }
         }

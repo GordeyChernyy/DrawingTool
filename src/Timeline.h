@@ -91,6 +91,7 @@ public:
     void clearCurFrame();
     void checkTimelineResize();
     void delCurFrame();
+    void clearAllFrames();
 
     int countAllocatedFbos();
 };

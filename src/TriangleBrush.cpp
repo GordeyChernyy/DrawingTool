@@ -7,7 +7,7 @@
 //
 
 #include "TriangleBrush.h"
-const string NAME = "Triangle Brush";
+const string NAME = "TriangleBrush";
 
 void TriangleBrush::setup(){
             pressure = 1.;

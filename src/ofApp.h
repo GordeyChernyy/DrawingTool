@@ -13,6 +13,7 @@
 #include "CanvasManager.hpp"
 #include "ColorManager.cpp"
 #include "OSCReceiver.hpp"
+#include "Mapper.hpp"
 
 #define FRAME_RATE 60
 
@@ -41,7 +42,7 @@ public:
     
     ofFbo *fbo();
     BrushBase *brush();
-    
+    Mapper mapper;
     MultiWindow win;
 private:
     

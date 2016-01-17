@@ -42,7 +42,8 @@ public:
     ofParameter<int> historyMax;
     ofParameter<float> opacity;
     ofParameter<float> lineWidth;
-    ofColor col;
+    ofParameter<ofVec2f> pointOffset;
+    ofParameter<ofColor> col;
     
     vector<ofVec2f> history;
 };
