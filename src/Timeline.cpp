@@ -164,7 +164,6 @@ void Timeline::delCurFrame() {
 // Responsible for drawing the actual FBO for the frame, as opposed to drawing on the Timeline
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
-    cout <<  "count= " << getFrameCount()  << endl;
     frames[curFrame].setAlpha(255);
     beginBlend();
     frames[curFrame].draw();

@@ -44,6 +44,9 @@ void ofApp::keyPressed(int key){
         case '.':
             brushM.setCurrentBrush(1);
             break;
+        case '/':
+            brushM.setCurrentBrush(2);
+            break;
         case '0':
             break;
         case 9:
