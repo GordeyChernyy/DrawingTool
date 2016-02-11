@@ -53,6 +53,7 @@ public:
     vector<Frame> *getFrames();
     Frame *getCurrFrame();
     Frame *getFrame(int num);
+    int getCurFrameNum();
     ofFbo *getCurFbo();
     int getNumLayers();
     int getInPoint();

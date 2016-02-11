@@ -20,6 +20,8 @@
 		6615950B1BD679CF00E77D2C /* Frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661595091BD679CF00E77D2C /* Frame.cpp */; };
 		6615950E1BD679D800E77D2C /* Layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6615950C1BD679D800E77D2C /* Layer.cpp */; };
 		66B461F71C6C123A009FB783 /* PyramidBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B461F51C6C123A009FB783 /* PyramidBrush.cpp */; };
+		66B462101C6C2BEF009FB783 /* GifBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B4620E1C6C2BEF009FB783 /* GifBrush.cpp */; };
+		66B462131C6C2C2C009FB783 /* AnimatedGif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */; };
 		66E0591D1BE0DD6900ABAADF /* VideoBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */; };
 		66F79B491BD46E4C0009C950 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F79B471BD46E4C0009C950 /* Timeline.cpp */; };
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
@@ -128,6 +130,10 @@
 		661595121BD7929700E77D2C /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Timeline.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66B461F51C6C123A009FB783 /* PyramidBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PyramidBrush.cpp; sourceTree = "<group>"; };
 		66B461F61C6C123A009FB783 /* PyramidBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PyramidBrush.h; sourceTree = "<group>"; };
+		66B4620E1C6C2BEF009FB783 /* GifBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GifBrush.cpp; sourceTree = "<group>"; };
+		66B4620F1C6C2BEF009FB783 /* GifBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifBrush.h; sourceTree = "<group>"; };
+		66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedGif.cpp; sourceTree = "<group>"; };
+		66B462121C6C2C2C009FB783 /* AnimatedGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGif.h; sourceTree = "<group>"; };
 		66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoBrush.cpp; sourceTree = "<group>"; };
 		66E0591C1BE0DD6900ABAADF /* VideoBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBrush.h; sourceTree = "<group>"; };
 		66F79B471BD46E4C0009C950 /* Timeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Timeline.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -302,6 +308,15 @@
 			name = timeline;
 			sourceTree = "<group>";
 		};
+		66B462011C6C1C16009FB783 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */,
+				66B462121C6C2C2C009FB783 /* AnimatedGif.h */,
+			);
+			name = video;
+			sourceTree = "<group>";
+		};
 		6DFA2B327764FCDA2A8D882F /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +359,8 @@
 		72BF3C801C0D5CDA00958501 /* Brushes */ = {
 			isa = PBXGroup;
 			children = (
+				66B4620E1C6C2BEF009FB783 /* GifBrush.cpp */,
+				66B4620F1C6C2BEF009FB783 /* GifBrush.h */,
 				66B461F51C6C123A009FB783 /* PyramidBrush.cpp */,
 				66B461F61C6C123A009FB783 /* PyramidBrush.h */,
 				721197051C06C9F1009D56CA /* BrushBase.cpp */,
@@ -477,6 +494,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				66B462011C6C1C16009FB783 /* video */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
@@ -673,10 +691,12 @@
 				0F8F016776681D468C0D0949 /* audio.c in Sources */,
 				ACE7DC9A3223ED5EE1B80074 /* cameras.c in Sources */,
 				F4135EEFC911E9ED211FB6F9 /* core.c in Sources */,
+				66B462101C6C2BEF009FB783 /* GifBrush.cpp in Sources */,
 				E55DEEF784A10419E444669E /* flags.c in Sources */,
 				21A059755481CC0BF969FD2D /* keep_alive.c in Sources */,
 				FCC16AB16073FF0581F50ED7 /* loader.c in Sources */,
 				D31F5C1B140C59B2AF1533A8 /* registration.c in Sources */,
+				66B462131C6C2C2C009FB783 /* AnimatedGif.cpp in Sources */,
 				49BEEB2DFA5319D55AA6899F /* tilt.c in Sources */,
 				255A7B680DC81E543C875794 /* usb_libusb10.c in Sources */,
 				72E960B61C1E61540096D0E7 /* Crop.cpp in Sources */,

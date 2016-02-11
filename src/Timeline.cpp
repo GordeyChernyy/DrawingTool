@@ -50,6 +50,10 @@ int Timeline::getOutPoint(){
 int Timeline::getFrameCount(){
     return frames.size();
 }
+int Timeline::getCurFrameNum() {
+    return curFrame;
+}
+
 // returns the FBO corresponding to the current frame and current layers
 ofFbo *Timeline::getCurFbo() {
     return frames[curFrame].getCurFbo(curlayerNum);

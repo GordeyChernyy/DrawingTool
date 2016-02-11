@@ -15,6 +15,7 @@
 #include "DreamBrush.h"
 #include "TriangleBrush.h"
 #include "PyramidBrush.h"
+#include "GifBrush.h"
 #include "UIManager.h"
 
 class BrushManager{
