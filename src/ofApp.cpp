@@ -6,6 +6,7 @@ void ofApp::setup(){
     
     brushM.setup(uiM.getParameters());
     canvasM.setup(ofGetWidth(), ofGetHeight(), uiM.getParameters());
+    bgManager.setup("mouse", uiM.getParameters());
     uiM.setup();
     
     ofBackground(uiM.bgColor);
@@ -23,6 +24,7 @@ void ofApp::draw(){
     brush()->draw();
     ofDisableAlphaBlending();
     uiM.draw();
+    bgManager.draw();
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

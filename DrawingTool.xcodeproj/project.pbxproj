@@ -22,6 +22,8 @@
 		66B461F71C6C123A009FB783 /* PyramidBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B461F51C6C123A009FB783 /* PyramidBrush.cpp */; };
 		66B462101C6C2BEF009FB783 /* GifBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B4620E1C6C2BEF009FB783 /* GifBrush.cpp */; };
 		66B462131C6C2C2C009FB783 /* AnimatedGif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */; };
+		66B462161C6C2EE2009FB783 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B462141C6C2EE2009FB783 /* Background.cpp */; };
+		66B462191C6C2EF6009FB783 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66B462171C6C2EF6009FB783 /* Video.cpp */; };
 		66E0591D1BE0DD6900ABAADF /* VideoBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */; };
 		66F79B491BD46E4C0009C950 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66F79B471BD46E4C0009C950 /* Timeline.cpp */; };
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
@@ -134,6 +136,10 @@
 		66B4620F1C6C2BEF009FB783 /* GifBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifBrush.h; sourceTree = "<group>"; };
 		66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedGif.cpp; sourceTree = "<group>"; };
 		66B462121C6C2C2C009FB783 /* AnimatedGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGif.h; sourceTree = "<group>"; };
+		66B462141C6C2EE2009FB783 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
+		66B462151C6C2EE2009FB783 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		66B462171C6C2EF6009FB783 /* Video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Video.cpp; sourceTree = "<group>"; };
+		66B462181C6C2EF6009FB783 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		66E0591B1BE0DD6900ABAADF /* VideoBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoBrush.cpp; sourceTree = "<group>"; };
 		66E0591C1BE0DD6900ABAADF /* VideoBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBrush.h; sourceTree = "<group>"; };
 		66F79B471BD46E4C0009C950 /* Timeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Timeline.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -311,6 +317,10 @@
 		66B462011C6C1C16009FB783 /* video */ = {
 			isa = PBXGroup;
 			children = (
+				66B462171C6C2EF6009FB783 /* Video.cpp */,
+				66B462181C6C2EF6009FB783 /* Video.h */,
+				66B462141C6C2EE2009FB783 /* Background.cpp */,
+				66B462151C6C2EE2009FB783 /* Background.h */,
 				66B462111C6C2C2C009FB783 /* AnimatedGif.cpp */,
 				66B462121C6C2C2C009FB783 /* AnimatedGif.h */,
 			);
@@ -708,11 +718,13 @@
 				722C30F51C3B49D7007ED0AA /* UIManager.cpp in Sources */,
 				7212090B1C45D8E2001792C9 /* ColorManager.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
+				66B462191C6C2EF6009FB783 /* Video.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				722C30F21C3B3FED007ED0AA /* CanvasManager.cpp in Sources */,
 				9B67A1EFA6CF7AC42FE339B3 /* ofxTablet.cpp in Sources */,
 				CCE5F2DC1C89111434F3F759 /* tabletCocoa.mm in Sources */,
+				66B462161C6C2EE2009FB783 /* Background.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
