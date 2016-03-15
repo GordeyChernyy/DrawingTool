@@ -29,9 +29,6 @@ public:
         int x = osc->getData("/mouse/position").valuesInt[0];
         int y = osc->getData("/mouse/position").valuesInt[1];
         
-        cout <<  "x= " << x  << endl;
-        cout <<  "y= " << y  << endl;
-        
         float min = 0;
         float max = 1000;
         

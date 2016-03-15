@@ -37,6 +37,10 @@ void ofApp::keyPressed(int key){
         case '1':
             colorM.setColorNum(0);
             break;
+        case 'b': {
+            clip.saveFbos(canvasM.getTimeline());
+            break;
+        }
         case '2':
             colorM.setColorNum(1);
             break;

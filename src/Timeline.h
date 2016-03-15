@@ -50,13 +50,14 @@ public:
     Timeline();
 
     bool getPlaying() { return isPlaying;}
-    vector<Frame> *getFrames();
+    vector<Frame> *getFrames(){ return &frames;};
     Frame *getCurrFrame();
     Frame *getFrame(int num);
     ofFbo *getCurFbo();
     int getNumLayers();
     int getInPoint();
     int getOutPoint();
+    
     void setInPoint(int newVal) {inPoint = newVal;}
     void setOutPoint(int newVal) {outPoint = newVal;}
     int getFrameCount();

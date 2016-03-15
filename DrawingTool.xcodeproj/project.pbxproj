@@ -24,6 +24,7 @@
 		686B0DF6249B52E1A85B39EC /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9FFC7D08DA194C2CE7D09 /* ofxKinect.cpp */; };
 		721197061C06C9F1009D56CA /* BrushBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721197051C06C9F1009D56CA /* BrushBase.cpp */; };
 		7212090B1C45D8E2001792C9 /* ColorManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 721209091C45D8E2001792C9 /* ColorManager.cpp */; };
+		722187091C98B17800A266D7 /* Clip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722187071C98B17800A266D7 /* Clip.cpp */; };
 		7221E9281B74376300AB4529 /* DreamBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7221E9261B74376300AB4529 /* DreamBrush.cpp */; };
 		7227A4BC1BBF7F7E00848EB4 /* Kaleidoscope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */; };
 		722C30F21C3B3FED007ED0AA /* CanvasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 722C30F01C3B3FED007ED0AA /* CanvasManager.cpp */; };
@@ -155,6 +156,8 @@
 		721209101C45F4A6001792C9 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		72176B631C054CAF00C8CE04 /* TextUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtility.h; sourceTree = "<group>"; };
 		72176B681C06433C00C8CE04 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		722187071C98B17800A266D7 /* Clip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clip.cpp; sourceTree = "<group>"; };
+		722187081C98B17800A266D7 /* Clip.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Clip.hpp; sourceTree = "<group>"; };
 		7221E9261B74376300AB4529 /* DreamBrush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = DreamBrush.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		7221E9271B74376300AB4529 /* DreamBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DreamBrush.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7227A4BA1BBF7F7E00848EB4 /* Kaleidoscope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = Kaleidoscope.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -350,6 +353,8 @@
 				721209101C45F4A6001792C9 /* Frame.h */,
 				66F79B471BD46E4C0009C950 /* Timeline.cpp */,
 				661595121BD7929700E77D2C /* Timeline.h */,
+				722187071C98B17800A266D7 /* Clip.cpp */,
+				722187081C98B17800A266D7 /* Clip.hpp */,
 			);
 			name = timeline;
 			sourceTree = "<group>";
@@ -816,6 +821,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72FADD961C4B0C6200D7E28C /* ofxOscBundle.cpp in Sources */,
+				722187091C98B17800A266D7 /* Clip.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				72FADD601C4B0A9500D7E28C /* OSCReceiver.cpp in Sources */,

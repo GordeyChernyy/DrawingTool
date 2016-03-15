@@ -14,6 +14,7 @@
 #include "ColorManager.cpp"
 #include "OSCReceiver.hpp"
 #include "Mapper.hpp"
+#include "Clip.hpp"
 
 #define FRAME_RATE 60
 
@@ -39,6 +40,7 @@ public:
     BrushManager brushM;
     ColorManager colorM;
     OSCReceiver osc;
+    Clip clip;
     
     ofFbo *fbo();
     BrushBase *brush();
