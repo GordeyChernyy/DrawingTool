@@ -12,6 +12,7 @@ void ofApp::setup(){
     mapper.setup(&osc, brush());
     
     ofBackground(uiM.bgColor);
+    clip.load("clips/test");
 }
 //--------------------------------------------------------------
 void ofApp::update(){
