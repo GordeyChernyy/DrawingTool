@@ -27,6 +27,7 @@ void ofApp::draw(){
     brush()->draw();
     ofDisableAlphaBlending();
     uiM.draw();
+    clip.draw();
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

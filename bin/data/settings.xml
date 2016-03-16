@@ -14,7 +14,7 @@
 		<bgColor>255, 255, 255, 255</bgColor>
 	</stageParam>
 	<BrushManager>
-		<currentBrush>2</currentBrush>
+		<currentBrush>1</currentBrush>
 		<TriangleBrush>
 			<dotDistance>50</dotDistance>
 			<pointChoice>50</pointChoice>
@@ -41,6 +41,8 @@
 			<size>300</size>
 			<opacity>20</opacity>
 			<lineWidth>0.2</lineWidth>
+		<pointOffset>0, 0</pointOffset>
+			<col>255, 255, 255, 255</col>
 		</MeshBrush>
 	</BrushManager>
 	<CanvasManager>
