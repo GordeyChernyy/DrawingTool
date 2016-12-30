@@ -139,30 +139,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "DrawingTool.sublime-project",
-			"settings":
-			{
-				"buffer_size": 45,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Font.cpp",
-			"settings":
-			{
-				"buffer_size": 93,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/ParameterManager.h",
-			"settings":
-			{
-				"buffer_size": 3462,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -299,6 +275,10 @@
 	],
 	"file_history":
 	[
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/Font.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/BrushBase.cpp",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/DrawingTool.sublime-project",
+		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/ParameterManager.h",
 		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/.ycm_extra_conf.py",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/ClangAutoComplete/ClangAutoComplete.sublime-settings",
 		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/Kaleidoscope.cpp",
@@ -308,7 +288,6 @@
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/main.cpp",
 		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/BrushBase.h",
-		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/BrushBase.cpp",
 		"/Users/gordey/of_v0.9.0_osx_release/apps/myApps/DrawingTool/src/ofApp.h",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/SublimeLinter-contrib-clang/messages.json",
 		"/Users/gordey/Documents/Unity/ScriptDevelop/Assets/R_PuzzleSlot.cs",
@@ -433,95 +412,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "DrawingTool.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 45,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								45,
-								45
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/Font.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 93,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								92,
-								93
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/ParameterManager.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3462,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2594,
-								2594
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 647.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -556,6 +448,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.cc":
+	{
+		"height": 100.0
+	},
 	"output.exec":
 	{
 		"height": 100.0

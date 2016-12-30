@@ -4,6 +4,16 @@
 void ofApp::setup(){
     ofSetFrameRate(FRAME_RATE);
     
+    ofDirectory dir;
+//
+//    // load fbos and settings
+//    for(int i = 0; i < dir.size(); i++){
+//        string name = dir.getFile(i).getBaseName();
+//            ofImage img;
+//            img.load(dir.getPath(i));
+//            player.push_back(img);
+//    }
+//    
     colorM.setup(uiM.getParameters());
     brushM.setup(uiM.getParameters());
     canvasM.setup(ofGetWidth(), ofGetHeight(), uiM.getParameters());
@@ -13,11 +23,12 @@ void ofApp::setup(){
     
     ofBackground(uiM.bgColor);
     clip.load("clips/test");
+//    player.load("growClip.mp4");
 }
 //--------------------------------------------------------------
 void ofApp::update(){
     brush()->update();
-    mapper.update();
+//    mapper.update();
 }
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -28,10 +39,20 @@ void ofApp::draw(){
     brush()->draw();
     ofDisableAlphaBlending();
     uiM.draw();
-    clip.draw();
+//    player[0].draw(0, 0);
+//    clip.draw();
+//    player.draw(0, 0);
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    keyIsDown[key] = true;
+    if(keyIsDown[OF_KEY_COMMAND] && keyIsDown['s'] ){
+        keyIsDown['s'] = false;
+        clip.saveFbos(canvasM.getTimeline());
+    }
+    if(keyIsDown[OF_KEY_COMMAND] && keyIsDown['n'] ){
+        canvasM.getTimeline()->clearTimeline();
+    }
     switch (key) {
         case 'x':
             canvasM.getTimeline()->autoFrameHandleSwitch();
@@ -116,9 +137,11 @@ void ofApp::keyPressed(int key){
             break;
         }
     }
+
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
+    keyIsDown[key] = false;
 
 }
 //--------------------------------------------------------------
@@ -147,8 +170,8 @@ void ofApp::gotMessage(ofMessage msg){
 
 }
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+void ofApp::dragEvent(ofDragInfo dragInfo){
+    canvasM.getTimeline()->loadBg(dragInfo.files[0]);
 }
 
 BrushBase *ofApp::brush(){

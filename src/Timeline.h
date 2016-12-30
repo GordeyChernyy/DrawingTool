@@ -34,6 +34,7 @@ private:
     int frameRate;
     int _x, _y, width, height;
     int frameWidth, frameHeight;
+    ofImage bg;
     
     int curlayerNum;
     int numLayers;
@@ -43,7 +44,9 @@ private:
     
     bool isPlaying;
     ofParameter<bool> showOnionSkin;
+    ofParameter<bool> showBg;
     ofParameter<int> onionSkinAlpha;
+    ofParameter<int> bgAlpha;
     ofParameter<int> autoFrameHandleMode;
 public:
     ofParameterGroup parameters;
@@ -93,7 +96,11 @@ public:
     void checkTimelineResize();
     void delCurFrame();
     void clearAllFrames();
+    void clearTimeline();
 
     int countAllocatedFbos();
+    
+    void loadBg(string path);
+    void drawBg();
 };
 #endif

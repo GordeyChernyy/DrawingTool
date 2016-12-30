@@ -25,9 +25,11 @@ void Timeline::setup(int x, int y, int _width, int _height) {
 
     font.load("Arial.ttf", 8);
     parameters.setName("Timeline");
+    parameters.add(showBg.set("showBg", false));
+    parameters.add(bgAlpha.set("bgAlpha", 200, 0, 255));
     parameters.add(showOnionSkin.set("showOnionSkin", false));
-    parameters.add(autoFrameHandleMode.set("autoFrameHandleMode", 0, 0, 2));
     parameters.add(onionSkinAlpha.set("autoFrameHandleMode", 200, 0, 255));
+    parameters.add(autoFrameHandleMode.set("autoFrameHandleMode", 0, 0, 2));
 }
 
 Frame *Timeline::getFrame(int num){
@@ -162,6 +164,8 @@ void Timeline::delCurFrame() {
     
     curFrame = newcurrFrame;
 }
+// ------------------------------------------------------------------ DRAW
+
 // Responsible for drawing the actual FBO for the frame, as opposed to drawing on the Timeline
 // This function SHOULD be called by the main app
 void Timeline::drawCurFrame() {
@@ -307,6 +311,7 @@ void Timeline::windowResize(int w, int h) {
     return;
 }
 void Timeline::draw(){
+    if(showBg) drawBg();
     drawCurFrame();
     drawTimeline();
 }
@@ -348,4 +353,29 @@ void Timeline::playPause(){
     } else {
         setPlaying(true);
     }
+}
+void Timeline::clearTimeline(){
+    frames.clear();
+    
+    addFrame();
+    
+    curlayerNum = 0;
+    numLayers = 1;
+    inPoint = 0;
+    outPoint = 0;
+    curFrame = 0;
+    
+    isPlaying = false;
+    frameRate = 3;
+}
+void Timeline::loadBg(string path){
+    bg.load(path);
+    showBg = true;
+}
+void Timeline::drawBg(){
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    ofSetColor(255, bgAlpha);
+    bg.draw(0, 0);
+    glDisable(GL_BLEND);
 }

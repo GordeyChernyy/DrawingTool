@@ -34,7 +34,6 @@ public:
         
         // load fbos and settings
         for(int i = 0; i < dir.size(); i++){
-            
             string name = dir.getFile(i).getBaseName();
             
             if(name == "settings"){ // set positons

@@ -1,10 +1,10 @@
 <settings>
-    <framePosX0>32.000000000</framePosX0>
-    <framePosY0>7.000000000</framePosY0>
-    <framePosX1>97.000000000</framePosX1>
-    <framePosY1>0.000000000</framePosY1>
-    <framePosX2>0.000000000</framePosX2>
-    <framePosY2>3.000000000</framePosY2>
-    <framePosX3>56.000000000</framePosX3>
-    <framePosY3>9.000000000</framePosY3>
+    <framePosX0>0.000000000</framePosX0>
+    <framePosY0>15.000000000</framePosY0>
+    <framePosX1>60.000000000</framePosX1>
+    <framePosY1>19.000000000</framePosY1>
+    <framePosX2>126.000000000</framePosX2>
+    <framePosY2>0.000000000</framePosY2>
+    <framePosX3>59.000000000</framePosX3>
+    <framePosY3>31.000000000</framePosY3>
 </settings>

@@ -20,6 +20,7 @@
 
 class ofApp : public ofBaseApp{
 public:
+    
 		void setup();
 		void update();
 		void draw();
@@ -46,6 +47,8 @@ public:
     BrushBase *brush();
     Mapper mapper;
     MultiWindow win;
-private:
+    bool keyIsDown[4358];
+    int currFrame;
     
+    ofVideoPlayer player;
 };
